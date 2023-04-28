@@ -1,6 +1,6 @@
 Validating documentation
 Source file: %[1]s
 Schema file: %[2]s
-Using default placeholders '{::comment} # DOCS_START {:/comment}' and '{::comment} # DOCS_END {:/comment}'
+Using default placeholders '<!-- DOCS_START -->' and '<!-- DOCS_END -->'
 
 [SUCCESS] Documentation is valid!

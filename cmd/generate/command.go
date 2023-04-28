@@ -16,7 +16,7 @@ By default the documentation will be stored to README.md file in the current wor
 Use --output-path / -o to specify a target path.
 
 The output file needs to contain placeholders indicating the start and end of the documentation,
-Default placeholders are {::comment} # DOCS_START {/:comment} and {::comment} # DOCS_END {/:comment}.
+Default placeholders are <!-- DOCS_START --> and <!-- DOCS_END -->.
 Use --doc-placeholder-start and --doc-placeholder-end to specify different placeholders.
 `
 	example = `  schemadocs generate schema.json

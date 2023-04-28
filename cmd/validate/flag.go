@@ -22,8 +22,6 @@ func (f *flag) Init(cmd *cobra.Command) {
 	cmd.Flags().StringVar(&f.schema, flagSchema, "", "Path to the JSON schema file")
 	cmd.Flags().StringVar(&f.docPlaceholderStart, flagDocPlaceholderStart, "", "Placeholder string marking the start of the docs section in the output file")
 	cmd.Flags().StringVar(&f.docPlaceholderEnd, flagDocPlaceholderEnd, "", "Placeholder string marking the end of the docs section in the output file")
-
-	_ = cmd.MarkFlagRequired(flagSchema)
 }
 
 func (f *flag) Validate() error {
