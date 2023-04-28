@@ -1,5 +1,5 @@
-{::comment} # DOCS_START {:/comment}
+<!-- DOCS_START -->
 
 Docs
 
-{::comment} # DOCS_END {:/comment}
+<!-- DOCS_END -->

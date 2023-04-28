@@ -16,7 +16,7 @@ to the documentation generated from the provided JSON schema.
 Use --schema to specify the JSON schema.
 
 The input text file needs to contain placeholders indicating the start and end of the documentation,
-Default placeholders are "{::comment} # DOCS_START {/:comment}" and "{::comment} # DOCS_END {/:comment}".
+Default placeholders are <!-- DOCS_START --> and <!-- DOCS_END -->.
 Use --doc-placeholder-start and --doc-placeholder-end to specify different placeholders.
 `
 	example = `  schemadocs validate README.md --schema schema.json

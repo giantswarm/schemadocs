@@ -10,8 +10,8 @@ const (
 	defaultOutputPath1      = "./README.md"
 	defaultOutputPath2      = "./Readme.md"
 	defaultOutputPath3      = "./readme.md"
-	defaultStartPlaceholder = "{::comment} # DOCS_START {:/comment}"
-	defaultEndPlaceholder   = "{::comment} # DOCS_END {:/comment}"
+	defaultStartPlaceholder = "<!-- DOCS_START -->"
+	defaultEndPlaceholder   = "<!-- DOCS_END -->"
 )
 
 type Readme struct {
