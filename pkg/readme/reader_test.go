@@ -2,6 +2,7 @@ package readme
 
 import (
 	"fmt"
+	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 	"os"
 	"path"
 	"testing"
@@ -22,7 +23,7 @@ func Test_Content(t *testing.T) {
 		{
 			name:        "case 1: Read content from invalid file",
 			fileName:    "text.txt",
-			expectedErr: invalidFileError,
+			expectedErr: pkgerror.InvalidFileError,
 		},
 	}
 
@@ -32,11 +33,11 @@ func Test_Content(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			defer deleteTempResourceAtPath(tempDir)
+			defer DeleteTempResourceAtPath(tempDir)
 
 			tempFilePath := path.Join(tempDir, tc.fileName)
-			tempFile, err := createTempFileWithContent(tempFilePath, tc.content)
-			defer deleteTempFile(tempFile)
+			tempFile, err := CreateTempFileWithContent(tempFilePath, tc.content)
+			defer DeleteTempFile(tempFile)
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -82,19 +83,19 @@ func Test_Docs(t *testing.T) {
 			name:        "case 2: Read docs from a valid file with invalid placeholders",
 			fileName:    "test.txt",
 			content:     "Text [START_PLACEHOLDER] Docs [END_PLACEHOLDER] Text",
-			expectedErr: invalidDocsPlaceholderError,
+			expectedErr: pkgerror.InvalidDocsPlaceholderError,
 		},
 		{
 			name:        "case 3: Read docs from file with invalid content",
 			fileName:    "test.txt",
 			content:     fmt.Sprintf("Text %s Text", defaultEndPlaceholder),
-			expectedErr: invalidDocsPlaceholderError,
+			expectedErr: pkgerror.InvalidDocsPlaceholderError,
 		},
 		{
 			name:        "case 4: Read docs from invalid file",
 			fileName:    "test.txt",
 			content:     "",
-			expectedErr: invalidFileError,
+			expectedErr: pkgerror.InvalidFileError,
 		},
 	}
 
@@ -104,14 +105,14 @@ func Test_Docs(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			defer deleteTempResourceAtPath(tempDir)
+			defer DeleteTempResourceAtPath(tempDir)
 
 			tempFilePath := path.Join(tempDir, tc.fileName)
-			tempFile, err := createTempFileWithContent(tempFilePath, tc.content)
+			tempFile, err := CreateTempFileWithContent(tempFilePath, tc.content)
 			if err != nil {
 				t.Fatal(err)
 			}
-			defer deleteTempFile(tempFile)
+			defer DeleteTempFile(tempFile)
 
 			var readme Readme
 			var docs string

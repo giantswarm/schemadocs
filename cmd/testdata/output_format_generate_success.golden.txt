@@ -1,0 +1,6 @@
+Generating documentation
+Schema: %[1]s
+Destination file: %[2]s
+Using default placeholders '{::comment} # DOCS_START {:/comment}' and '{::comment} # DOCS_END {:/comment}'
+
+[SUCCESS] Documentation generated successfully!

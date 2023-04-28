@@ -1,6 +1,9 @@
 package readme
 
-import "testing"
+import (
+	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
+	"testing"
+)
 
 func Test_Validate(t *testing.T) {
 	testCases := []struct {
@@ -20,19 +23,19 @@ func Test_Validate(t *testing.T) {
 			name:           "case 1: Fail when the provided and generated docs do not match",
 			readmeFilePath: "testdata/readme2.md",
 			schemaFilePath: "testdata/schema.json",
-			expectedErr:    invalidDocsError,
+			expectedErr:    pkgerror.InvalidDocsError,
 		},
 		{
 			name:           "case 2: Fail when the provided docs is not valid",
 			schemaFilePath: "testdata/schema.json",
-			expectedErr:    invalidFileError,
+			expectedErr:    pkgerror.InvalidFileError,
 		},
 		{
 			name:             "case 2: Fail when the docs placeholders are not valid",
 			readmeFilePath:   "testdata/readme1.md",
 			schemaFilePath:   "testdata/schema.json",
 			startPlaceholder: "[DOCS_START]",
-			expectedErr:      invalidDocsPlaceholderError,
+			expectedErr:      pkgerror.InvalidDocsPlaceholderError,
 		},
 	}
 

@@ -2,7 +2,7 @@
 
 Text
 
-[//]: # DOCS_START
+{::comment} # DOCS_START {:/comment}
 
 ### Other
 
@@ -11,6 +11,6 @@ Text
 | `id` | **ID** - Unique identifier|**Type:** `string`<br/>|
 
 
-[//]: # DOCS_END
+{::comment} # DOCS_END {:/comment}
 
 Text

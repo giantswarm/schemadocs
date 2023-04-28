@@ -1,0 +1,7 @@
+Validating documentation
+Source file: %[1]s
+Schema file: %[2]s
+Using default placeholders '{::comment} # DOCS_START {:/comment}' and '{::comment} # DOCS_END {:/comment}'
+
+[ERROR] Failed to validate documentation
+Reason: invalid schema file: jsonschema file://%[2]s compilation failed: open %[2]s: no such file or directory

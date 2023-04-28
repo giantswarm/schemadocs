@@ -3,18 +3,11 @@ package generate
 import (
 	"bytes"
 	"github.com/giantswarm/microerror"
+	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
+	"github.com/giantswarm/schemadocs/pkg/generate/templates"
 	"github.com/giantswarm/schemadocs/pkg/key"
 	"github.com/santhosh-tekuri/jsonschema/v5"
-	"path"
-	"path/filepath"
-	"runtime"
 	"sort"
-	"text/template"
-)
-
-var (
-	_, b, _, _ = runtime.Caller(0)
-	pkgPath    = filepath.Dir(b)
 )
 
 func Generate(schemaPath string) (string, error) {
@@ -23,7 +16,7 @@ func Generate(schemaPath string) (string, error) {
 	schema, err := compiler.Compile(schemaPath)
 
 	if err != nil {
-		return "", microerror.Maskf(invalidSchemaFile, err.Error())
+		return "", microerror.Maskf(pkgerror.InvalidSchemaFile, err.Error())
 	}
 
 	sections := sectionsFromSchema(schema)
@@ -59,20 +52,22 @@ func sectionsFromSchema(schema *jsonschema.Schema) []Section {
 }
 
 func toMarkdown(sections []Section) (string, error) {
-	t, err := template.ParseFiles(
+	/*t, err := template.ParseFiles(
 		path.Join(pkgPath, "templates/docs.md.tpl"),
 		path.Join(pkgPath, "templates/row.md.tpl"),
 		path.Join(pkgPath, "templates/section.md.tpl"),
-	)
+	)*/
+
+	t, err := templates.GetTemplate()
 
 	if err != nil {
-		return "", microerror.Maskf(docsGenerationError, err.Error())
+		return "", microerror.Maskf(pkgerror.DocsGenerationError, err.Error())
 	}
 
 	var tplBuffer bytes.Buffer
 	err = t.Execute(&tplBuffer, sections)
 	if err != nil {
-		return "", microerror.Maskf(docsGenerationError, err.Error())
+		return "", microerror.Maskf(pkgerror.DocsGenerationError, err.Error())
 	}
 	return tplBuffer.String(), nil
 }

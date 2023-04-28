@@ -1,0 +1,5 @@
+Validating documentation
+Source file: %[1]s
+
+[ERROR] Failed to validate documentation
+Reason: invalid file error: stat %[1]s: no such file or directory

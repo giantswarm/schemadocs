@@ -1,6 +1,7 @@
 package readme
 
 import (
+	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 	"os"
 	"path"
 	"testing"
@@ -40,7 +41,7 @@ func Test_Write(t *testing.T) {
 			fileName:    "test.txt",
 			content:     "Text [START_PLACEHOLDER] Docs [END_PLACEHOLDER] Text",
 			docs:        "New Docs",
-			expectedErr: invalidDocsPlaceholderError,
+			expectedErr: pkgerror.InvalidDocsPlaceholderError,
 		},
 		{
 			name:             "case 3: Write content to invalid file",
@@ -48,7 +49,7 @@ func Test_Write(t *testing.T) {
 			startPlaceholder: "[START_PLACEHOLDER]",
 			endPlaceholder:   "[END_PLACEHOLDER]",
 			docs:             "New Docs",
-			expectedErr:      invalidFileError,
+			expectedErr:      pkgerror.InvalidFileError,
 		},
 	}
 
@@ -58,14 +59,14 @@ func Test_Write(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			defer deleteTempResourceAtPath(tempDir)
+			defer DeleteTempResourceAtPath(tempDir)
 
 			tempFilePath := path.Join(tempDir, tc.fileName)
-			tempFile, err := createTempFileWithContent(tempFilePath, tc.content)
+			tempFile, err := CreateTempFileWithContent(tempFilePath, tc.content)
 			if err != nil {
 				t.Fatal(err)
 			}
-			defer deleteTempFile(tempFile)
+			defer DeleteTempFile(tempFile)
 
 			readme, err := New(tempFilePath, tc.startPlaceholder, tc.endPlaceholder)
 			if err != nil {

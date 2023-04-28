@@ -1,0 +1,8 @@
+Validating documentation
+Source file: %[1]s
+Schema file: %[2]s
+Using default placeholders '{::comment} # DOCS_START {:/comment}' and '{::comment} # DOCS_END {:/comment}'
+
+[FAILURE] Documentation is not valid
+Reason: invalid documentation error: documentation from readme %[1]s do not match output generated from %[2]s
+

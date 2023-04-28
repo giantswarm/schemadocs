@@ -2,6 +2,7 @@ package generate
 
 import (
 	"github.com/giantswarm/microerror"
+	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 	"github.com/google/go-cmp/cmp"
 	"os"
 	"testing"
@@ -23,11 +24,11 @@ func Test_Generator(t *testing.T) {
 		{
 			name:        "case 1: Fail to generate markdown from an existing invalid JSON schema",
 			schemaPath:  "testdata/schema_invalid.json",
-			expectedErr: invalidSchemaFile,
+			expectedErr: pkgerror.InvalidSchemaFile,
 		},
 		{
 			name:        "case 2: Fail to generate markdown from a on-existent JSON schema",
-			expectedErr: invalidSchemaFile,
+			expectedErr: pkgerror.InvalidSchemaFile,
 		},
 	}
 

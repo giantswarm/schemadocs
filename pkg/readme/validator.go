@@ -2,6 +2,7 @@ package readme
 
 import (
 	"github.com/giantswarm/microerror"
+	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 	"github.com/giantswarm/schemadocs/pkg/generate"
 	"github.com/google/go-cmp/cmp"
 	"strings"
@@ -20,7 +21,7 @@ func (r *Readme) Validate(schemaPath string) error {
 
 	diff := cmp.Diff(strings.TrimSpace(docsFromSchema), trimDocs(docsFromReadme, r.startPlaceholder, r.endPlaceholder))
 	if diff != "" {
-		return microerror.Maskf(invalidDocsError, "docs from readme %s do not match docs generated from %s:\n%s\n", r.path, schemaPath, diff)
+		return microerror.Maskf(pkgerror.InvalidDocsError, "documentation from readme %s do not match output generated from %s\n", r.path, schemaPath)
 	}
 
 	return nil

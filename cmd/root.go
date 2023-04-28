@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/giantswarm/microerror"
 	"github.com/giantswarm/schemadocs/cmd/generate"
+	"github.com/giantswarm/schemadocs/cmd/global"
 	"github.com/giantswarm/schemadocs/cmd/validate"
 	"github.com/giantswarm/schemadocs/pkg/project"
 	"github.com/spf13/cobra"
@@ -12,7 +13,7 @@ import (
 
 const (
 	name        = "schemadoc"
-	description = "Generator and validator of Markdown docs from JSON schema files in text files"
+	description = "Genera and validate Markdown docs from JSON schema files in text files"
 )
 
 type Config struct {
@@ -30,10 +31,9 @@ func New(config Config) (*cobra.Command, error) {
 
 	var err error
 
-	f := &flag{}
+	gf := &global.Flag{}
 
 	r := &runner{
-		flag:   f,
 		stdout: config.Stdout,
 		stderr: config.Stderr,
 	}
@@ -43,22 +43,24 @@ func New(config Config) (*cobra.Command, error) {
 		Short:        description,
 		RunE:         r.Run,
 		SilenceUsage: true,
-		Version:      project.Version(),
+		//SilenceErrors: true,
+		Version: project.Version(),
 		CompletionOptions: cobra.CompletionOptions{
 			DisableDefaultCmd: true,
 		},
 	}
 
-	f.Init(c)
+	gf.Init(c)
 
 	var generateCmd *cobra.Command
 	{
-		c := generate.Config{
-			Stderr: config.Stderr,
-			Stdout: config.Stdout,
+		cfg := generate.Config{
+			GlobalFlag: gf,
+			Stderr:     config.Stderr,
+			Stdout:     config.Stdout,
 		}
 
-		generateCmd, err = generate.New(c)
+		generateCmd, err = generate.New(cfg)
 		if err != nil {
 			return nil, microerror.Mask(err)
 		}
@@ -66,12 +68,13 @@ func New(config Config) (*cobra.Command, error) {
 
 	var validateCmd *cobra.Command
 	{
-		c := validate.Config{
-			Stderr: config.Stderr,
-			Stdout: config.Stdout,
+		cfg := validate.Config{
+			GlobalFlag: gf,
+			Stderr:     config.Stderr,
+			Stdout:     config.Stdout,
 		}
 
-		validateCmd, err = validate.New(c)
+		validateCmd, err = validate.New(cfg)
 		if err != nil {
 			return nil, microerror.Mask(err)
 		}

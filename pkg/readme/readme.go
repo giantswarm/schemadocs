@@ -2,6 +2,7 @@ package readme
 
 import (
 	"github.com/giantswarm/microerror"
+	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 	"os"
 )
 
@@ -9,8 +10,8 @@ const (
 	defaultOutputPath1      = "./README.md"
 	defaultOutputPath2      = "./Readme.md"
 	defaultOutputPath3      = "./readme.md"
-	defaultStartPlaceholder = "[//]: # DOCS_START"
-	defaultEndPlaceholder   = "[//]: # DOCS_END"
+	defaultStartPlaceholder = "{::comment} # DOCS_START {:/comment}"
+	defaultEndPlaceholder   = "{::comment} # DOCS_END {:/comment}"
 )
 
 type Readme struct {
@@ -30,7 +31,7 @@ func New(path, startPlaceholder, endPlaceholder string) (Readme, error) {
 	}
 
 	if err != nil {
-		return readme, microerror.Maskf(invalidFileError, err.Error())
+		return readme, microerror.Maskf(pkgerror.InvalidFileError, err.Error())
 	}
 
 	if startPlaceholder == "" {
@@ -49,9 +50,21 @@ func New(path, startPlaceholder, endPlaceholder string) (Readme, error) {
 	return readme, nil
 }
 
+func (r *Readme) StartPlaceholder() string {
+	return r.startPlaceholder
+}
+
+func (r *Readme) EndPlaceholder() string {
+	return r.endPlaceholder
+}
+
+func (r *Readme) Path() string {
+	return r.path
+}
+
 func resolveReadmeFilePathStep(paths []string) (string, error) {
 	if len(paths) == 0 {
-		return "", microerror.Maskf(invalidOutputFilePath, "valid output file path is not specified")
+		return "", microerror.Maskf(pkgerror.InvalidOutputFilePath, "valid output file path is not specified")
 	}
 	if paths[0] != "" {
 		_, err := os.Stat(paths[0])
