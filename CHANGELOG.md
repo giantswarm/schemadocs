@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.1] - 2023-04-28
 
 
-[Unreleased]: https://github.com/giantswarm/schemadocs/tree/master
+
+[Unreleased]: https://github.com/giantswarm/schemadocs/compare/v0.0.1...HEAD
+[0.0.1]: https://github.com/giantswarm/schemadocs/releases/tag/v0.0.1
