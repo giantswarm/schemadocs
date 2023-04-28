@@ -50,7 +50,7 @@ Use `--help` to learn about more options.
 
 ### Validation
 
-Validate documentation a text file by comparing it to documentation generated from a JSON schema file specified in the required `--schema` option.
+Validate documentation in a text file by comparing it to documentation generated from a JSON schema file specified in the required `--schema` option.
 The validation passes in case both documentations match exactly.
 
 It is required that the text file contains exactly one pair of placeholder strings, which mark the start and end of the documentation.
