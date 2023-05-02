@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	name        = "schemadoc"
+	name        = "schemadocs"
 	description = "Genera and validate Markdown docs from JSON schema files in text files"
 )
 
