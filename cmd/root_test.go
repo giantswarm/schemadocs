@@ -123,7 +123,7 @@ func Test_Root(t *testing.T) {
 
 			output := new(bytes.Buffer)
 
-			args := []string{"schemadoc"}
+			args := []string{"schemadocs"}
 			if tc.command != "" {
 				args = append(args, tc.command)
 			}
