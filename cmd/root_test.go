@@ -191,14 +191,14 @@ func cloneFileToTempDir(srcFilePath string, dstRootDir string) (string, error) {
 	if srcFilePath != "" {
 		dstFilePath = path.Join(dstRootDir, srcFilePath)
 		dstFileDir = path.Dir(dstFilePath)
-		err := os.MkdirAll(dstFileDir, 0o777)
+		err := os.MkdirAll(dstFileDir, os.ModePerm)
 		if err != nil {
 			return "", err
 		}
 
 		data, err := os.ReadFile(srcFilePath)
 		if err == nil {
-			err = os.WriteFile(dstFilePath, data, 0o644)
+			err = os.WriteFile(dstFilePath, data, 0600)
 			if err != nil {
 				return "", err
 			}

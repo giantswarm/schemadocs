@@ -26,7 +26,7 @@ func (r *Readme) WriteDocs(docs string) error {
 
 	newContent := strings.ReplaceAll(content, docsToReplace, newDocs)
 
-	err = os.WriteFile(r.path, []byte(newContent), 0644)
+	err = os.WriteFile(r.path, []byte(newContent), 0600)
 	if err != nil {
 		return microerror.Mask(err)
 	}
