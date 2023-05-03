@@ -30,11 +30,7 @@ func (r *Readme) Validate(schemaPath string) error {
 }
 
 func trimDocs(docs, startPlaceholder, endPlaceholder string) string {
-	if strings.HasPrefix(docs, startPlaceholder) {
-		docs = docs[len(startPlaceholder):]
-	}
-	if strings.HasSuffix(docs, endPlaceholder) {
-		docs = docs[:len(docs)-len(endPlaceholder)]
-	}
+	docs = strings.TrimPrefix(docs, startPlaceholder)
+	docs = strings.TrimSuffix(docs, endPlaceholder)
 	return strings.TrimSpace(docs)
 }
