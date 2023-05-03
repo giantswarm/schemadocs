@@ -1,10 +1,11 @@
 package readme
 
 import (
-	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 	"os"
 	"path"
 	"testing"
+
+	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 )
 
 func Test_Write(t *testing.T) {

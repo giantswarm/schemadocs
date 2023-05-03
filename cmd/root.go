@@ -1,14 +1,15 @@
 package cmd
 
 import (
+	"io"
+	"os"
+
 	"github.com/giantswarm/microerror"
 	"github.com/giantswarm/schemadocs/cmd/generate"
 	"github.com/giantswarm/schemadocs/cmd/global"
 	"github.com/giantswarm/schemadocs/cmd/validate"
 	"github.com/giantswarm/schemadocs/pkg/project"
 	"github.com/spf13/cobra"
-	"io"
-	"os"
 )
 
 const (

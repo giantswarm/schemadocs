@@ -1,10 +1,11 @@
 package validate
 
 import (
-	"github.com/giantswarm/schemadocs/cmd/global"
-	"github.com/spf13/cobra"
 	"io"
 	"os"
+
+	"github.com/giantswarm/schemadocs/cmd/global"
+	"github.com/spf13/cobra"
 )
 
 const (

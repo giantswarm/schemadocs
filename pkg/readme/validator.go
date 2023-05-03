@@ -1,11 +1,12 @@
 package readme
 
 import (
+	"strings"
+
 	"github.com/giantswarm/microerror"
 	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 	"github.com/giantswarm/schemadocs/pkg/generate"
 	"github.com/google/go-cmp/cmp"
-	"strings"
 )
 
 func (r *Readme) Validate(schemaPath string) error {

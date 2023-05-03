@@ -1,9 +1,10 @@
 package cmd
 
 import (
+	"io"
+
 	"github.com/giantswarm/microerror"
 	"github.com/spf13/cobra"
-	"io"
 )
 
 type runner struct {

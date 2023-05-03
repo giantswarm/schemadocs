@@ -1,6 +1,8 @@
 package generate
 
 import (
+	"io"
+
 	"github.com/giantswarm/microerror"
 	"github.com/giantswarm/schemadocs/cmd/global"
 	"github.com/giantswarm/schemadocs/pkg/cli"
@@ -8,7 +10,6 @@ import (
 	"github.com/giantswarm/schemadocs/pkg/generate"
 	"github.com/giantswarm/schemadocs/pkg/readme"
 	"github.com/spf13/cobra"
-	"io"
 )
 
 type runner struct {

@@ -3,12 +3,13 @@ package cmd
 import (
 	"bytes"
 	"fmt"
-	"github.com/giantswarm/microerror"
-	cmderror "github.com/giantswarm/schemadocs/pkg/error"
-	"github.com/google/go-cmp/cmp"
 	"os"
 	"path"
 	"testing"
+
+	"github.com/giantswarm/microerror"
+	cmderror "github.com/giantswarm/schemadocs/pkg/error"
+	"github.com/google/go-cmp/cmp"
 )
 
 func Test_Root(t *testing.T) {

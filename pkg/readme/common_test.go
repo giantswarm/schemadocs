@@ -2,10 +2,11 @@ package readme
 
 import (
 	"fmt"
-	"github.com/giantswarm/microerror"
-	"github.com/google/go-cmp/cmp"
 	"os"
 	"testing"
+
+	"github.com/giantswarm/microerror"
+	"github.com/google/go-cmp/cmp"
 )
 
 func checkFileContent(t *testing.T, content string, expectedContent string, err error, expectedErr error) {

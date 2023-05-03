@@ -2,9 +2,10 @@ package readme
 
 import (
 	"fmt"
-	"github.com/giantswarm/microerror"
 	"os"
 	"strings"
+
+	"github.com/giantswarm/microerror"
 )
 
 func (r *Readme) WriteDocs(docs string) error {

@@ -2,10 +2,11 @@ package readme
 
 import (
 	"fmt"
-	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 	"os"
 	"path"
 	"testing"
+
+	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 )
 
 func Test_Content(t *testing.T) {

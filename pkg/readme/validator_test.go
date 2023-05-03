@@ -1,8 +1,9 @@
 package readme
 
 import (
-	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 	"testing"
+
+	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 )
 
 func Test_Validate(t *testing.T) {
