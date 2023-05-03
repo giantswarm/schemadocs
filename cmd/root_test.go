@@ -8,8 +8,9 @@ import (
 	"testing"
 
 	"github.com/giantswarm/microerror"
-	cmderror "github.com/giantswarm/schemadocs/pkg/error"
 	"github.com/google/go-cmp/cmp"
+
+	cmderror "github.com/giantswarm/schemadocs/pkg/error"
 )
 
 func Test_Root(t *testing.T) {

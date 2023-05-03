@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/giantswarm/microerror"
+
 	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 )
 

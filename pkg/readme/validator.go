@@ -4,9 +4,10 @@ import (
 	"strings"
 
 	"github.com/giantswarm/microerror"
+	"github.com/google/go-cmp/cmp"
+
 	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 	"github.com/giantswarm/schemadocs/pkg/generate"
-	"github.com/google/go-cmp/cmp"
 )
 
 func (r *Readme) Validate(schemaPath string) error {

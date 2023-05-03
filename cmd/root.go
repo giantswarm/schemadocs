@@ -5,11 +5,12 @@ import (
 	"os"
 
 	"github.com/giantswarm/microerror"
+	"github.com/spf13/cobra"
+
 	"github.com/giantswarm/schemadocs/cmd/generate"
 	"github.com/giantswarm/schemadocs/cmd/global"
 	"github.com/giantswarm/schemadocs/cmd/validate"
 	"github.com/giantswarm/schemadocs/pkg/project"
-	"github.com/spf13/cobra"
 )
 
 const (

@@ -4,8 +4,9 @@ import (
 	"io"
 	"os"
 
-	"github.com/giantswarm/schemadocs/cmd/global"
 	"github.com/spf13/cobra"
+
+	"github.com/giantswarm/schemadocs/cmd/global"
 )
 
 const (

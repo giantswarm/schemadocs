@@ -5,10 +5,11 @@ import (
 	"sort"
 
 	"github.com/giantswarm/microerror"
+	"github.com/santhosh-tekuri/jsonschema/v5"
+
 	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 	"github.com/giantswarm/schemadocs/pkg/generate/templates"
 	"github.com/giantswarm/schemadocs/pkg/key"
-	"github.com/santhosh-tekuri/jsonschema/v5"
 )
 
 func Generate(schemaPath string) (string, error) {
