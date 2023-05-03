@@ -1,8 +1,9 @@
 package generate
 
 import (
-	"github.com/santhosh-tekuri/jsonschema/v5"
 	"sort"
+
+	"github.com/santhosh-tekuri/jsonschema/v5"
 )
 
 type Section struct {

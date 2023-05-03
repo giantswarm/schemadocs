@@ -1,11 +1,13 @@
 package generate
 
 import (
-	"github.com/giantswarm/microerror"
-	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
-	"github.com/google/go-cmp/cmp"
 	"os"
 	"testing"
+
+	"github.com/giantswarm/microerror"
+	"github.com/google/go-cmp/cmp"
+
+	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 )
 
 func Test_Generator(t *testing.T) {

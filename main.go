@@ -1,10 +1,12 @@
 package main
 
 import (
-	"github.com/giantswarm/microerror"
-	"github.com/giantswarm/schemadocs/cmd"
-	"github.com/spf13/cobra"
 	"os"
+
+	"github.com/giantswarm/microerror"
+	"github.com/spf13/cobra"
+
+	"github.com/giantswarm/schemadocs/cmd"
 )
 
 func main() {

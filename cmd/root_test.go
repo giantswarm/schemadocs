@@ -3,12 +3,14 @@ package cmd
 import (
 	"bytes"
 	"fmt"
-	"github.com/giantswarm/microerror"
-	cmderror "github.com/giantswarm/schemadocs/pkg/error"
-	"github.com/google/go-cmp/cmp"
 	"os"
 	"path"
 	"testing"
+
+	"github.com/giantswarm/microerror"
+	"github.com/google/go-cmp/cmp"
+
+	cmderror "github.com/giantswarm/schemadocs/pkg/error"
 )
 
 func Test_Root(t *testing.T) {
@@ -189,14 +191,14 @@ func cloneFileToTempDir(srcFilePath string, dstRootDir string) (string, error) {
 	if srcFilePath != "" {
 		dstFilePath = path.Join(dstRootDir, srcFilePath)
 		dstFileDir = path.Dir(dstFilePath)
-		err := os.MkdirAll(dstFileDir, 0o777)
+		err := os.MkdirAll(dstFileDir, os.ModePerm)
 		if err != nil {
 			return "", err
 		}
 
 		data, err := os.ReadFile(srcFilePath)
 		if err == nil {
-			err = os.WriteFile(dstFilePath, data, 0o644)
+			err = os.WriteFile(dstFilePath, data, 0600)
 			if err != nil {
 				return "", err
 			}

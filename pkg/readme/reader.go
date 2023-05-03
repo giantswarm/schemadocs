@@ -1,10 +1,12 @@
 package readme
 
 import (
-	"github.com/giantswarm/microerror"
-	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 	"os"
 	"strings"
+
+	"github.com/giantswarm/microerror"
+
+	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 )
 
 func (r *Readme) Content() (string, error) {

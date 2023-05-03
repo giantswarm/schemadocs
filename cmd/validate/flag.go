@@ -2,8 +2,9 @@ package validate
 
 import (
 	"github.com/giantswarm/microerror"
-	cmderror "github.com/giantswarm/schemadocs/pkg/error"
 	"github.com/spf13/cobra"
+
+	cmderror "github.com/giantswarm/schemadocs/pkg/error"
 )
 
 const (

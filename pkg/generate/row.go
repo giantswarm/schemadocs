@@ -3,8 +3,10 @@ package generate
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/giantswarm/schemadocs/pkg/key"
+
 	"github.com/santhosh-tekuri/jsonschema/v5"
+
+	"github.com/giantswarm/schemadocs/pkg/key"
 )
 
 type Row struct {

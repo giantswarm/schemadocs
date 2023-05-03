@@ -2,9 +2,10 @@ package readme
 
 import (
 	"fmt"
-	"github.com/giantswarm/microerror"
 	"os"
 	"strings"
+
+	"github.com/giantswarm/microerror"
 )
 
 func (r *Readme) WriteDocs(docs string) error {
@@ -25,7 +26,7 @@ func (r *Readme) WriteDocs(docs string) error {
 
 	newContent := strings.ReplaceAll(content, docsToReplace, newDocs)
 
-	err = os.WriteFile(r.path, []byte(newContent), 0644)
+	err = os.WriteFile(r.path, []byte(newContent), 0600)
 	if err != nil {
 		return microerror.Mask(err)
 	}
