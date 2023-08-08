@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/giantswarm/schemadocs.svg)](https://circleci.com/gh/giantswarm/schemadocs)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/giantswarm/schemadocs/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/giantswarm/schemadocs/tree/main)
 
 # schemadocs - the Giant Swarm JSON Schema docs generator 
 
