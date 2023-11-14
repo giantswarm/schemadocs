@@ -3,13 +3,15 @@ package key
 import (
 	"fmt"
 	"regexp"
+	"strings"
 
 	"github.com/santhosh-tekuri/jsonschema/v5"
 )
 
 const (
-	ItemNameSuffix    = "[*]"
-	OtherSectionTitle = "Other"
+	GlobalPropertyName = "global"
+	ItemNameSuffix     = "[*]"
+	OtherSectionTitle  = "Other"
 )
 
 func NameFromPattern(pattern *regexp.Regexp, patterns []string, defaultName string) string {
@@ -57,7 +59,7 @@ func SchemaIsPrimitive(schema *jsonschema.Schema) bool {
 
 func SchemaIsPresentable(schema *jsonschema.Schema) bool {
 	return SchemaIsPrimitive(schema) ||
-		schema.Title != "" ||
+		schema.Title != "" && strings.ToLower(schema.Title) != GlobalPropertyName ||
 		schema.Items2020 != nil ||
 		(schema.Items != nil && schema.Items != false) ||
 		(schema.AdditionalProperties != nil && schema.AdditionalProperties != false)

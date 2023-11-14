@@ -10,15 +10,17 @@ type Section struct {
 	Name        string
 	Title       string
 	Description string
+	Path        string
 	Rows        []Row
 }
 
-func SectionFromSchema(property *jsonschema.Schema, name string) Section {
+func SectionFromSchema(property *jsonschema.Schema, path, name string) Section {
 	return Section{
 		Name:        name,
 		Title:       property.Title,
 		Description: property.Description,
-		Rows:        sortedRows(RowsFromSchema(property, "", name, []string{})),
+		Path:        path,
+		Rows:        sortedRows(RowsFromSchema(property, path, name, []string{})),
 	}
 }
 
