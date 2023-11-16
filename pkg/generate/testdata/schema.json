@@ -249,7 +249,7 @@
     },
     "global": {
       "type": "object",
-      "title": "Global",
+      "title": "Global properties",
       "properties": {
         "connectivity": {
           "properties": {

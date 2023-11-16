@@ -2,10 +2,8 @@ package key
 
 import (
 	"fmt"
-	"regexp"
-	"strings"
-
 	"github.com/santhosh-tekuri/jsonschema/v5"
+	"regexp"
 )
 
 const (
@@ -59,7 +57,7 @@ func SchemaIsPrimitive(schema *jsonschema.Schema) bool {
 
 func SchemaIsPresentable(schema *jsonschema.Schema) bool {
 	return SchemaIsPrimitive(schema) ||
-		schema.Title != "" && strings.ToLower(schema.Title) != GlobalPropertyName ||
+		schema.Title != "" ||
 		schema.Items2020 != nil ||
 		(schema.Items != nil && schema.Items != false) ||
 		(schema.AdditionalProperties != nil && schema.AdditionalProperties != false)
