@@ -107,7 +107,7 @@ func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []s
 		KeyPatternMappings: keyPatternMappings,
 	}
 
-	row.Presentable = (row.Primitive || row.Path != "") && row.Name != ""
+	row.Presentable = (row.Primitive || row.Path != "" && row.Path != key.GlobalPropertyName) && row.Name != ""
 
 	if schema.Pattern != nil {
 		row.ValuePattern = schema.Pattern.String()

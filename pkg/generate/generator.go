@@ -2,6 +2,7 @@ package generate
 
 import (
 	"bytes"
+	"fmt"
 	"sort"
 
 	"github.com/giantswarm/microerror"
@@ -21,24 +22,27 @@ func Generate(schemaPath string) (string, error) {
 		return "", microerror.Maskf(pkgerror.InvalidSchemaFile, err.Error())
 	}
 
-	sections := sectionsFromSchema(schema)
+	sections := sectionsFromSchema(schema, "")
 	return toMarkdown(sections)
 }
 
-func sectionsFromSchema(schema *jsonschema.Schema) []Section {
+func sectionsFromSchema(schema *jsonschema.Schema, path string) []Section {
 	var sections []Section
 	var otherSectionRows []Row
 
 	if key.SchemaIsPrimitive(schema) {
-		otherSectionRows = append(otherSectionRows, RowsFromSchema(schema, "", schema.Title, []string{})...)
+		otherSectionRows = append(otherSectionRows, RowsFromSchema(schema, path, schema.Title, []string{})...)
 	} else if key.SchemaIsPresentable(schema) {
-		sections = append(sections, SectionFromSchema(schema, schema.Title))
+		sections = append(sections, SectionFromSchema(schema, path, schema.Title))
 	} else {
 		for name, property := range schema.Properties {
 			if key.SchemaIsPrimitive(property) {
-				otherSectionRows = append(otherSectionRows, RowsFromSchema(property, "", name, []string{})...)
+				otherSectionRows = append(otherSectionRows, RowsFromSchema(property, path, name, []string{})...)
+			} else if name == key.GlobalPropertyName {
+				globalSections := sectionsFromSchema(property, name)
+				sections = append(sections, globalSections...)
 			} else {
-				sections = append(sections, SectionFromSchema(property, name))
+				sections = append(sections, SectionFromSchema(property, path, name))
 			}
 		}
 	}
@@ -46,7 +50,14 @@ func sectionsFromSchema(schema *jsonschema.Schema) []Section {
 	sort.SliceStable(sections, func(i, j int) bool { return sections[i].Title < sections[j].Title })
 
 	if len(otherSectionRows) > 0 {
-		section := NewSection(key.OtherSectionTitle, otherSectionRows)
+		var otherSectionTitle string
+		if path != "" {
+			otherSectionTitle = fmt.Sprintf("%s %s", key.OtherSectionTitle, path)
+		} else {
+			otherSectionTitle = key.OtherSectionTitle
+		}
+
+		section := NewSection(otherSectionTitle, otherSectionRows)
 		sections = append(sections, section)
 	}
 
