@@ -2,8 +2,9 @@ package key
 
 import (
 	"fmt"
-	"github.com/santhosh-tekuri/jsonschema/v5"
 	"regexp"
+
+	"github.com/santhosh-tekuri/jsonschema/v5"
 )
 
 const (
