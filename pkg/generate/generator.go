@@ -32,14 +32,14 @@ func sectionsFromSchema(schema *jsonschema.Schema, path string) []Section {
 
 	if key.SchemaIsPrimitive(schema) {
 		otherSectionRows = append(otherSectionRows, RowsFromSchema(schema, path, schema.Title, []string{})...)
-	} else if key.SchemaIsPresentable(schema) {
+	} else if key.SchemaIsPresentable(schema) && path != key.GlobalPropertyName {
 		sections = append(sections, SectionFromSchema(schema, path, schema.Title))
 	} else {
 		for name, property := range schema.Properties {
 			if key.SchemaIsPrimitive(property) {
 				otherSectionRows = append(otherSectionRows, RowsFromSchema(property, path, name, []string{})...)
 			} else if name == key.GlobalPropertyName {
-				globalSections := sectionsFromSchema(property, name)
+				globalSections := sectionsFromSchema(property, key.GlobalPropertyName)
 				sections = append(sections, globalSections...)
 			} else {
 				sections = append(sections, SectionFromSchema(property, path, name))
