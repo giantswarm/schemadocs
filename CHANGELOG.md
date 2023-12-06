@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Sort sections by title-then-path to fix unstable order
+
 ## [0.0.3] - 2023-11-17
 
 ### Fixed

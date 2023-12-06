@@ -47,9 +47,16 @@ func sectionsFromSchema(schema *jsonschema.Schema, path string) []Section {
 		}
 	}
 
-	sort.SliceStable(sections, func(i, j int) bool { return sections[i].Title < sections[j].Title })
+	sort.SliceStable(sections, func(i, j int) bool {
+		if sections[i].Title == sections[j].Title {
+			return sections[i].Path < sections[j].Path
+		}
+		return sections[i].Title < sections[j].Title
+	})
 
 	if len(otherSectionRows) > 0 {
+		otherSectionRows = sortedRows(otherSectionRows)
+
 		var otherSectionTitle string
 		if path != "" {
 			otherSectionTitle = fmt.Sprintf("%s %s", key.OtherSectionTitle, path)
