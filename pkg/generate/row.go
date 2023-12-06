@@ -27,6 +27,7 @@ type Row struct {
 }
 
 func RowsFromSchema(schema *jsonschema.Schema, path string, name string, keyPatterns []string) []Row {
+	// Sorting happens outside of `RowsFromSchema`, so the order in this slice doesn't matter
 	var rows []Row
 
 	if schema.Ref != nil || schema.RecursiveRef != nil || schema.DynamicRef != nil {
