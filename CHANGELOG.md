@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.4] - 2023-12-06
+
 ### Fixed
 
 - Sort sections by title-then-path to fix unstable order
@@ -31,7 +33,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[Unreleased]: https://github.com/giantswarm/schemadocs/compare/v0.0.3...HEAD
+[Unreleased]: https://github.com/giantswarm/schemadocs/compare/v0.0.4...HEAD
+[0.0.4]: https://github.com/giantswarm/schemadocs/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/giantswarm/schemadocs/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/giantswarm/schemadocs/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/giantswarm/schemadocs/releases/tag/v0.0.1
