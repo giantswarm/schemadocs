@@ -48,7 +48,7 @@ func (r *runner) run(cmd *cobra.Command, args []string) error {
 
 	cli.WriteOutputF(r.stdout, "Schema: %s\n", args[0])
 
-	docs, err := generate.Generate(args[0])
+	docs, err := generate.Generate(args[0], r.flag.layout)
 	if err != nil {
 		return microerror.Mask(err)
 	}

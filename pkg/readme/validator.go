@@ -10,13 +10,13 @@ import (
 	"github.com/giantswarm/schemadocs/pkg/generate"
 )
 
-func (r *Readme) Validate(schemaPath string) error {
+func (r *Readme) Validate(schemaPath string, layout string) error {
 	docsFromReadme, err := r.Docs()
 	if err != nil {
 		return microerror.Mask(err)
 	}
 
-	docsFromSchema, err := generate.Generate(schemaPath)
+	docsFromSchema, err := generate.Generate(schemaPath, layout)
 	if err != nil {
 		return microerror.Mask(err)
 	}
