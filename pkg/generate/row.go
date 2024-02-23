@@ -3,6 +3,7 @@ package generate
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 
 	"github.com/santhosh-tekuri/jsonschema/v5"
 
@@ -14,6 +15,7 @@ type Row struct {
 	Name               string
 	FullPath           string
 	Title              string
+	Slug               string
 	Description        string
 	Types              []string
 	KeyPatterns        []string
@@ -101,6 +103,7 @@ func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []s
 		Name:               name,
 		FullPath:           key.MergedPropertyPath(path, name),
 		Title:              schema.Title,
+		Slug:               strings.ReplaceAll(key.MergedPropertyPath(path, name), ".", "-"),
 		Description:        schema.Description,
 		Types:              schema.Types,
 		Primitive:          key.SchemaIsPrimitive(schema),

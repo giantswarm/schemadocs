@@ -60,11 +60,6 @@ func Test_Generator(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			err = os.WriteFile("testdata/output_test.txt", []byte(docs), 0644)
-			if err != nil {
-				t.Fatal(err)
-			}
-
 			diff := cmp.Diff(docs, string(expectedResult))
 			if diff != "" {
 				t.Fatalf("value of generated docs not expected, got: \n %s", diff)

@@ -6,14 +6,14 @@
     </a>Chart Configuration Reference
   </h2>
   <h3 class="headline-with-link">
-    <a class="header-link" href="#">
+    <a class="header-link" href="#AWS-settings">
       <i class="fa fa-link"></i>
     </a>AWS settings
   </h3>
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#providerSpecific-ami">
           <i class="fa fa-link"></i>
         </a>.providerSpecific.ami</h3>
     </div>
@@ -26,7 +26,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#providerSpecific-awsClusterRoleIdentityName">
           <i class="fa fa-link"></i>
         </a>.providerSpecific.awsClusterRoleIdentityName</h3>
     </div>
@@ -39,7 +39,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#providerSpecific-flatcarAwsAccount">
           <i class="fa fa-link"></i>
         </a>.providerSpecific.flatcarAwsAccount</h3>
     </div>
@@ -52,7 +52,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#providerSpecific-region">
           <i class="fa fa-link"></i>
         </a>.providerSpecific.region</h3>
     </div>
@@ -63,14 +63,14 @@
     </div>
   </div>
   <h3 class="headline-with-link">
-    <a class="header-link" href="#">
+    <a class="header-link" href="#Connectivity">
       <i class="fa fa-link"></i>
     </a>Connectivity
   </h3>
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-availabilityZoneUsageLimit">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.availabilityZoneUsageLimit</h3>
     </div>
@@ -83,7 +83,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-bastion">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.bastion</h3>
     </div>
@@ -96,7 +96,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-bastion-enabled">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.bastion.enabled</h3>
     </div>
@@ -109,7 +109,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-bastion-instanceType">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.bastion.instanceType</h3>
     </div>
@@ -122,7 +122,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-bastion-replicas">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.bastion.replicas</h3>
     </div>
@@ -135,7 +135,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-bastion-subnetTags">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.bastion.subnetTags</h3>
     </div>
@@ -148,7 +148,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-bastion-subnetTags[*]">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.bastion.subnetTags[*]</h3>
     </div>
@@ -161,7 +161,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-bastion-subnetTags[*]-*">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.bastion.subnetTags[*].*</h3>
     </div>
@@ -174,7 +174,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-containerRegistries">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.containerRegistries</h3>
     </div>
@@ -187,7 +187,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-containerRegistries-*">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.containerRegistries.*</h3>
     </div>
@@ -200,7 +200,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-containerRegistries-*[*]">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.containerRegistries.*[*]</h3>
     </div>
@@ -213,7 +213,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-containerRegistries-*[*]-credentials">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.containerRegistries.*[*].credentials</h3>
     </div>
@@ -226,7 +226,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-containerRegistries-*[*]-credentials-auth">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.containerRegistries.*[*].credentials.auth</h3>
     </div>
@@ -239,7 +239,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-containerRegistries-*[*]-credentials-identitytoken">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.containerRegistries.*[*].credentials.identitytoken</h3>
     </div>
@@ -252,7 +252,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-containerRegistries-*[*]-credentials-password">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.containerRegistries.*[*].credentials.password</h3>
     </div>
@@ -265,7 +265,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-containerRegistries-*[*]-credentials-username">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.containerRegistries.*[*].credentials.username</h3>
     </div>
@@ -278,7 +278,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-containerRegistries-*[*]-endpoint">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.containerRegistries.*[*].endpoint</h3>
     </div>
@@ -291,7 +291,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-dns">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.dns</h3>
     </div>
@@ -304,7 +304,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-dns-additionalVpc">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.dns.additionalVpc</h3>
     </div>
@@ -317,7 +317,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-dns-additionalVpc[*]">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.dns.additionalVpc[*]</h3>
     </div>
@@ -330,7 +330,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-dns-mode">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.dns.mode</h3>
     </div>
@@ -343,7 +343,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-dns-resolverRulesOwnerAccount">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.dns.resolverRulesOwnerAccount</h3>
     </div>
@@ -356,7 +356,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-network">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.network</h3>
     </div>
@@ -369,7 +369,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-network-podCidr">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.network.podCidr</h3>
     </div>
@@ -382,7 +382,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-network-serviceCidr">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.network.serviceCidr</h3>
     </div>
@@ -395,7 +395,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-network-vpcCidr">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.network.vpcCidr</h3>
     </div>
@@ -408,7 +408,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-proxy">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.proxy</h3>
     </div>
@@ -421,7 +421,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-proxy-enabled">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.proxy.enabled</h3>
     </div>
@@ -434,7 +434,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-proxy-httpProxy">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.proxy.httpProxy</h3>
     </div>
@@ -447,7 +447,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-proxy-httpsProxy">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.proxy.httpsProxy</h3>
     </div>
@@ -460,7 +460,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-proxy-noProxy">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.proxy.noProxy</h3>
     </div>
@@ -473,7 +473,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-sshSsoPublicKey">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.sshSsoPublicKey</h3>
     </div>
@@ -486,7 +486,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-subnets">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.subnets</h3>
     </div>
@@ -499,7 +499,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-subnets[*]">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.subnets[*]</h3>
     </div>
@@ -512,7 +512,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-subnets[*]-cidrBlocks">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.subnets[*].cidrBlocks</h3>
     </div>
@@ -525,7 +525,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-subnets[*]-cidrBlocks[*]">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.subnets[*].cidrBlocks[*]</h3>
     </div>
@@ -538,7 +538,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-subnets[*]-cidrBlocks[*]-availabilityZone">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.subnets[*].cidrBlocks[*].availabilityZone</h3>
     </div>
@@ -551,7 +551,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-subnets[*]-cidrBlocks[*]-cidr">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.subnets[*].cidrBlocks[*].cidr</h3>
     </div>
@@ -564,7 +564,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-subnets[*]-cidrBlocks[*]-tags">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.subnets[*].cidrBlocks[*].tags</h3>
     </div>
@@ -577,7 +577,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-subnets[*]-cidrBlocks[*]-tags-*">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.subnets[*].cidrBlocks[*].tags.*</h3>
     </div>
@@ -590,7 +590,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-subnets[*]-isPublic">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.subnets[*].isPublic</h3>
     </div>
@@ -603,7 +603,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-subnets[*]-tags">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.subnets[*].tags</h3>
     </div>
@@ -616,7 +616,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-subnets[*]-tags-*">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.subnets[*].tags.*</h3>
     </div>
@@ -629,7 +629,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-topology">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.topology</h3>
     </div>
@@ -642,7 +642,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-topology-mode">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.topology.mode</h3>
     </div>
@@ -655,7 +655,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-topology-prefixListId">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.topology.prefixListId</h3>
     </div>
@@ -668,7 +668,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-topology-transitGatewayId">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.topology.transitGatewayId</h3>
     </div>
@@ -681,7 +681,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-vpcEndpointMode">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.vpcEndpointMode</h3>
     </div>
@@ -694,7 +694,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-connectivity-vpcMode">
           <i class="fa fa-link"></i>
         </a>.global.connectivity.vpcMode</h3>
     </div>
@@ -705,14 +705,14 @@
     </div>
   </div>
   <h3 class="headline-with-link">
-    <a class="header-link" href="#">
+    <a class="header-link" href="#Control-plane">
       <i class="fa fa-link"></i>
     </a>Control plane
   </h3>
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-apiMode">
           <i class="fa fa-link"></i>
         </a>.controlPlane.apiMode</h3>
     </div>
@@ -725,7 +725,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-containerdVolumeSizeGB">
           <i class="fa fa-link"></i>
         </a>.controlPlane.containerdVolumeSizeGB</h3>
     </div>
@@ -738,7 +738,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-etcdVolumeSizeGB">
           <i class="fa fa-link"></i>
         </a>.controlPlane.etcdVolumeSizeGB</h3>
     </div>
@@ -751,7 +751,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-instanceType">
           <i class="fa fa-link"></i>
         </a>.controlPlane.instanceType</h3>
     </div>
@@ -764,7 +764,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-kubeletVolumeSizeGB">
           <i class="fa fa-link"></i>
         </a>.controlPlane.kubeletVolumeSizeGB</h3>
     </div>
@@ -777,7 +777,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-machineHealthCheck">
           <i class="fa fa-link"></i>
         </a>.controlPlane.machineHealthCheck</h3>
     </div>
@@ -790,7 +790,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-machineHealthCheck-enabled">
           <i class="fa fa-link"></i>
         </a>.controlPlane.machineHealthCheck.enabled</h3>
     </div>
@@ -803,7 +803,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-machineHealthCheck-maxUnhealthy">
           <i class="fa fa-link"></i>
         </a>.controlPlane.machineHealthCheck.maxUnhealthy</h3>
     </div>
@@ -816,7 +816,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-machineHealthCheck-nodeStartupTimeout">
           <i class="fa fa-link"></i>
         </a>.controlPlane.machineHealthCheck.nodeStartupTimeout</h3>
     </div>
@@ -829,7 +829,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-machineHealthCheck-unhealthyNotReadyTimeout">
           <i class="fa fa-link"></i>
         </a>.controlPlane.machineHealthCheck.unhealthyNotReadyTimeout</h3>
     </div>
@@ -842,7 +842,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-machineHealthCheck-unhealthyUnknownTimeout">
           <i class="fa fa-link"></i>
         </a>.controlPlane.machineHealthCheck.unhealthyUnknownTimeout</h3>
     </div>
@@ -855,7 +855,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-oidc">
           <i class="fa fa-link"></i>
         </a>.controlPlane.oidc</h3>
     </div>
@@ -868,7 +868,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-oidc-caPem">
           <i class="fa fa-link"></i>
         </a>.controlPlane.oidc.caPem</h3>
     </div>
@@ -881,7 +881,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-oidc-clientId">
           <i class="fa fa-link"></i>
         </a>.controlPlane.oidc.clientId</h3>
     </div>
@@ -894,7 +894,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-oidc-groupsClaim">
           <i class="fa fa-link"></i>
         </a>.controlPlane.oidc.groupsClaim</h3>
     </div>
@@ -907,7 +907,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-oidc-issuerUrl">
           <i class="fa fa-link"></i>
         </a>.controlPlane.oidc.issuerUrl</h3>
     </div>
@@ -920,7 +920,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-oidc-usernameClaim">
           <i class="fa fa-link"></i>
         </a>.controlPlane.oidc.usernameClaim</h3>
     </div>
@@ -933,7 +933,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-rootVolumeSizeGB">
           <i class="fa fa-link"></i>
         </a>.controlPlane.rootVolumeSizeGB</h3>
     </div>
@@ -946,7 +946,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-subnetTags">
           <i class="fa fa-link"></i>
         </a>.controlPlane.subnetTags</h3>
     </div>
@@ -959,7 +959,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-subnetTags[*]">
           <i class="fa fa-link"></i>
         </a>.controlPlane.subnetTags[*]</h3>
     </div>
@@ -972,7 +972,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#controlPlane-subnetTags[*]-*">
           <i class="fa fa-link"></i>
         </a>.controlPlane.subnetTags[*].*</h3>
     </div>
@@ -983,14 +983,14 @@
     </div>
   </div>
   <h3 class="headline-with-link">
-    <a class="header-link" href="#">
+    <a class="header-link" href="#Default-node-pool">
       <i class="fa fa-link"></i>
     </a>Default node pool
   </h3>
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN</h3>
     </div>
@@ -1003,7 +1003,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN-availabilityZones">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN.availabilityZones</h3>
     </div>
@@ -1016,7 +1016,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN-availabilityZones[*]">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN.availabilityZones[*]</h3>
     </div>
@@ -1029,7 +1029,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN-customNodeLabels">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN.customNodeLabels</h3>
     </div>
@@ -1042,7 +1042,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN-customNodeLabels[*]">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN.customNodeLabels[*]</h3>
     </div>
@@ -1055,7 +1055,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN-customNodeTaints">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN.customNodeTaints</h3>
     </div>
@@ -1068,7 +1068,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN-customNodeTaints[*]">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN.customNodeTaints[*]</h3>
     </div>
@@ -1081,7 +1081,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN-customNodeTaints[*]-effect">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN.customNodeTaints[*].effect</h3>
     </div>
@@ -1094,7 +1094,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN-customNodeTaints[*]-key">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN.customNodeTaints[*].key</h3>
     </div>
@@ -1107,7 +1107,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN-customNodeTaints[*]-value">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN.customNodeTaints[*].value</h3>
     </div>
@@ -1120,7 +1120,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN-instanceType">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN.instanceType</h3>
     </div>
@@ -1133,7 +1133,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN-maxSize">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN.maxSize</h3>
     </div>
@@ -1146,7 +1146,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN-minSize">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN.minSize</h3>
     </div>
@@ -1159,7 +1159,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN-rootVolumeSizeGB">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN.rootVolumeSizeGB</h3>
     </div>
@@ -1172,7 +1172,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN-subnetTags">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN.subnetTags</h3>
     </div>
@@ -1185,7 +1185,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN-subnetTags[*]">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN.subnetTags[*]</h3>
     </div>
@@ -1198,7 +1198,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#defaultMachinePools-PATTERN-subnetTags[*]-*">
           <i class="fa fa-link"></i>
         </a>.defaultMachinePools.PATTERN.subnetTags[*].*</h3>
     </div>
@@ -1209,7 +1209,7 @@
     </div>
   </div>
   <h3 class="headline-with-link">
-    <a class="header-link" href="#">
+    <a class="header-link" href="#Internal">
       <i class="fa fa-link"></i>
     </a>Internal
   </h3>
@@ -1221,7 +1221,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#internal-hashSalt">
           <i class="fa fa-link"></i>
         </a>.internal.hashSalt</h3>
     </div>
@@ -1234,7 +1234,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#internal-kubernetesVersion">
           <i class="fa fa-link"></i>
         </a>.internal.kubernetesVersion</h3>
     </div>
@@ -1245,14 +1245,14 @@
     </div>
   </div>
   <h3 class="headline-with-link">
-    <a class="header-link" href="#">
+    <a class="header-link" href="#Kubectl-image">
       <i class="fa fa-link"></i>
     </a>Kubectl image
   </h3>
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#kubectlImage-name">
           <i class="fa fa-link"></i>
         </a>.kubectlImage.name</h3>
     </div>
@@ -1265,7 +1265,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#kubectlImage-registry">
           <i class="fa fa-link"></i>
         </a>.kubectlImage.registry</h3>
     </div>
@@ -1278,7 +1278,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#kubectlImage-tag">
           <i class="fa fa-link"></i>
         </a>.kubectlImage.tag</h3>
     </div>
@@ -1289,14 +1289,14 @@
     </div>
   </div>
   <h3 class="headline-with-link">
-    <a class="header-link" href="#">
+    <a class="header-link" href="#Metadata">
       <i class="fa fa-link"></i>
     </a>Metadata
   </h3>
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-metadata-description">
           <i class="fa fa-link"></i>
         </a>.global.metadata.description</h3>
     </div>
@@ -1309,7 +1309,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-metadata-name">
           <i class="fa fa-link"></i>
         </a>.global.metadata.name</h3>
     </div>
@@ -1322,7 +1322,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-metadata-organization">
           <i class="fa fa-link"></i>
         </a>.global.metadata.organization</h3>
     </div>
@@ -1333,14 +1333,14 @@
     </div>
   </div>
   <h3 class="headline-with-link">
-    <a class="header-link" href="#">
+    <a class="header-link" href="#Node-pools">
       <i class="fa fa-link"></i>
     </a>Node pools
   </h3>
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN</h3>
     </div>
@@ -1353,7 +1353,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN-availabilityZones">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN.availabilityZones</h3>
     </div>
@@ -1366,7 +1366,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN-availabilityZones[*]">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN.availabilityZones[*]</h3>
     </div>
@@ -1379,7 +1379,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN-customNodeLabels">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN.customNodeLabels</h3>
     </div>
@@ -1392,7 +1392,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN-customNodeLabels[*]">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN.customNodeLabels[*]</h3>
     </div>
@@ -1405,7 +1405,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN-customNodeTaints">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN.customNodeTaints</h3>
     </div>
@@ -1418,7 +1418,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN-customNodeTaints[*]">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN.customNodeTaints[*]</h3>
     </div>
@@ -1431,7 +1431,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN-customNodeTaints[*]-effect">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN.customNodeTaints[*].effect</h3>
     </div>
@@ -1444,7 +1444,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN-customNodeTaints[*]-key">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN.customNodeTaints[*].key</h3>
     </div>
@@ -1457,7 +1457,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN-customNodeTaints[*]-value">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN.customNodeTaints[*].value</h3>
     </div>
@@ -1470,7 +1470,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN-instanceType">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN.instanceType</h3>
     </div>
@@ -1483,7 +1483,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN-maxSize">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN.maxSize</h3>
     </div>
@@ -1496,7 +1496,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN-minSize">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN.minSize</h3>
     </div>
@@ -1509,7 +1509,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN-rootVolumeSizeGB">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN.rootVolumeSizeGB</h3>
     </div>
@@ -1522,7 +1522,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN-subnetTags">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN.subnetTags</h3>
     </div>
@@ -1535,7 +1535,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN-subnetTags[*]">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN.subnetTags[*]</h3>
     </div>
@@ -1548,7 +1548,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#nodePools-PATTERN-subnetTags[*]-*">
           <i class="fa fa-link"></i>
         </a>.nodePools.PATTERN.subnetTags[*].*</h3>
     </div>
@@ -1559,14 +1559,14 @@
     </div>
   </div>
   <h3 class="headline-with-link">
-    <a class="header-link" href="#">
+    <a class="header-link" href="#Other-global">
       <i class="fa fa-link"></i>
     </a>Other global
   </h3>
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#global-managementCluster">
           <i class="fa fa-link"></i>
         </a>.global.managementCluster</h3>
     </div>
@@ -1577,14 +1577,14 @@
     </div>
   </div>
   <h3 class="headline-with-link">
-    <a class="header-link" href="#">
+    <a class="header-link" href="#Other">
       <i class="fa fa-link"></i>
     </a>Other
   </h3>
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#baseDomain">
           <i class="fa fa-link"></i>
         </a>.baseDomain</h3>
     </div>
@@ -1597,7 +1597,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#cluster-shared">
           <i class="fa fa-link"></i>
         </a>.cluster-shared</h3>
     </div>
@@ -1610,7 +1610,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#provider">
           <i class="fa fa-link"></i>
         </a>.provider</h3>
     </div>

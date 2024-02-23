@@ -8,7 +8,7 @@
 
 {{- range . }}
   <h3 class="headline-with-link">
-    <a class="header-link" href="#">
+    <a class="header-link" href="#{{.Slug}}">
       <i class="fa fa-link"></i>
     </a>{{.Title}}
   </h3>
@@ -23,7 +23,7 @@
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#">
+        <a class="header-link" href="#{{.Slug}}">
           <i class="fa fa-link"></i>
         </a>.{{- .FullPath -}}
       </h3>
