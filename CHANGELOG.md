@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.5] - 2024-02-27
 
+### Added
+- New flag layout to allow multiple rendering options
+
 ## [0.0.4] - 2023-12-06
 
 ### Fixed
