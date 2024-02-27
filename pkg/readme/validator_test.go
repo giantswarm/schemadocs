@@ -10,6 +10,7 @@ func Test_Validate(t *testing.T) {
 	testCases := []struct {
 		name             string
 		readmeFilePath   string
+		layout           string
 		schemaFilePath   string
 		startPlaceholder string
 		endPlaceholder   string
@@ -34,6 +35,7 @@ func Test_Validate(t *testing.T) {
 		{
 			name:             "case 2: Fail when the docs placeholders are not valid",
 			readmeFilePath:   "testdata/readme1.md",
+			layout:           "default",
 			schemaFilePath:   "testdata/schema.json",
 			startPlaceholder: "[DOCS_START]",
 			expectedErr:      pkgerror.InvalidDocsPlaceholderError,
@@ -44,7 +46,7 @@ func Test_Validate(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			readme, err := New(tc.readmeFilePath, tc.startPlaceholder, tc.endPlaceholder)
 			if err == nil {
-				err = readme.Validate(tc.schemaFilePath)
+				err = readme.Validate(tc.schemaFilePath, tc.layout)
 			}
 			checkErr(t, err, tc.expectedErr)
 		})

@@ -64,7 +64,7 @@ func (r *runner) run(cmd *cobra.Command, args []string) error {
 		cli.WriteOutputF(r.stdout, "Using default placeholders '%s' and '%s'\n", readmeItem.StartPlaceholder(), readmeItem.EndPlaceholder())
 	}
 
-	err = readmeItem.Validate(r.flag.schema)
+	err = readmeItem.Validate(r.flag.schema, r.flag.layout)
 	if err != nil {
 		return err
 	}

@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"sort"
+	"text/template"
 
 	"github.com/giantswarm/microerror"
 	"github.com/santhosh-tekuri/jsonschema/v5"
@@ -13,7 +14,7 @@ import (
 	"github.com/giantswarm/schemadocs/pkg/key"
 )
 
-func Generate(schemaPath string) (string, error) {
+func Generate(schemaPath string, layout string) (string, error) {
 	compiler := jsonschema.NewCompiler()
 	compiler.ExtractAnnotations = true
 	schema, err := compiler.Compile(schemaPath)
@@ -23,7 +24,7 @@ func Generate(schemaPath string) (string, error) {
 	}
 
 	sections := sectionsFromSchema(schema, "")
-	return toMarkdown(sections)
+	return toMarkdown(sections, layout)
 }
 
 func sectionsFromSchema(schema *jsonschema.Schema, path string) []Section {
@@ -71,15 +72,14 @@ func sectionsFromSchema(schema *jsonschema.Schema, path string) []Section {
 	return sections
 }
 
-func toMarkdown(sections []Section) (string, error) {
-	/*t, err := template.ParseFiles(
-		path.Join(pkgPath, "templates/docs.md.tpl"),
-		path.Join(pkgPath, "templates/row.md.tpl"),
-		path.Join(pkgPath, "templates/section.md.tpl"),
-	)*/
-
-	t, err := templates.GetTemplate()
-
+func toMarkdown(sections []Section, layout string) (string, error) {
+	var t *template.Template
+	var err error
+	if layout == "linear" {
+		t, err = templates.GetLinearTemplate()
+	} else {
+		t, err = templates.GetDefaultTemplate()
+	}
 	if err != nil {
 		return "", microerror.Maskf(pkgerror.DocsGenerationError, err.Error())
 	}
