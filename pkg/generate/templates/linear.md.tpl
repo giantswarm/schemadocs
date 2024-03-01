@@ -12,37 +12,29 @@
       <i class="fa fa-link"></i>
     </a>{{.Title}}
   </h3>
-  {{- if .Description }}
-  <h4 class="headline-with-link">
-    <a class="header-link" href="#">
-      <i class="fa fa-link"></i>
-    </a>{{ .Description }}
-  </h4>
-  {{- end }}
   {{- range .Rows }}
   <div class="property depth-0">
     <div class="property-header">
-      <h3 class="property-path headline-with-link">
+      <h4 class="property-path headline-with-link">
         <a class="header-link" href="#{{.Slug}}">
           <i class="fa fa-link"></i>
         </a>.{{- .FullPath -}}
-      </h3>
+      </h4>
     </div>
     <div class="property-body">
       <div class="property-meta">
-        {{- if .Title -}}
-        <span class="property-title">{{- .Title -}}</span><br />
-        {{- end -}}
         {{- if ne (len .Types) 0 -}}
           {{- range $index, $element := .Types -}}
-            {{ if $index }}, {{ end }}<span class="property-type">{{- $element }}</span>
-          {{- end -}}&nbsp;
+            {{ if $index }}, {{ end }}<span class="property-type"><em>{{- $element }}</em></span>
+          {{- end -}}&nbsp;<br />
         {{- end }}
-      </div>
-      <div class="property-description">
-        {{- if .Description -}}
-          {{- .Description -}}
+        {{- if .Title -}}
+        <span class="property-title">{{- .Title -}}.&nbsp;</span>
         {{- end -}}
+        {{- if .Description -}}
+        <span class="property-description">{{- .Description -}}</span><br />
+        {{- end -}}
+      </span>
       </div>
     </div>
   </div>
