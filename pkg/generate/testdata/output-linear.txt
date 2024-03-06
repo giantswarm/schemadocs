@@ -311,7 +311,7 @@
     <div class="property-body">
       <div class="property-meta"><span class="property-title">Additional VPCs</span><br /><span class="property-type">array</span>&nbsp;
       </div>
-      <div class="property-description">If DNS mode is 'private', the VPCs specified here will be assigned to the private hosted zone.</div>
+      <div class="property-description">If DNS mode is &#39;private&#39;, the VPCs specified here will be assigned to the private hosted zone.</div>
     </div>
   </div>
   <div class="property depth-0">
@@ -402,7 +402,7 @@
     <div class="property-body">
       <div class="property-meta"><span class="property-title">VPC subnet</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description">IPv4 address range to assign to this cluster's VPC, in CIDR notation.</div>
+      <div class="property-description">IPv4 address range to assign to this cluster&#39;s VPC, in CIDR notation.</div>
     </div>
   </div>
   <div class="property depth-0">
@@ -662,7 +662,7 @@
     <div class="property-body">
       <div class="property-meta"><span class="property-title">Prefix list ID</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description">ID of the managed prefix list to use when the topology mode is set to 'UserManaged'.</div>
+      <div class="property-description">ID of the managed prefix list to use when the topology mode is set to &#39;UserManaged&#39;.</div>
     </div>
   </div>
   <div class="property depth-0">
@@ -675,7 +675,7 @@
     <div class="property-body">
       <div class="property-meta"><span class="property-title">Transit gateway ID</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description">If the topology mode is set to 'UserManaged', this can be used to specify the transit gateway to use.</div>
+      <div class="property-description">If the topology mode is set to &#39;UserManaged&#39;, this can be used to specify the transit gateway to use.</div>
     </div>
   </div>
   <div class="property depth-0">
@@ -701,7 +701,7 @@
     <div class="property-body">
       <div class="property-meta"><span class="property-title">VPC mode</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description">Whether the cluser's VPC is created with public, internet facing resources (public subnets, NAT gateway) or not (private).</div>
+      <div class="property-description">Whether the cluser&#39;s VPC is created with public, internet facing resources (public subnets, NAT gateway) or not (private).</div>
     </div>
   </div>
   <h3 class="headline-with-link">
@@ -836,7 +836,7 @@
     <div class="property-body">
       <div class="property-meta"><span class="property-title">Timeout for ready</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description">If a node is not in condition 'Ready' after this timeout, it will be considered unhealthy.</div>
+      <div class="property-description">If a node is not in condition &#39;Ready&#39; after this timeout, it will be considered unhealthy.</div>
     </div>
   </div>
   <div class="property depth-0">
@@ -849,7 +849,7 @@
     <div class="property-body">
       <div class="property-meta"><span class="property-title">Timeout for unknown condition</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description">If a node is in 'Unknown' condition after this timeout, it will be considered unhealthy.</div>
+      <div class="property-description">If a node is in &#39;Unknown&#39; condition after this timeout, it will be considered unhealthy.</div>
     </div>
   </div>
   <div class="property depth-0">
@@ -875,7 +875,7 @@
     <div class="property-body">
       <div class="property-meta"><span class="property-title">Certificate authority</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description">Identity provider's CA certificate in PEM format.</div>
+      <div class="property-description">Identity provider&#39;s CA certificate in PEM format.</div>
     </div>
   </div>
   <div class="property depth-0">
@@ -1303,7 +1303,7 @@
     <div class="property-body">
       <div class="property-meta"><span class="property-title">Cluster description</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description">User-friendly description of the cluster's purpose.</div>
+      <div class="property-description">User-friendly description of the cluster&#39;s purpose.</div>
     </div>
   </div>
   <div class="property depth-0">
@@ -1591,7 +1591,7 @@
     <div class="property-body">
       <div class="property-meta"><span class="property-title">Base DNS domain</span><br /><span class="property-type">string</span>&nbsp;
       </div>
-      <div class="property-description"></div>
+      <div class="property-description">Description with a &#34;quoted&#34; word.</div>
     </div>
   </div>
   <div class="property depth-0">
