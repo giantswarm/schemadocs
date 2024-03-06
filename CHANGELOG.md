@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Improve `pkg/generate` unit tests to support updating golden files via `go test ./pkg/generate -update`.
+
 ## [0.0.6] - 2024-03-06
 
 ### Changed
@@ -41,7 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.1] - 2023-04-28
 
-
+- Initial release
 
 [Unreleased]: https://github.com/giantswarm/schemadocs/compare/v0.0.6...HEAD
 [0.0.6]: https://github.com/giantswarm/schemadocs/compare/v0.0.5...v0.0.6

@@ -1,6 +1,8 @@
 package generate
 
 import (
+	"flag"
+	"io"
 	"os"
 	"testing"
 
@@ -8,6 +10,10 @@ import (
 	"github.com/google/go-cmp/cmp"
 
 	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
+)
+
+var (
+	update = flag.Bool("update", false, "update the golden files of this test")
 )
 
 func Test_Generator(t *testing.T) {
@@ -22,13 +28,13 @@ func Test_Generator(t *testing.T) {
 		{
 			name:       "case 0: Generate markdown from a valid JSON schema",
 			layout:     "default",
-			schemaPath: "testdata/schema.json",
-			outputPath: "testdata/output.txt",
+			schemaPath: "schema.json",
+			outputPath: "output_tabular.golden",
 		},
 		{
 			name:        "case 1: Fail to generate markdown from an existing invalid JSON schema",
 			layout:      "default",
-			schemaPath:  "testdata/schema_invalid.json",
+			schemaPath:  "schema_invalid.json",
 			expectedErr: pkgerror.InvalidSchemaFile,
 		},
 		{
@@ -39,14 +45,14 @@ func Test_Generator(t *testing.T) {
 		{
 			name:       "case 3: Generate markdown from a valid JSON schema in linear layout",
 			layout:     "linear",
-			schemaPath: "testdata/schema.json",
-			outputPath: "testdata/output-linear.txt",
+			schemaPath: "schema.json",
+			outputPath: "output_linear.golden",
 		},
 	}
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			docs, err := Generate(tc.schemaPath, tc.layout)
+			docs, err := Generate("testdata/"+tc.schemaPath, tc.layout)
 
 			if err != nil {
 				if err != tc.expectedErr && microerror.Cause(err) != tc.expectedErr {
@@ -55,16 +61,38 @@ func Test_Generator(t *testing.T) {
 				return
 			}
 
-			expectedResult, err := os.ReadFile(tc.outputPath)
-			if err != nil {
-				t.Fatal(err)
-			}
-
-			diff := cmp.Diff(docs, string(expectedResult))
+			expectedResult := goldenValue(t, tc.outputPath, docs, *update)
+			diff := cmp.Diff(docs, expectedResult)
 			if diff != "" {
 				t.Fatalf("value of generated docs not expected, got: \n %s", diff)
 			}
 		})
 	}
 
+}
+
+func goldenValue(t *testing.T, goldenFile string, actual string, update bool) string {
+	t.Helper()
+	goldenPath := "testdata/" + goldenFile
+
+	f, err := os.OpenFile(goldenPath, os.O_RDWR, 0644)
+	if err != nil {
+		t.Fatalf("Error opening file %s: %s", goldenPath, err)
+	}
+	defer f.Close()
+
+	if update {
+		_, err := f.WriteString(actual)
+		if err != nil {
+			t.Fatalf("Error writing to file %s: %s", goldenPath, err)
+		}
+
+		return actual
+	}
+
+	content, err := io.ReadAll(f)
+	if err != nil {
+		t.Fatalf("Error opening file %s: %s", goldenPath, err)
+	}
+	return string(content)
 }
