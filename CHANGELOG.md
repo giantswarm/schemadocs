@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Improve `pkg/generate` unit tests to support updating golden files via ``.
+- Improve `pkg/generate` unit tests to support updating golden files via `go test ./pkg/generate -update`.
 
 ## [0.0.6] - 2024-03-06
 
