@@ -29,7 +29,7 @@ func Test_Generator(t *testing.T) {
 			name:       "case 0: Generate markdown from a valid JSON schema",
 			layout:     "default",
 			schemaPath: "schema.json",
-			outputPath: "tabular.golden",
+			outputPath: "output_tabular.golden",
 		},
 		{
 			name:        "case 1: Fail to generate markdown from an existing invalid JSON schema",
@@ -46,7 +46,7 @@ func Test_Generator(t *testing.T) {
 			name:       "case 3: Generate markdown from a valid JSON schema in linear layout",
 			layout:     "linear",
 			schemaPath: "schema.json",
-			outputPath: "linear.golden",
+			outputPath: "output_linear.golden",
 		},
 	}
 
