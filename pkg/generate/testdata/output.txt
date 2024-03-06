@@ -173,7 +173,7 @@ Properties within the `.nodePools` top-level object
 
 | **Property** | **Description** | **More Details** |
 | :----------- | :-------------- | :--------------- |
-| `baseDomain` | **Base DNS domain**|**Type:** `string`<br/>|
+| `baseDomain` | **Base DNS domain** - Description with a "quoted" word.|**Type:** `string`<br/>|
 | `cluster-shared` | **Library chart**|**Type:** `object`<br/>|
 | `provider` | **Cluster API provider name**|**Type:** `string`<br/>|
 

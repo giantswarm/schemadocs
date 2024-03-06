@@ -10,13 +10,13 @@
   <h3 class="headline-with-link">
     <a class="header-link" href="#{{.Slug}}">
       <i class="fa fa-link"></i>
-    </a>{{.Title}}
+    </a>{{ .Title | html }}
   </h3>
   {{- if .Description }}
   <h4 class="headline-with-link">
     <a class="header-link" href="#">
       <i class="fa fa-link"></i>
-    </a>{{ .Description }}
+    </a>{{ .Description | html }}
   </h4>
   {{- end }}
   {{- range .Rows }}
@@ -31,7 +31,7 @@
     <div class="property-body">
       <div class="property-meta">
         {{- if .Title -}}
-        <span class="property-title">{{- .Title -}}</span><br />
+        <span class="property-title">{{- .Title | html  -}}</span><br />
         {{- end -}}
         {{- if ne (len .Types) 0 -}}
           {{- range $index, $element := .Types -}}
@@ -41,7 +41,7 @@
       </div>
       <div class="property-description">
         {{- if .Description -}}
-          {{- .Description -}}
+          {{- .Description | html -}}
         {{- end -}}
       </div>
     </div>

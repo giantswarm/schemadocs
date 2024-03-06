@@ -95,6 +95,7 @@
   "properties": {
     "baseDomain": {
       "title": "Base DNS domain",
+      "description": "Description with a \"quoted\" word.",
       "type": "string"
     },
     "cluster-shared": {
