@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Change linear output to avoid HTML, use Markdown formatting only.
 - Improve `pkg/generate` unit tests to support updating golden files via `go test ./pkg/generate -update`.
 
 ## [0.0.6] - 2024-03-06

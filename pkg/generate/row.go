@@ -103,7 +103,7 @@ func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []s
 		Name:               name,
 		FullPath:           key.MergedPropertyPath(path, name),
 		Title:              schema.Title,
-		Slug:               strings.ReplaceAll(key.MergedPropertyPath(path, name), ".", "-"),
+		Slug:               strings.ToLower(strings.ReplaceAll(key.MergedPropertyPath(path, name), ".", "-")),
 		Description:        schema.Description,
 		Types:              schema.Types,
 		Primitive:          key.SchemaIsPrimitive(schema),

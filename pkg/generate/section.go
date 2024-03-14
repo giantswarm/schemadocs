@@ -22,7 +22,7 @@ func SectionFromSchema(property *jsonschema.Schema, path, name string) Section {
 		Title:       property.Title,
 		Description: property.Description,
 		Path:        path,
-		Slug:        strings.ReplaceAll(property.Title, " ", "-"),
+		Slug:        strings.ToLower(strings.ReplaceAll(property.Title, " ", "-")),
 		Rows:        sortedRows(RowsFromSchema(property, path, name, []string{})),
 	}
 }
@@ -30,7 +30,7 @@ func SectionFromSchema(property *jsonschema.Schema, path, name string) Section {
 func NewSection(title string, rows []Row) Section {
 	return Section{
 		Title: title,
-		Slug:  strings.ReplaceAll(title, " ", "-"),
+		Slug:  strings.ToLower(strings.ReplaceAll(title, " ", "-")),
 		Rows:  sortedRows(rows),
 	}
 }

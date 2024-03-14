@@ -68,7 +68,7 @@ Properties within the `.controlPlane` top-level object
 
 | **Property** | **Description** | **More Details** |
 | :----------- | :-------------- | :--------------- |
-| `controlPlane.apiMode` | **API mode** - Whether the Kubernetes API server load balancer should be reachable from the internet (public) or internal only (private).|**Type:** `string`<br/>**Default:** `"public"`|
+| `controlPlane.apiMode` | **API mode** - Whether the Kubernetes API server load balancer should be reachable from the internet (public) or internal only (private).|**Types:** `string, integer, number`<br/>**Default:** `"public"`|
 | `controlPlane.containerdVolumeSizeGB` | **Containerd volume size (GB)**|**Type:** `integer`<br/>**Default:** `100`|
 | `controlPlane.etcdVolumeSizeGB` | **Etcd volume size (GB)**|**Type:** `integer`<br/>**Default:** `100`|
 | `controlPlane.instanceType` | **EC2 instance type**|**Type:** `string`<br/>**Default:** `"m5.xlarge"`|

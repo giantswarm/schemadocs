@@ -112,7 +112,7 @@
             "private"
           ],
           "title": "API mode",
-          "type": "string"
+          "type": ["string", "integer", "number"]
         },
         "containerdVolumeSizeGB": {
           "default": 100,
