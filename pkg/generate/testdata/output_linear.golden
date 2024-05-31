@@ -786,7 +786,7 @@ Tags to select AWS resources for the control plane by.
 
 `.defaultMachinePools.PATTERN.customNodeLabels`
 
-**Type:** `array`
+**Type:** `object`
 
 **Custom node labels**
 
@@ -794,11 +794,11 @@ Tags to select AWS resources for the control plane by.
 
 ---
 
-`.defaultMachinePools.PATTERN.customNodeLabels[*]`
+`.defaultMachinePools.PATTERN.customNodeLabels.PATTERN_2`
 
 **Type:** `string`
 
-**Label**
+**Value of a Kubernetes resource label**
 
 
 
@@ -1048,7 +1048,7 @@ Unique identifier, cannot be changed after creation.
 
 `.nodePools.PATTERN.customNodeLabels`
 
-**Type:** `array`
+**Type:** `object`
 
 **Custom node labels**
 
@@ -1056,11 +1056,11 @@ Unique identifier, cannot be changed after creation.
 
 ---
 
-`.nodePools.PATTERN.customNodeLabels[*]`
+`.nodePools.PATTERN.customNodeLabels.PATTERN_2`
 
 **Type:** `string`
 
-**Label**
+**Value of a Kubernetes resource label**
 
 
 

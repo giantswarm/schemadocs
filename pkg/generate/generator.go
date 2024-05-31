@@ -8,6 +8,7 @@ import (
 
 	"github.com/giantswarm/microerror"
 	"github.com/santhosh-tekuri/jsonschema/v5"
+	_ "github.com/santhosh-tekuri/jsonschema/v5/httploader"
 
 	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 	"github.com/giantswarm/schemadocs/pkg/generate/templates"
