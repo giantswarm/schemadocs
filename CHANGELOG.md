@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Support for loading external schema from URL.
+
 ## [0.0.7] - 2024-04-02
 
 ### Changed

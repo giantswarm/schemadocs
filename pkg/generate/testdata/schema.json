@@ -19,12 +19,13 @@
           "type": "array"
         },
         "customNodeLabels": {
-          "items": {
-            "title": "Label",
-            "type": "string"
+          "patternProperties": {
+            "^[a-zA-Z0-9\\._-]+$": {
+              "$ref": "https://schema.giantswarm.io/labelvalue/v0.0.1"
+            }
           },
           "title": "Custom node labels",
-          "type": "array"
+          "type": "object"
         },
         "customNodeTaints": {
           "items": {
