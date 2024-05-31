@@ -1,0 +1,27 @@
+# generate
+- id: schemadocs-generate
+  name: generate schema documentation
+  description: Generate Markdown documentation from JSON Schema
+  entry: schemadocs generate
+  language: golang
+  files: \.json$
+  require_serial: true
+  exclude: ^node_modules/
+  args:
+    - --output-path
+    - README.md
+  pass_filenames: true
+
+# validate
+- id: schemadocs-validate
+  name: validate schema documentation
+  description: Check whether Markdown documentation for JSON Schema is up-to-date
+  entry: schemadocs validate
+  language: golang
+  files: README\.md$
+  require_serial: true
+  exclude: ^node_modules/
+  pass_filenames: true
+  args:
+    - --schema
+    - values.schema.json
