@@ -7,9 +7,6 @@
   files: \.json$
   require_serial: true
   exclude: ^node_modules/
-  args:
-    - --output-path
-    - README.md
   pass_filenames: true
 
 # validate
