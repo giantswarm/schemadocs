@@ -1,0 +1,24 @@
+# generate
+- id: schemadocs-generate
+  name: generate schema documentation
+  description: Generate Markdown documentation from JSON Schema
+  entry: schemadocs generate
+  language: golang
+  files: \.schema\.json$ # Adapt in your own .pre-commit-config.yaml to match your schema files
+  require_serial: true
+  exclude: ^node_modules/
+  pass_filenames: true
+
+# validate
+- id: schemadocs-validate
+  name: validate schema documentation
+  description: Check whether Markdown documentation for JSON Schema is up-to-date
+  entry: schemadocs validate
+  language: golang
+  files: README\.md$ # Adapt in your own .pre-commit-config.yaml to match your markdown file
+  require_serial: true
+  exclude: ^node_modules/
+  pass_filenames: true
+  args:
+    - --schema
+    - values.schema.json # Adapt in your own .pre-commit-config.yaml to match your schema file
