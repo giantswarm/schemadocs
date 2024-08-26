@@ -12,7 +12,7 @@ import (
 func (r *Readme) Content() (string, error) {
 	content, err := os.ReadFile(r.path)
 	if err != nil {
-		return "", microerror.Maskf(pkgerror.InvalidFileError, err.Error())
+		return "", microerror.Maskf(pkgerror.InvalidFileError, "%s", err.Error())
 	}
 
 	return string(content), nil

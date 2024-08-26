@@ -21,7 +21,7 @@ func Generate(schemaPath string, layout string) (string, error) {
 	schema, err := compiler.Compile(schemaPath)
 
 	if err != nil {
-		return "", microerror.Maskf(pkgerror.InvalidSchemaFile, err.Error())
+		return "", microerror.Maskf(pkgerror.InvalidSchemaFile, "%s", err.Error())
 	}
 
 	sections := sectionsFromSchema(schema, "")
@@ -82,13 +82,13 @@ func toMarkdown(sections []Section, layout string) (string, error) {
 		t, err = templates.GetDefaultTemplate()
 	}
 	if err != nil {
-		return "", microerror.Maskf(pkgerror.DocsGenerationError, err.Error())
+		return "", microerror.Maskf(pkgerror.DocsGenerationError, "%s", err.Error())
 	}
 
 	var tplBuffer bytes.Buffer
 	err = t.Execute(&tplBuffer, sections)
 	if err != nil {
-		return "", microerror.Maskf(pkgerror.DocsGenerationError, err.Error())
+		return "", microerror.Maskf(pkgerror.DocsGenerationError, "%s", err.Error())
 	}
 	return tplBuffer.String(), nil
 }

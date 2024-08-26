@@ -33,7 +33,7 @@ func New(path, startPlaceholder, endPlaceholder string) (Readme, error) {
 	}
 
 	if err != nil {
-		return readme, microerror.Maskf(pkgerror.InvalidFileError, err.Error())
+		return readme, microerror.Maskf(pkgerror.InvalidFileError, "%s", err.Error())
 	}
 
 	if startPlaceholder == "" {
