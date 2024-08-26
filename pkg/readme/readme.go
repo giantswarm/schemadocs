@@ -69,9 +69,9 @@ func resolveReadmeFilePathStep(paths []string) (string, error) {
 		return "", microerror.Maskf(pkgerror.InvalidOutputFilePath, "valid output file path is not specified")
 	}
 	if paths[0] != "" {
-		_, err := os.Stat(paths[0])
+		_, err := os.Stat(paths[0]) // nolint: gosec
 		if err == nil {
-			return paths[0], nil
+			return paths[0], nil // nolint: gosec
 		} else if len(paths) == 1 {
 			return "", microerror.Mask(err)
 		}

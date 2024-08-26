@@ -20,10 +20,6 @@ func (r *Readme) WriteDocs(docs string) error {
 	}
 
 	newDocs := fmt.Sprintf("%s\n\n%s\n\n%s", r.startPlaceholder, docs, r.endPlaceholder)
-	if err != nil {
-		return microerror.Mask(err)
-	}
-
 	newContent := strings.ReplaceAll(content, docsToReplace, newDocs)
 
 	err = os.WriteFile(r.path, []byte(newContent), 0600)
