@@ -33,7 +33,7 @@ func New(path, startPlaceholder, endPlaceholder string) (Readme, error) {
 	}
 
 	if err != nil {
-		return readme, microerror.Maskf(pkgerror.InvalidFileError, err.Error())
+		return readme, microerror.Maskf(pkgerror.InvalidFileError, "%s", err.Error())
 	}
 
 	if startPlaceholder == "" {
@@ -69,9 +69,9 @@ func resolveReadmeFilePathStep(paths []string) (string, error) {
 		return "", microerror.Maskf(pkgerror.InvalidOutputFilePath, "valid output file path is not specified")
 	}
 	if paths[0] != "" {
-		_, err := os.Stat(paths[0])
+		_, err := os.Stat(paths[0]) // nolint: gosec
 		if err == nil {
-			return paths[0], nil
+			return paths[0], nil // nolint: gosec
 		} else if len(paths) == 1 {
 			return "", microerror.Mask(err)
 		}
