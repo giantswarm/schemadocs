@@ -196,7 +196,7 @@ func cloneFileToTempDir(srcFilePath string, dstRootDir string) (string, error) {
 			return "", err
 		}
 
-		data, err := os.ReadFile(srcFilePath)
+		data, err := os.ReadFile(srcFilePath) //nolint:gosec
 		if err == nil {
 			err = os.WriteFile(dstFilePath, data, 0600)
 			if err != nil {
@@ -208,7 +208,7 @@ func cloneFileToTempDir(srcFilePath string, dstRootDir string) (string, error) {
 }
 
 func readGoldenFile(path string) (string, error) {
-	data, err := os.ReadFile(path)
+	data, err := os.ReadFile(path) //nolint:gosec
 	if err != nil {
 		return "", err
 	}

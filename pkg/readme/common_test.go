@@ -37,7 +37,7 @@ func CreateTempFileWithContent(path, content string) (*os.File, error) {
 		return nil, nil
 	}
 
-	file, err := os.Create(path)
+	file, err := os.Create(path) //nolint:gosec
 	if err != nil {
 		return nil, err
 	}
