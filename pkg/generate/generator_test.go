@@ -75,11 +75,11 @@ func goldenValue(t *testing.T, goldenFile string, actual string, update bool) st
 	t.Helper()
 	goldenPath := "testdata/" + goldenFile
 
-	f, err := os.OpenFile(goldenPath, os.O_RDWR, 0644)
+	f, err := os.OpenFile(goldenPath, os.O_RDWR, 0644) //nolint:gosec
 	if err != nil {
 		t.Fatalf("Error opening file %s: %s", goldenPath, err)
 	}
-	defer f.Close()
+	defer func() { _ = f.Close() }()
 
 	if update {
 		_, err := f.WriteString(actual)
