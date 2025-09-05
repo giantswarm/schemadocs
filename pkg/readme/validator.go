@@ -23,7 +23,7 @@ func (r *Readme) Validate(schemaPath string, layout string) error {
 
 	diff := cmp.Diff(strings.TrimSpace(docsFromSchema), trimDocs(docsFromReadme, r.startPlaceholder, r.endPlaceholder))
 	if diff != "" {
-		return fmt.Errorf("documentation from readme %s do not match output generated from %s\n: %w", r.path, schemaPath, pkgerror.InvalidDocsError)
+		return fmt.Errorf("documentation from readme %s do not match output generated from %s\n: %w", r.path, schemaPath, pkgerror.ErrInvalidDocs)
 	}
 
 	return nil

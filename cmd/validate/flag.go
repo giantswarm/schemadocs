@@ -31,10 +31,10 @@ func (f *flag) Init(cmd *cobra.Command) {
 
 func (f *flag) Validate() error {
 	if f.schema == "" {
-		return fmt.Errorf("--%s must be set to a non-empty value: %w", flagSchema, cmderror.InvalidFlagError)
+		return fmt.Errorf("--%s must be set to a non-empty value: %w", flagSchema, cmderror.ErrInvalidFlag)
 	}
 	if (f.docPlaceholderStart == "") != (f.docPlaceholderEnd == "") {
-		return fmt.Errorf("both --%s and --%s flags must be set to non-empty values: %w", flagDocPlaceholderStart, flagDocPlaceholderEnd, cmderror.InvalidFlagError)
+		return fmt.Errorf("both --%s and --%s flags must be set to non-empty values: %w", flagDocPlaceholderStart, flagDocPlaceholderEnd, cmderror.ErrInvalidFlag)
 	}
 	return nil
 }

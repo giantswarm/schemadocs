@@ -32,7 +32,7 @@ func New(path, startPlaceholder, endPlaceholder string) (Readme, error) {
 	}
 
 	if err != nil {
-		return readme, fmt.Errorf("%s: %w", err.Error(), pkgerror.InvalidFileError)
+		return readme, fmt.Errorf("%s: %w", err.Error(), pkgerror.ErrInvalidFile)
 	}
 
 	if startPlaceholder == "" {
@@ -65,7 +65,7 @@ func (r *Readme) Path() string {
 
 func resolveReadmeFilePathStep(paths []string) (string, error) {
 	if len(paths) == 0 {
-		return "", fmt.Errorf("valid output file path is not specified: %w", pkgerror.InvalidOutputFilePath)
+		return "", fmt.Errorf("valid output file path is not specified: %w", pkgerror.ErrInvalidOutputFilePath)
 	}
 	if paths[0] != "" {
 		_, err := os.Stat(paths[0]) // nolint: gosec

@@ -35,12 +35,12 @@ func Test_Generator(t *testing.T) {
 			name:        "case 1: Fail to generate markdown from an existing invalid JSON schema",
 			layout:      "default",
 			schemaPath:  "schema_invalid.json",
-			expectedErr: pkgerror.InvalidSchemaFile,
+			expectedErr: pkgerror.ErrInvalidSchemaFile,
 		},
 		{
 			name:        "case 2: Fail to generate markdown from a on-existent JSON schema",
 			layout:      "default",
-			expectedErr: pkgerror.InvalidSchemaFile,
+			expectedErr: pkgerror.ErrInvalidSchemaFile,
 		},
 		{
 			name:       "case 3: Generate markdown from a valid JSON schema in linear layout",

@@ -31,7 +31,7 @@ func (f *flag) Init(cmd *cobra.Command) {
 
 func (f *flag) Validate() error {
 	if (f.docPlaceholderStart == "") != (f.docPlaceholderEnd == "") {
-		return fmt.Errorf("both --%s and --%s flags must be set to non-empty values: %w", flagDocPlaceholderStart, flagDocPlaceholderEnd, cmderror.InvalidFlagError)
+		return fmt.Errorf("both --%s and --%s flags must be set to non-empty values: %w", flagDocPlaceholderStart, flagDocPlaceholderEnd, cmderror.ErrInvalidFlag)
 	}
 	return nil
 }

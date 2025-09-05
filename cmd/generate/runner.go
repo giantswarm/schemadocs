@@ -38,7 +38,7 @@ func (r *runner) Run(cmd *cobra.Command, args []string) error {
 
 func (r *runner) run(cmd *cobra.Command, args []string) error {
 	if len(args) == 0 {
-		return fmt.Errorf("requires at least 1 arg(s), only received 0: %w", cmderror.InvalidConfigError)
+		return fmt.Errorf("requires at least 1 arg(s), only received 0: %w", cmderror.ErrInvalidConfig)
 	}
 
 	err := r.flag.Validate()

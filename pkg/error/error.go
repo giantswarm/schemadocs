@@ -2,50 +2,50 @@ package error
 
 import "errors"
 
-var InvalidConfigError = errors.New("invalidConfigError")
+var ErrInvalidConfig = errors.New("invalidConfigError")
 
 func IsInvalidConfig(err error) bool {
-	return errors.Is(err, InvalidConfigError)
+	return errors.Is(err, ErrInvalidConfig)
 }
 
-var InvalidFlagError = errors.New("invalidFlagError")
+var ErrInvalidFlag = errors.New("invalidFlagError")
 
 func IsInvalidFlag(err error) bool {
-	return errors.Is(err, InvalidFlagError)
+	return errors.Is(err, ErrInvalidFlag)
 }
 
-var InvalidSchemaFile = errors.New("invalidSchemaFile")
+var ErrInvalidSchemaFile = errors.New("invalidSchemaFile")
 
 func IsInvalidSchemaFile(err error) bool {
-	return errors.Is(err, InvalidSchemaFile)
+	return errors.Is(err, ErrInvalidSchemaFile)
 }
 
-var DocsGenerationError = errors.New("docsGenerationError")
+var ErrDocsGeneration = errors.New("docsGenerationError")
 
 func IsDocsGenerationError(err error) bool {
-	return errors.Is(err, DocsGenerationError)
+	return errors.Is(err, ErrDocsGeneration)
 }
 
-var InvalidOutputFilePath = errors.New("invalidOutputFilePath")
+var ErrInvalidOutputFilePath = errors.New("invalidOutputFilePath")
 
 func IsInvalidOutputFilePath(err error) bool {
-	return errors.Is(err, InvalidOutputFilePath)
+	return errors.Is(err, ErrInvalidOutputFilePath)
 }
 
-var InvalidFileError = errors.New("invalidFileError")
+var ErrInvalidFile = errors.New("invalidFileError")
 
 func IsInvalidFileError(err error) bool {
-	return errors.Is(err, InvalidFileError)
+	return errors.Is(err, ErrInvalidFile)
 }
 
-var InvalidDocsPlaceholderError = errors.New("invalidDocsPlaceholderError")
+var ErrInvalidDocsPlaceholder = errors.New("invalidDocsPlaceholderError")
 
 func IsInvalidDocsPlaceholder(err error) bool {
-	return errors.Is(err, InvalidDocsPlaceholderError)
+	return errors.Is(err, ErrInvalidDocsPlaceholder)
 }
 
-var InvalidDocsError = errors.New("invalidDocumentationError")
+var ErrInvalidDocs = errors.New("invalidDocumentationError")
 
 func IsInvalidDocs(err error) bool {
-	return errors.Is(err, InvalidDocsError)
+	return errors.Is(err, ErrInvalidDocs)
 }

@@ -11,7 +11,7 @@ import (
 func (r *Readme) Content() (string, error) {
 	content, err := os.ReadFile(r.path)
 	if err != nil {
-		return "", fmt.Errorf("%s: %w", err.Error(), pkgerror.InvalidFileError)
+		return "", fmt.Errorf("%s: %w", err.Error(), pkgerror.ErrInvalidFile)
 	}
 
 	return string(content), nil
@@ -34,26 +34,26 @@ func (r *Readme) Docs() (string, error) {
 func docsFromContent(content, startPlaceholder, endPlaceholder string) (string, error) {
 	startIndex := strings.Index(content, startPlaceholder)
 	if startIndex < 0 {
-		return "", fmt.Errorf("start placeholder %s was not found: %w", startPlaceholder, pkgerror.InvalidDocsPlaceholderError)
+		return "", fmt.Errorf("start placeholder %s was not found: %w", startPlaceholder, pkgerror.ErrInvalidDocsPlaceholder)
 	}
 
 	lastStartIndex := strings.LastIndex(content, startPlaceholder)
 	if startIndex != lastStartIndex {
-		return "", fmt.Errorf("multiple start placeholders %s found: %w", startPlaceholder, pkgerror.InvalidDocsPlaceholderError)
+		return "", fmt.Errorf("multiple start placeholders %s found: %w", startPlaceholder, pkgerror.ErrInvalidDocsPlaceholder)
 	}
 
 	endIndex := strings.Index(content, endPlaceholder)
 	if endIndex < 0 {
-		return "", fmt.Errorf("end placeholder %s was not found: %w", endPlaceholder, pkgerror.InvalidDocsPlaceholderError)
+		return "", fmt.Errorf("end placeholder %s was not found: %w", endPlaceholder, pkgerror.ErrInvalidDocsPlaceholder)
 	}
 
 	lastEndIndex := strings.LastIndex(content, endPlaceholder)
 	if endIndex != lastEndIndex {
-		return "", fmt.Errorf("multiple end placeholders %s found: %w", endPlaceholder, pkgerror.InvalidDocsPlaceholderError)
+		return "", fmt.Errorf("multiple end placeholders %s found: %w", endPlaceholder, pkgerror.ErrInvalidDocsPlaceholder)
 	}
 
 	if endIndex < startIndex {
-		return "", fmt.Errorf("end placeholders appears before start placeholder %s %s: %w", endPlaceholder, startPlaceholder, pkgerror.InvalidDocsPlaceholderError)
+		return "", fmt.Errorf("end placeholders appears before start placeholder %s %s: %w", endPlaceholder, startPlaceholder, pkgerror.ErrInvalidDocsPlaceholder)
 	}
 
 	return content[startIndex : endIndex+len(endPlaceholder)], nil

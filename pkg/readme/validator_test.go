@@ -25,12 +25,12 @@ func Test_Validate(t *testing.T) {
 			name:           "case 1: Fail when the provided and generated docs do not match",
 			readmeFilePath: "testdata/readme2.md",
 			schemaFilePath: "testdata/schema.json",
-			expectedErr:    pkgerror.InvalidDocsError,
+			expectedErr:    pkgerror.ErrInvalidDocs,
 		},
 		{
 			name:           "case 2: Fail when the provided docs is not valid",
 			schemaFilePath: "testdata/schema.json",
-			expectedErr:    pkgerror.InvalidFileError,
+			expectedErr:    pkgerror.ErrInvalidFile,
 		},
 		{
 			name:             "case 2: Fail when the docs placeholders are not valid",
@@ -38,7 +38,7 @@ func Test_Validate(t *testing.T) {
 			layout:           "default",
 			schemaFilePath:   "testdata/schema.json",
 			startPlaceholder: "[DOCS_START]",
-			expectedErr:      pkgerror.InvalidDocsPlaceholderError,
+			expectedErr:      pkgerror.ErrInvalidDocsPlaceholder,
 		},
 	}
 

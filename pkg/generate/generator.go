@@ -20,7 +20,7 @@ func Generate(schemaPath string, layout string) (string, error) {
 	schema, err := compiler.Compile(schemaPath)
 
 	if err != nil {
-		return "", fmt.Errorf("%s: %w", err.Error(), pkgerror.InvalidSchemaFile)
+		return "", fmt.Errorf("%s: %w", err.Error(), pkgerror.ErrInvalidSchemaFile)
 	}
 
 	sections := sectionsFromSchema(schema, "")
@@ -81,13 +81,13 @@ func toMarkdown(sections []Section, layout string) (string, error) {
 		t, err = templates.GetDefaultTemplate()
 	}
 	if err != nil {
-		return "", fmt.Errorf("%s: %w", err.Error(), pkgerror.DocsGenerationError)
+		return "", fmt.Errorf("%s: %w", err.Error(), pkgerror.ErrDocsGeneration)
 	}
 
 	var tplBuffer bytes.Buffer
 	err = t.Execute(&tplBuffer, sections)
 	if err != nil {
-		return "", fmt.Errorf("%s: %w", err.Error(), pkgerror.DocsGenerationError)
+		return "", fmt.Errorf("%s: %w", err.Error(), pkgerror.ErrDocsGeneration)
 	}
 	return tplBuffer.String(), nil
 }

@@ -39,7 +39,7 @@ func Test_Root(t *testing.T) {
 			argFilePath:          "testdata/schema.json",
 			expectedOutput:       "testdata/output_format_generate_failure_1.golden.txt",
 			formatExpectedOutput: true,
-			expectedErr:          cmderror.InvalidFileError,
+			expectedErr:          cmderror.ErrInvalidFile,
 		},
 		{
 			name:                 "case 2: Generate command - show error message when valid arg points to an invalid schema file",
@@ -49,7 +49,7 @@ func Test_Root(t *testing.T) {
 			flagFilePath:         "testdata/readme.md",
 			expectedOutput:       "testdata/output_format_generate_failure_2.golden.txt",
 			formatExpectedOutput: true,
-			expectedErr:          cmderror.InvalidSchemaFile,
+			expectedErr:          cmderror.ErrInvalidSchemaFile,
 		},
 		{
 			name:                 "case 3: Generate command - show error message when valid flag points to an invalid readme file",
@@ -59,7 +59,7 @@ func Test_Root(t *testing.T) {
 			flagFilePath:         "testdata/readme2.md",
 			expectedOutput:       "testdata/output_format_generate_failure_3.golden.txt",
 			formatExpectedOutput: true,
-			expectedErr:          cmderror.InvalidFileError,
+			expectedErr:          cmderror.ErrInvalidFile,
 		},
 
 		{
@@ -77,7 +77,7 @@ func Test_Root(t *testing.T) {
 			argFilePath:          "testdata/readme.md",
 			expectedOutput:       "testdata/output_format_validate_failure_1.golden.txt",
 			formatExpectedOutput: false,
-			expectedErr:          cmderror.InvalidFlagError,
+			expectedErr:          cmderror.ErrInvalidFlag,
 		},
 		{
 			name:                 "case 6: Validate command - show error message when valid arg points to an invalid readme file",
@@ -87,7 +87,7 @@ func Test_Root(t *testing.T) {
 			flagFilePath:         "testdata/schema.json",
 			expectedOutput:       "testdata/output_format_validate_failure_2.golden.txt",
 			formatExpectedOutput: true,
-			expectedErr:          cmderror.InvalidFileError,
+			expectedErr:          cmderror.ErrInvalidFile,
 		},
 		{
 			name:                 "case 7: Validate command - show error message when valid flag points to an invalid schema file",
@@ -97,7 +97,7 @@ func Test_Root(t *testing.T) {
 			flagFilePath:         "testdata/schema2.json",
 			expectedOutput:       "testdata/output_format_validate_failure_3.golden.txt",
 			formatExpectedOutput: true,
-			expectedErr:          cmderror.InvalidSchemaFile,
+			expectedErr:          cmderror.ErrInvalidSchemaFile,
 		},
 		{
 			name:                 "case 8: Validate command - show error message when the generated and provided documentation do not match",
@@ -107,7 +107,7 @@ func Test_Root(t *testing.T) {
 			flagFilePath:         "testdata/schema.json",
 			expectedOutput:       "testdata/output_format_validate_failure_4.golden.txt",
 			formatExpectedOutput: true,
-			expectedErr:          cmderror.InvalidDocsError,
+			expectedErr:          cmderror.ErrInvalidDocs,
 		},
 	}
 
