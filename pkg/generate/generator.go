@@ -2,21 +2,86 @@ package generate
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+	"os"
 	"sort"
 	"text/template"
 
-	"github.com/santhosh-tekuri/jsonschema/v5"
-	_ "github.com/santhosh-tekuri/jsonschema/v5/httploader"
+	"github.com/santhosh-tekuri/jsonschema/v6"
 
 	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 	"github.com/giantswarm/schemadocs/pkg/generate/templates"
 	"github.com/giantswarm/schemadocs/pkg/key"
 )
 
+// UniversalLoader implements jsonschema.URLLoader for both HTTP/HTTPS and file URLs
+type UniversalLoader struct{}
+
+func (u UniversalLoader) Load(urlStr string) (any, error) {
+	parsedURL, err := url.Parse(urlStr)
+	if err != nil {
+		return nil, fmt.Errorf("invalid URL: %s", urlStr)
+	}
+
+	var data []byte
+
+	switch parsedURL.Scheme {
+	case "http", "https":
+		// Handle HTTP/HTTPS URLs
+		// This is intentionally loading from a variable URL as part of JSON schema resolution
+		resp, err := http.Get(urlStr) // #nosec G107
+		if err != nil {
+			return nil, err
+		}
+		defer func() {
+			if closeErr := resp.Body.Close(); closeErr != nil {
+				// Log the error but don't override the main error
+				// In a real application, you might want to log this properly
+				_ = closeErr // Explicitly ignore the error to satisfy linters
+			}
+		}()
+
+		if resp.StatusCode != http.StatusOK {
+			return nil, fmt.Errorf("HTTP %d: %s", resp.StatusCode, resp.Status)
+		}
+
+		data, err = io.ReadAll(resp.Body)
+		if err != nil {
+			return nil, err
+		}
+
+	case "file":
+		// Handle file:// URLs
+		filePath := parsedURL.Path
+		// This is intentionally reading from a variable path as part of JSON schema resolution
+		data, err = os.ReadFile(filePath) // #nosec G304
+		if err != nil {
+			return nil, err
+		}
+
+	default:
+		return nil, fmt.Errorf("unsupported protocol scheme: %s", parsedURL.Scheme)
+	}
+
+	// Parse JSON and return the parsed data
+	var jsonData any
+	if err := json.Unmarshal(data, &jsonData); err != nil {
+		return nil, fmt.Errorf("invalid JSON in %s: %w", urlStr, err)
+	}
+
+	return jsonData, nil
+}
+
 func Generate(schemaPath string, layout string) (string, error) {
 	compiler := jsonschema.NewCompiler()
-	compiler.ExtractAnnotations = true
+
+	// Add universal loader for both HTTP/HTTPS and file URLs
+	compiler.UseLoader(UniversalLoader{})
+
 	schema, err := compiler.Compile(schemaPath)
 
 	if err != nil {

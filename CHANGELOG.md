@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Upgrade `github.com/santhosh-tekuri/jsonschema` to v6
 - Error handling now uses the internal `errors` package, not `github.com/giantswarm/microerror`
 - Change exported error variable names to start with `Err`.
 

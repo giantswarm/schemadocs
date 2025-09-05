@@ -3,12 +3,30 @@ package generate
 import (
 	"encoding/json"
 	"fmt"
+	"regexp"
 	"strings"
 
-	"github.com/santhosh-tekuri/jsonschema/v5"
+	"github.com/santhosh-tekuri/jsonschema/v6"
 
 	"github.com/giantswarm/schemadocs/pkg/key"
 )
+
+// convertTypesToStrings converts jsonschema.Types to []string
+func convertTypesToStrings(types jsonschema.Types) []string {
+	// Try to use the String() method if available, or convert based on the actual API
+	typeStr := types.String()
+	if typeStr == "" {
+		return []string{}
+	}
+
+	// If it's a single type, return it as a slice
+	// If it's multiple types separated by commas, split them
+	if strings.Contains(typeStr, ",") {
+		return strings.Split(typeStr, ",")
+	}
+
+	return []string{typeStr}
+}
 
 type Row struct {
 	Path               string
@@ -32,15 +50,12 @@ func RowsFromSchema(schema *jsonschema.Schema, path string, name string, keyPatt
 	// Sorting happens outside of `RowsFromSchema`, so the order in this slice doesn't matter
 	var rows []Row
 
-	if schema.Ref != nil || schema.RecursiveRef != nil || schema.DynamicRef != nil {
+	if schema.Ref != nil || schema.RecursiveRef != nil {
 		if schema.Ref != nil {
 			rows = append(rows, RowsFromSchema(schema.Ref, path, name, keyPatterns)...)
 		}
 		if schema.RecursiveRef != nil {
 			rows = append(rows, RowsFromSchema(schema.RecursiveRef, path, name, keyPatterns)...)
-		}
-		if schema.DynamicRef != nil {
-			rows = append(rows, RowsFromSchema(schema.DynamicRef, path, name, keyPatterns)...)
 		}
 
 		return rows
@@ -58,10 +73,12 @@ func RowsFromSchema(schema *jsonschema.Schema, path string, name string, keyPatt
 	if schema.AdditionalProperties != nil {
 		additionalProperties, ok := schema.AdditionalProperties.(*jsonschema.Schema)
 		if ok {
+			var patternRegex *regexp.Regexp
 			if additionalProperties.Pattern != nil {
 				keyPatterns = append(keyPatterns, additionalProperties.Pattern.String())
+				patternRegex = regexp.MustCompile(additionalProperties.Pattern.String())
 			}
-			additionalPropertyKey := key.NameFromPattern(additionalProperties.Pattern, keyPatterns, "*")
+			additionalPropertyKey := key.NameFromPattern(patternRegex, keyPatterns, "*")
 			rows = append(rows, RowsFromSchema(additionalProperties, row.FullPath, additionalPropertyKey, keyPatterns)...)
 		}
 	}
@@ -69,7 +86,8 @@ func RowsFromSchema(schema *jsonschema.Schema, path string, name string, keyPatt
 	if schema.PatternProperties != nil {
 		for pattern, patternProperty := range schema.PatternProperties {
 			keyPatterns = append(keyPatterns, pattern.String())
-			patternName := key.NameFromPattern(pattern, keyPatterns, "*")
+			patternRegex := regexp.MustCompile(pattern.String())
+			patternName := key.NameFromPattern(patternRegex, keyPatterns, "*")
 			rows = append(rows, RowsFromSchema(patternProperty, row.FullPath, patternName, keyPatterns)...)
 		}
 	}
@@ -98,6 +116,13 @@ func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []s
 		keyPatternMappings[keyPattern] = key.NameFromPatternString(keyPattern, keyPatterns)
 	}
 
+	var types []string
+	if schema.Types != nil {
+		// Convert jsonschema.Types (int) to string slice
+		// In v6, Types is a bitmask, we need to convert it to strings
+		types = convertTypesToStrings(*schema.Types)
+	}
+
 	row := Row{
 		Path:               path,
 		Name:               name,
@@ -105,7 +130,7 @@ func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []s
 		Title:              schema.Title,
 		Slug:               strings.ToLower(strings.ReplaceAll(key.MergedPropertyPath(path, name), ".", "-")),
 		Description:        schema.Description,
-		Types:              schema.Types,
+		Types:              types,
 		Primitive:          key.SchemaIsPrimitive(schema),
 		KeyPatterns:        keyPatterns,
 		KeyPatternMappings: keyPatternMappings,

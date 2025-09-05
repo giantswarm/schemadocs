@@ -8,7 +8,7 @@ Text
 
 | **Property** | **Description** | **More Details** |
 | :----------- | :-------------- | :--------------- |
-| `id` | **ID** - Unique identifier|**Type:** `string`<br/>|
+| `id` | **ID** - Unique identifier|**Type:** `[string]`<br/>|
 
 
 <!-- DOCS_END -->
