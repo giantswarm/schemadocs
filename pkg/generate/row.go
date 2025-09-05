@@ -18,13 +18,13 @@ func convertTypesToStrings(types jsonschema.Types) []string {
 	if typeStr == "" {
 		return []string{}
 	}
-	
+
 	// If it's a single type, return it as a slice
 	// If it's multiple types separated by commas, split them
 	if strings.Contains(typeStr, ",") {
 		return strings.Split(typeStr, ",")
 	}
-	
+
 	return []string{typeStr}
 }
 
