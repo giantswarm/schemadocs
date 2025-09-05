@@ -4,4 +4,4 @@ Schema file: %[2]s
 Using default placeholders '<!-- DOCS_START -->' and '<!-- DOCS_END -->'
 
 [ERROR] Failed to validate documentation
-Reason: invalid schema file: jsonschema file://%[2]s compilation failed: open %[2]s: no such file or directory
+Reason: failed to generate docs from schema: jsonschema file://%[2]s compilation failed: open %[2]s: no such file or directory: invalidSchemaFile

@@ -1,10 +1,10 @@
 package cmd
 
 import (
+	"fmt"
 	"io"
 	"os"
 
-	"github.com/giantswarm/microerror"
 	"github.com/spf13/cobra"
 
 	"github.com/giantswarm/schemadocs/cmd/generate"
@@ -64,7 +64,7 @@ func New(config Config) (*cobra.Command, error) {
 
 		generateCmd, err = generate.New(cfg)
 		if err != nil {
-			return nil, microerror.Mask(err)
+			return nil, fmt.Errorf("failed to create generate command: %w", err)
 		}
 	}
 
@@ -78,7 +78,7 @@ func New(config Config) (*cobra.Command, error) {
 
 		validateCmd, err = validate.New(cfg)
 		if err != nil {
-			return nil, microerror.Mask(err)
+			return nil, fmt.Errorf("failed to create validate command: %w", err)
 		}
 	}
 

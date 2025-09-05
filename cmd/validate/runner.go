@@ -1,9 +1,9 @@
 package validate
 
 import (
+	"fmt"
 	"io"
 
-	"github.com/giantswarm/microerror"
 	"github.com/spf13/cobra"
 
 	"github.com/giantswarm/schemadocs/cmd/global"
@@ -38,12 +38,12 @@ func (r *runner) Run(cmd *cobra.Command, args []string) error {
 
 func (r *runner) run(cmd *cobra.Command, args []string) error {
 	if len(args) == 0 {
-		return microerror.Maskf(cmderror.InvalidConfigError, "requires at least 1 arg(s), only received 0")
+		return fmt.Errorf("requires at least 1 arg(s), only received 0: %w", cmderror.ErrInvalidConfig)
 	}
 
 	err := r.flag.Validate()
 	if err != nil {
-		return microerror.Mask(err)
+		return fmt.Errorf("flag validation failed: %w", err)
 	}
 
 	cli.WriteOutputF(r.stdout, "Source file: %s\n", args[0])
@@ -53,7 +53,7 @@ func (r *runner) run(cmd *cobra.Command, args []string) error {
 
 	readmeItem, err := readme.New(args[0], r.flag.docPlaceholderStart, r.flag.docPlaceholderEnd)
 	if err != nil {
-		return microerror.Mask(err)
+		return fmt.Errorf("failed to create readme: %w", err)
 	}
 
 	cli.WriteOutputF(r.stdout, "Schema file: %s\n", r.flag.schema)

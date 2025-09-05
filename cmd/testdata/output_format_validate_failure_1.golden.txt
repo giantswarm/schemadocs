@@ -1,4 +1,4 @@
 Validating documentation
 
 [ERROR] Failed to validate documentation
-Reason: invalid flag error: --schema must be set to a non-empty value
+Reason: flag validation failed: --schema must be set to a non-empty value: invalidFlagError

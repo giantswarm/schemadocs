@@ -1,7 +1,8 @@
 package generate
 
 import (
-	"github.com/giantswarm/microerror"
+	"fmt"
+
 	"github.com/spf13/cobra"
 
 	cmderror "github.com/giantswarm/schemadocs/pkg/error"
@@ -30,7 +31,7 @@ func (f *flag) Init(cmd *cobra.Command) {
 
 func (f *flag) Validate() error {
 	if (f.docPlaceholderStart == "") != (f.docPlaceholderEnd == "") {
-		return microerror.Maskf(cmderror.InvalidFlagError, "both --%s and --%s flags must be set to non-empty values", flagDocPlaceholderStart, flagDocPlaceholderEnd)
+		return fmt.Errorf("both --%s and --%s flags must be set to non-empty values: %w", flagDocPlaceholderStart, flagDocPlaceholderEnd, cmderror.ErrInvalidFlag)
 	}
 	return nil
 }

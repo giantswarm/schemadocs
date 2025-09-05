@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Error handling now uses the internal `errors` package, not `github.com/giantswarm/microerror`
+- Change exported error variable names to start with `Err`.
+
 ## [0.1.0] - 2024-06-03
 
 ### Added

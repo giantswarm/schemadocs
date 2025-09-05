@@ -1,9 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
-	"github.com/giantswarm/microerror"
 	"github.com/spf13/cobra"
 
 	"github.com/giantswarm/schemadocs/cmd"
@@ -27,13 +27,13 @@ func mainE() error {
 
 		rootCommand, err = cmd.New(c)
 		if err != nil {
-			return microerror.Mask(err)
+			return fmt.Errorf("failed to create root command: %w", err)
 		}
 	}
 
 	err = rootCommand.Execute()
 	if err != nil {
-		return microerror.Mask(err)
+		return fmt.Errorf("failed to execute command: %w", err)
 	}
 	return nil
 }

@@ -24,7 +24,7 @@ func Test_Content(t *testing.T) {
 		{
 			name:        "case 1: Read content from invalid file",
 			fileName:    "text.txt",
-			expectedErr: pkgerror.InvalidFileError,
+			expectedErr: pkgerror.ErrInvalidFile,
 		},
 	}
 
@@ -84,19 +84,19 @@ func Test_Docs(t *testing.T) {
 			name:        "case 2: Read docs from a valid file with invalid placeholders",
 			fileName:    "test.txt",
 			content:     "Text [START_PLACEHOLDER] Docs [END_PLACEHOLDER] Text",
-			expectedErr: pkgerror.InvalidDocsPlaceholderError,
+			expectedErr: pkgerror.ErrInvalidDocsPlaceholder,
 		},
 		{
 			name:        "case 3: Read docs from file with invalid content",
 			fileName:    "test.txt",
 			content:     fmt.Sprintf("Text %s Text", defaultEndPlaceholder),
-			expectedErr: pkgerror.InvalidDocsPlaceholderError,
+			expectedErr: pkgerror.ErrInvalidDocsPlaceholder,
 		},
 		{
 			name:        "case 4: Read docs from invalid file",
 			fileName:    "test.txt",
 			content:     "",
-			expectedErr: pkgerror.InvalidFileError,
+			expectedErr: pkgerror.ErrInvalidFile,
 		},
 	}
 

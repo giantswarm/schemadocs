@@ -4,5 +4,5 @@ Schema file: %[2]s
 Using default placeholders '<!-- DOCS_START -->' and '<!-- DOCS_END -->'
 
 [FAILURE] Documentation is not valid
-Reason: invalid documentation error: documentation from readme %[1]s do not match output generated from %[2]s
-
+Reason: documentation from readme %[1]s do not match output generated from %[2]s
+: invalidDocumentationError

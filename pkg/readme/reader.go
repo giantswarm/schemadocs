@@ -1,10 +1,9 @@
 package readme
 
 import (
+	"fmt"
 	"os"
 	"strings"
-
-	"github.com/giantswarm/microerror"
 
 	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 )
@@ -12,7 +11,7 @@ import (
 func (r *Readme) Content() (string, error) {
 	content, err := os.ReadFile(r.path)
 	if err != nil {
-		return "", microerror.Maskf(pkgerror.InvalidFileError, "%s", err.Error())
+		return "", fmt.Errorf("%s: %w", err.Error(), pkgerror.ErrInvalidFile)
 	}
 
 	return string(content), nil
@@ -21,12 +20,12 @@ func (r *Readme) Content() (string, error) {
 func (r *Readme) Docs() (string, error) {
 	content, err := r.Content()
 	if err != nil {
-		return "", microerror.Mask(err)
+		return "", fmt.Errorf("failed to read content: %w", err)
 	}
 
 	docs, err := docsFromContent(content, r.startPlaceholder, r.endPlaceholder)
 	if err != nil {
-		return "", microerror.Mask(err)
+		return "", fmt.Errorf("failed to extract docs from content: %w", err)
 	}
 
 	return docs, nil
@@ -35,26 +34,26 @@ func (r *Readme) Docs() (string, error) {
 func docsFromContent(content, startPlaceholder, endPlaceholder string) (string, error) {
 	startIndex := strings.Index(content, startPlaceholder)
 	if startIndex < 0 {
-		return "", microerror.Maskf(pkgerror.InvalidDocsPlaceholderError, "start placeholder %s was not found", startPlaceholder)
+		return "", fmt.Errorf("start placeholder %s was not found: %w", startPlaceholder, pkgerror.ErrInvalidDocsPlaceholder)
 	}
 
 	lastStartIndex := strings.LastIndex(content, startPlaceholder)
 	if startIndex != lastStartIndex {
-		return "", microerror.Maskf(pkgerror.InvalidDocsPlaceholderError, "multiple start placeholders %s found", startPlaceholder)
+		return "", fmt.Errorf("multiple start placeholders %s found: %w", startPlaceholder, pkgerror.ErrInvalidDocsPlaceholder)
 	}
 
 	endIndex := strings.Index(content, endPlaceholder)
 	if endIndex < 0 {
-		return "", microerror.Maskf(pkgerror.InvalidDocsPlaceholderError, "end placeholder %s was not found", endPlaceholder)
+		return "", fmt.Errorf("end placeholder %s was not found: %w", endPlaceholder, pkgerror.ErrInvalidDocsPlaceholder)
 	}
 
 	lastEndIndex := strings.LastIndex(content, endPlaceholder)
 	if endIndex != lastEndIndex {
-		return "", microerror.Maskf(pkgerror.InvalidDocsPlaceholderError, "multiple end placeholders %s found", endPlaceholder)
+		return "", fmt.Errorf("multiple end placeholders %s found: %w", endPlaceholder, pkgerror.ErrInvalidDocsPlaceholder)
 	}
 
 	if endIndex < startIndex {
-		return "", microerror.Maskf(pkgerror.InvalidDocsPlaceholderError, "end placeholders appears before start placeholder %s %s", endPlaceholder, startPlaceholder)
+		return "", fmt.Errorf("end placeholders appears before start placeholder %s %s: %w", endPlaceholder, startPlaceholder, pkgerror.ErrInvalidDocsPlaceholder)
 	}
 
 	return content[startIndex : endIndex+len(endPlaceholder)], nil

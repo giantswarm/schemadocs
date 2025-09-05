@@ -42,7 +42,7 @@ func Test_Write(t *testing.T) {
 			fileName:    "test.txt",
 			content:     "Text [START_PLACEHOLDER] Docs [END_PLACEHOLDER] Text",
 			docs:        "New Docs",
-			expectedErr: pkgerror.InvalidDocsPlaceholderError,
+			expectedErr: pkgerror.ErrInvalidDocsPlaceholder,
 		},
 		{
 			name:             "case 3: Write content to invalid file",
@@ -50,7 +50,7 @@ func Test_Write(t *testing.T) {
 			startPlaceholder: "[START_PLACEHOLDER]",
 			endPlaceholder:   "[END_PLACEHOLDER]",
 			docs:             "New Docs",
-			expectedErr:      pkgerror.InvalidFileError,
+			expectedErr:      pkgerror.ErrInvalidFile,
 		},
 	}
 

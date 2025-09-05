@@ -1,12 +1,12 @@
 package generate
 
 import (
+	"errors"
 	"flag"
 	"io"
 	"os"
 	"testing"
 
-	"github.com/giantswarm/microerror"
 	"github.com/google/go-cmp/cmp"
 
 	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
@@ -35,12 +35,12 @@ func Test_Generator(t *testing.T) {
 			name:        "case 1: Fail to generate markdown from an existing invalid JSON schema",
 			layout:      "default",
 			schemaPath:  "schema_invalid.json",
-			expectedErr: pkgerror.InvalidSchemaFile,
+			expectedErr: pkgerror.ErrInvalidSchemaFile,
 		},
 		{
 			name:        "case 2: Fail to generate markdown from a on-existent JSON schema",
 			layout:      "default",
-			expectedErr: pkgerror.InvalidSchemaFile,
+			expectedErr: pkgerror.ErrInvalidSchemaFile,
 		},
 		{
 			name:       "case 3: Generate markdown from a valid JSON schema in linear layout",
@@ -55,7 +55,7 @@ func Test_Generator(t *testing.T) {
 			docs, err := Generate("testdata/"+tc.schemaPath, tc.layout)
 
 			if err != nil {
-				if err != tc.expectedErr && microerror.Cause(err) != tc.expectedErr {
+				if err != tc.expectedErr && !errors.Is(err, tc.expectedErr) {
 					t.Fatalf("received unexpected error: %s\n", err)
 				}
 				return
