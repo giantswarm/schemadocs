@@ -3,115 +3,115 @@ Properties within the `.providerSpecific` top-level object
 
 | **Property** | **Description** | **More Details** |
 | :----------- | :-------------- | :--------------- |
-| `providerSpecific.ami` | **Amazon machine image (AMI)** - If specified, this image will be used to provision EC2 instances.|**Type:** `string`<br/>|
-| `providerSpecific.awsClusterRoleIdentityName` | **Cluster role identity name** - Name of an AWSClusterRoleIdentity object. This in turn refers to the IAM role used to create all AWS cloud resources when creating the cluster. The role can be in another AWS account in order to create all resources in that account. Note: This name does not refer directly to an IAM role name/ARN.|**Type:** `string`<br/>**Value pattern:** `^[-a-zA-Z0-9_\.]{1,63}$`<br/>**Default:** `"default"`|
-| `providerSpecific.flatcarAwsAccount` | **AWS account owning Flatcar image** - AWS account ID owning the Flatcar Container Linux AMI.|**Type:** `string`<br/>**Default:** `"075585003325"`|
-| `providerSpecific.region` | **Region**|**Type:** `string`<br/>|
+| `providerSpecific.ami` | **Amazon machine image (AMI)** - If specified, this image will be used to provision EC2 instances.|**Type:** `[string]`<br/>|
+| `providerSpecific.awsClusterRoleIdentityName` | **Cluster role identity name** - Name of an AWSClusterRoleIdentity object. This in turn refers to the IAM role used to create all AWS cloud resources when creating the cluster. The role can be in another AWS account in order to create all resources in that account. Note: This name does not refer directly to an IAM role name/ARN.|**Type:** `[string]`<br/>**Value pattern:** `^[-a-zA-Z0-9_\.]{1,63}$`<br/>**Default:** `"default"`|
+| `providerSpecific.flatcarAwsAccount` | **AWS account owning Flatcar image** - AWS account ID owning the Flatcar Container Linux AMI.|**Type:** `[string]`<br/>**Default:** `"075585003325"`|
+| `providerSpecific.region` | **Region**|**Type:** `[string]`<br/>|
 
 ### Connectivity
 Properties within the `.global.connectivity` object
 
 | **Property** | **Description** | **More Details** |
 | :----------- | :-------------- | :--------------- |
-| `global.connectivity.availabilityZoneUsageLimit` | **Availability zones** - Maximum number of availability zones (AZ) that should be used in a region. If a region has more than this number of AZs then this number of AZs will be picked randomly when creating subnets.|**Type:** `integer`<br/>**Default:** `3`|
-| `global.connectivity.bastion` | **Bastion host**|**Type:** `object`<br/>|
-| `global.connectivity.bastion.enabled` | **Enable**|**Type:** `boolean`<br/>**Default:** `true`|
-| `global.connectivity.bastion.instanceType` | **EC2 instance type**|**Type:** `string`<br/>**Default:** `"t3.small"`|
-| `global.connectivity.bastion.replicas` | **Number of hosts**|**Type:** `integer`<br/>**Default:** `1`|
-| `global.connectivity.bastion.subnetTags` | **Subnet tags** - Tags to filter which AWS subnets will be used for the bastion hosts.|**Type:** `array`<br/>|
-| `global.connectivity.bastion.subnetTags[*]` | **Subnet tag**|**Type:** `object`<br/>|
-| `global.connectivity.bastion.subnetTags[*].*` | **Tag value**|**Type:** `string`<br/>**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`<br/>|
-| `global.connectivity.containerRegistries` | **Container registries** - Endpoints and credentials configuration for container registries.|**Type:** `object`<br/>|
-| `global.connectivity.containerRegistries.*` | **Registries** - Container registries and mirrors|**Type:** `array`<br/>|
-| `global.connectivity.containerRegistries.*[*]` | **Registry**|**Type:** `object`<br/>|
-| `global.connectivity.containerRegistries.*[*].credentials` | **Credentials**|**Type:** `object`<br/>|
-| `global.connectivity.containerRegistries.*[*].credentials.auth` | **Auth** - Base64-encoded string from the concatenation of the username, a colon, and the password.|**Type:** `string`<br/>|
-| `global.connectivity.containerRegistries.*[*].credentials.identitytoken` | **Identity token** - Used to authenticate the user and obtain an access token for the registry.|**Type:** `string`<br/>|
-| `global.connectivity.containerRegistries.*[*].credentials.password` | **Password** - Used to authenticate for the registry with username/password.|**Type:** `string`<br/>|
-| `global.connectivity.containerRegistries.*[*].credentials.username` | **Username** - Used to authenticate for the registry with username/password.|**Type:** `string`<br/>|
-| `global.connectivity.containerRegistries.*[*].endpoint` | **Endpoint** - Endpoint for the container registry.|**Type:** `string`<br/>|
-| `global.connectivity.dns` | **DNS**|**Type:** `object`<br/>|
-| `global.connectivity.dns.additionalVpc` | **Additional VPCs** - If DNS mode is 'private', the VPCs specified here will be assigned to the private hosted zone.|**Type:** `array`<br/>|
-| `global.connectivity.dns.additionalVpc[*]` | **VPC identifier**|**Type:** `string`<br/>**Example:** `"vpc-x2aeasd1d"`<br/>**Value pattern:** `^vpc-[0-0a-zA-Z]+$`<br/>|
-| `global.connectivity.dns.mode` | **Mode** - Whether the Route53 hosted zone of this cluster should be public or private.|**Type:** `string`<br/>**Default:** `"public"`|
-| `global.connectivity.dns.resolverRulesOwnerAccount` | **Resolver rules owner** - ID of the AWS account that created the resolver rules to be associated with the workload cluster VPC.|**Type:** `string`<br/>|
-| `global.connectivity.network` | **Network**|**Type:** `object`<br/>|
-| `global.connectivity.network.podCidr` | **Pod subnet** - IPv4 address range for pods, in CIDR notation.|**Type:** `string`<br/>**Default:** `"100.64.0.0/12"`|
-| `global.connectivity.network.serviceCidr` | **Service subnet** - IPv4 address range for services, in CIDR notation.|**Type:** `string`<br/>**Default:** `"172.31.0.0/16"`|
-| `global.connectivity.network.vpcCidr` | **VPC subnet** - IPv4 address range to assign to this cluster's VPC, in CIDR notation.|**Type:** `string`<br/>**Default:** `"10.0.0.0/16"`|
-| `global.connectivity.proxy` | **Proxy** - Whether/how outgoing traffic is routed through proxy servers.|**Type:** `object`<br/>|
-| `global.connectivity.proxy.enabled` | **Enable**|**Type:** `boolean`<br/>|
-| `global.connectivity.proxy.httpProxy` | **HTTP proxy** - To be passed to the HTTP_PROXY environment variable in all hosts.|**Type:** `string`<br/>|
-| `global.connectivity.proxy.httpsProxy` | **HTTPS proxy** - To be passed to the HTTPS_PROXY environment variable in all hosts.|**Type:** `string`<br/>|
-| `global.connectivity.proxy.noProxy` | **No proxy** - To be passed to the NO_PROXY environment variable in all hosts.|**Type:** `string`<br/>|
-| `global.connectivity.sshSsoPublicKey` | **SSH public key for single sign-on**|**Type:** `string`<br/>**Default:** `"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4cvZ01fLmO9cJbWUj7sfF+NhECgy+Cl0bazSrZX7sU vault-ca@vault.operations.giantswarm.io"`|
-| `global.connectivity.subnets` | **Subnets** - Subnets are created and tagged based on this definition.|**Type:** `array`<br/>**Default:** `[{"cidrBlocks":[{"availabilityZone":"a","cidr":"10.0.0.0/20"},{"availabilityZone":"b","cidr":"10.0.16.0/20"},{"availabilityZone":"c","cidr":"10.0.32.0/20"}],"isPublic":true},{"cidrBlocks":[{"availabilityZone":"a","cidr":"10.0.64.0/18"},{"availabilityZone":"b","cidr":"10.0.128.0/18"},{"availabilityZone":"c","cidr":"10.0.192.0/18"}],"isPublic":false}]`|
-| `global.connectivity.subnets[*]` | **Subnet**|**Type:** `object`<br/>|
-| `global.connectivity.subnets[*].cidrBlocks` | **Network**|**Type:** `array`<br/>|
-| `global.connectivity.subnets[*].cidrBlocks[*]` |**None**|**Type:** `object`<br/>|
-| `global.connectivity.subnets[*].cidrBlocks[*].availabilityZone` | **Availability zone**|**Type:** `string`<br/>**Example:** `"a"`<br/>|
-| `global.connectivity.subnets[*].cidrBlocks[*].cidr` | **Address range** - IPv4 address range, in CIDR notation.|**Type:** `string`<br/>|
-| `global.connectivity.subnets[*].cidrBlocks[*].tags` | **Tags** - AWS resource tags to assign to this subnet.|**Type:** `object`<br/>|
-| `global.connectivity.subnets[*].cidrBlocks[*].tags.*` | **Tag value**|**Type:** `string`<br/>**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`<br/>|
-| `global.connectivity.subnets[*].isPublic` | **Public**|**Type:** `boolean`<br/>|
-| `global.connectivity.subnets[*].tags` | **Tags** - AWS resource tags to assign to this CIDR block.|**Type:** `object`<br/>|
-| `global.connectivity.subnets[*].tags.*` | **Tag value**|**Type:** `string`<br/>**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`<br/>|
-| `global.connectivity.topology` | **Topology** - Networking architecture between management cluster and workload cluster.|**Type:** `object`<br/>|
-| `global.connectivity.topology.mode` | **Mode** - Valid values: GiantSwarmManaged, UserManaged, None.|**Type:** `string`<br/>**Default:** `"None"`|
-| `global.connectivity.topology.prefixListId` | **Prefix list ID** - ID of the managed prefix list to use when the topology mode is set to 'UserManaged'.|**Type:** `string`<br/>|
-| `global.connectivity.topology.transitGatewayId` | **Transit gateway ID** - If the topology mode is set to 'UserManaged', this can be used to specify the transit gateway to use.|**Type:** `string`<br/>|
-| `global.connectivity.vpcEndpointMode` | **VPC endpoint mode** - Who is reponsible for creation and management of VPC endpoints.|**Type:** `string`<br/>**Default:** `"GiantSwarmManaged"`|
-| `global.connectivity.vpcMode` | **VPC mode** - Whether the cluser's VPC is created with public, internet facing resources (public subnets, NAT gateway) or not (private).|**Type:** `string`<br/>**Default:** `"public"`|
+| `global.connectivity.availabilityZoneUsageLimit` | **Availability zones** - Maximum number of availability zones (AZ) that should be used in a region. If a region has more than this number of AZs then this number of AZs will be picked randomly when creating subnets.|**Type:** `[integer]`<br/>**Default:** `3`|
+| `global.connectivity.bastion` | **Bastion host**|**Type:** `[object]`<br/>|
+| `global.connectivity.bastion.enabled` | **Enable**|**Type:** `[boolean]`<br/>**Default:** `true`|
+| `global.connectivity.bastion.instanceType` | **EC2 instance type**|**Type:** `[string]`<br/>**Default:** `"t3.small"`|
+| `global.connectivity.bastion.replicas` | **Number of hosts**|**Type:** `[integer]`<br/>**Default:** `1`|
+| `global.connectivity.bastion.subnetTags` | **Subnet tags** - Tags to filter which AWS subnets will be used for the bastion hosts.|**Type:** `[array]`<br/>|
+| `global.connectivity.bastion.subnetTags[*]` | **Subnet tag**|**Type:** `[object]`<br/>|
+| `global.connectivity.bastion.subnetTags[*].*` | **Tag value**|**Type:** `[string]`<br/>**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`<br/>|
+| `global.connectivity.containerRegistries` | **Container registries** - Endpoints and credentials configuration for container registries.|**Type:** `[object]`<br/>|
+| `global.connectivity.containerRegistries.*` | **Registries** - Container registries and mirrors|**Type:** `[array]`<br/>|
+| `global.connectivity.containerRegistries.*[*]` | **Registry**|**Type:** `[object]`<br/>|
+| `global.connectivity.containerRegistries.*[*].credentials` | **Credentials**|**Type:** `[object]`<br/>|
+| `global.connectivity.containerRegistries.*[*].credentials.auth` | **Auth** - Base64-encoded string from the concatenation of the username, a colon, and the password.|**Type:** `[string]`<br/>|
+| `global.connectivity.containerRegistries.*[*].credentials.identitytoken` | **Identity token** - Used to authenticate the user and obtain an access token for the registry.|**Type:** `[string]`<br/>|
+| `global.connectivity.containerRegistries.*[*].credentials.password` | **Password** - Used to authenticate for the registry with username/password.|**Type:** `[string]`<br/>|
+| `global.connectivity.containerRegistries.*[*].credentials.username` | **Username** - Used to authenticate for the registry with username/password.|**Type:** `[string]`<br/>|
+| `global.connectivity.containerRegistries.*[*].endpoint` | **Endpoint** - Endpoint for the container registry.|**Type:** `[string]`<br/>|
+| `global.connectivity.dns` | **DNS**|**Type:** `[object]`<br/>|
+| `global.connectivity.dns.additionalVpc` | **Additional VPCs** - If DNS mode is 'private', the VPCs specified here will be assigned to the private hosted zone.|**Type:** `[array]`<br/>|
+| `global.connectivity.dns.additionalVpc[*]` | **VPC identifier**|**Type:** `[string]`<br/>**Example:** `"vpc-x2aeasd1d"`<br/>**Value pattern:** `^vpc-[0-0a-zA-Z]+$`<br/>|
+| `global.connectivity.dns.mode` | **Mode** - Whether the Route53 hosted zone of this cluster should be public or private.|**Type:** `[string]`<br/>**Default:** `"public"`|
+| `global.connectivity.dns.resolverRulesOwnerAccount` | **Resolver rules owner** - ID of the AWS account that created the resolver rules to be associated with the workload cluster VPC.|**Type:** `[string]`<br/>|
+| `global.connectivity.network` | **Network**|**Type:** `[object]`<br/>|
+| `global.connectivity.network.podCidr` | **Pod subnet** - IPv4 address range for pods, in CIDR notation.|**Type:** `[string]`<br/>**Default:** `"100.64.0.0/12"`|
+| `global.connectivity.network.serviceCidr` | **Service subnet** - IPv4 address range for services, in CIDR notation.|**Type:** `[string]`<br/>**Default:** `"172.31.0.0/16"`|
+| `global.connectivity.network.vpcCidr` | **VPC subnet** - IPv4 address range to assign to this cluster's VPC, in CIDR notation.|**Type:** `[string]`<br/>**Default:** `"10.0.0.0/16"`|
+| `global.connectivity.proxy` | **Proxy** - Whether/how outgoing traffic is routed through proxy servers.|**Type:** `[object]`<br/>|
+| `global.connectivity.proxy.enabled` | **Enable**|**Type:** `[boolean]`<br/>|
+| `global.connectivity.proxy.httpProxy` | **HTTP proxy** - To be passed to the HTTP_PROXY environment variable in all hosts.|**Type:** `[string]`<br/>|
+| `global.connectivity.proxy.httpsProxy` | **HTTPS proxy** - To be passed to the HTTPS_PROXY environment variable in all hosts.|**Type:** `[string]`<br/>|
+| `global.connectivity.proxy.noProxy` | **No proxy** - To be passed to the NO_PROXY environment variable in all hosts.|**Type:** `[string]`<br/>|
+| `global.connectivity.sshSsoPublicKey` | **SSH public key for single sign-on**|**Type:** `[string]`<br/>**Default:** `"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4cvZ01fLmO9cJbWUj7sfF+NhECgy+Cl0bazSrZX7sU vault-ca@vault.operations.giantswarm.io"`|
+| `global.connectivity.subnets` | **Subnets** - Subnets are created and tagged based on this definition.|**Type:** `[array]`<br/>**Default:** `[{"cidrBlocks":[{"availabilityZone":"a","cidr":"10.0.0.0/20"},{"availabilityZone":"b","cidr":"10.0.16.0/20"},{"availabilityZone":"c","cidr":"10.0.32.0/20"}],"isPublic":true},{"cidrBlocks":[{"availabilityZone":"a","cidr":"10.0.64.0/18"},{"availabilityZone":"b","cidr":"10.0.128.0/18"},{"availabilityZone":"c","cidr":"10.0.192.0/18"}],"isPublic":false}]`|
+| `global.connectivity.subnets[*]` | **Subnet**|**Type:** `[object]`<br/>|
+| `global.connectivity.subnets[*].cidrBlocks` | **Network**|**Type:** `[array]`<br/>|
+| `global.connectivity.subnets[*].cidrBlocks[*]` |**None**|**Type:** `[object]`<br/>|
+| `global.connectivity.subnets[*].cidrBlocks[*].availabilityZone` | **Availability zone**|**Type:** `[string]`<br/>**Example:** `"a"`<br/>|
+| `global.connectivity.subnets[*].cidrBlocks[*].cidr` | **Address range** - IPv4 address range, in CIDR notation.|**Type:** `[string]`<br/>|
+| `global.connectivity.subnets[*].cidrBlocks[*].tags` | **Tags** - AWS resource tags to assign to this subnet.|**Type:** `[object]`<br/>|
+| `global.connectivity.subnets[*].cidrBlocks[*].tags.*` | **Tag value**|**Type:** `[string]`<br/>**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`<br/>|
+| `global.connectivity.subnets[*].isPublic` | **Public**|**Type:** `[boolean]`<br/>|
+| `global.connectivity.subnets[*].tags` | **Tags** - AWS resource tags to assign to this CIDR block.|**Type:** `[object]`<br/>|
+| `global.connectivity.subnets[*].tags.*` | **Tag value**|**Type:** `[string]`<br/>**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`<br/>|
+| `global.connectivity.topology` | **Topology** - Networking architecture between management cluster and workload cluster.|**Type:** `[object]`<br/>|
+| `global.connectivity.topology.mode` | **Mode** - Valid values: GiantSwarmManaged, UserManaged, None.|**Type:** `[string]`<br/>**Default:** `"None"`|
+| `global.connectivity.topology.prefixListId` | **Prefix list ID** - ID of the managed prefix list to use when the topology mode is set to 'UserManaged'.|**Type:** `[string]`<br/>|
+| `global.connectivity.topology.transitGatewayId` | **Transit gateway ID** - If the topology mode is set to 'UserManaged', this can be used to specify the transit gateway to use.|**Type:** `[string]`<br/>|
+| `global.connectivity.vpcEndpointMode` | **VPC endpoint mode** - Who is reponsible for creation and management of VPC endpoints.|**Type:** `[string]`<br/>**Default:** `"GiantSwarmManaged"`|
+| `global.connectivity.vpcMode` | **VPC mode** - Whether the cluser's VPC is created with public, internet facing resources (public subnets, NAT gateway) or not (private).|**Type:** `[string]`<br/>**Default:** `"public"`|
 
 ### Control plane
 Properties within the `.controlPlane` top-level object
 
 | **Property** | **Description** | **More Details** |
 | :----------- | :-------------- | :--------------- |
-| `controlPlane.apiMode` | **API mode** - Whether the Kubernetes API server load balancer should be reachable from the internet (public) or internal only (private).|**Types:** `string, integer, number`<br/>**Default:** `"public"`|
-| `controlPlane.containerdVolumeSizeGB` | **Containerd volume size (GB)**|**Type:** `integer`<br/>**Default:** `100`|
-| `controlPlane.etcdVolumeSizeGB` | **Etcd volume size (GB)**|**Type:** `integer`<br/>**Default:** `100`|
-| `controlPlane.instanceType` | **EC2 instance type**|**Type:** `string`<br/>**Default:** `"m5.xlarge"`|
-| `controlPlane.kubeletVolumeSizeGB` | **Kubelet volume size (GB)**|**Type:** `integer`<br/>**Default:** `100`|
-| `controlPlane.machineHealthCheck` | **Machine health check**|**Type:** `object`<br/>|
-| `controlPlane.machineHealthCheck.enabled` | **Enable**|**Type:** `boolean`<br/>**Default:** `true`|
-| `controlPlane.machineHealthCheck.maxUnhealthy` | **Maximum unhealthy nodes**|**Type:** `string`<br/>**Example:** `"40%"`<br/>**Default:** `"40%"`|
-| `controlPlane.machineHealthCheck.nodeStartupTimeout` | **Node startup timeout** - Determines how long a machine health check should wait for a node to join the cluster, before considering a machine unhealthy.|**Type:** `string`<br/>**Examples:** `"10m", "100s"`<br/>**Default:** `"8m0s"`|
-| `controlPlane.machineHealthCheck.unhealthyNotReadyTimeout` | **Timeout for ready** - If a node is not in condition 'Ready' after this timeout, it will be considered unhealthy.|**Type:** `string`<br/>**Example:** `"300s"`<br/>**Default:** `"10m0s"`|
-| `controlPlane.machineHealthCheck.unhealthyUnknownTimeout` | **Timeout for unknown condition** - If a node is in 'Unknown' condition after this timeout, it will be considered unhealthy.|**Type:** `string`<br/>**Example:** `"300s"`<br/>**Default:** `"10m0s"`|
-| `controlPlane.oidc` | **OIDC authentication**|**Type:** `object`<br/>|
-| `controlPlane.oidc.caPem` | **Certificate authority** - Identity provider's CA certificate in PEM format.|**Type:** `string`<br/>|
-| `controlPlane.oidc.clientId` | **Client ID**|**Type:** `string`<br/>|
-| `controlPlane.oidc.groupsClaim` | **Groups claim**|**Type:** `string`<br/>|
-| `controlPlane.oidc.issuerUrl` | **Issuer URL** - Exact issuer URL that will be included in identity tokens.|**Type:** `string`<br/>|
-| `controlPlane.oidc.usernameClaim` | **Username claim**|**Type:** `string`<br/>|
-| `controlPlane.rootVolumeSizeGB` | **Root volume size (GB)**|**Type:** `integer`<br/>**Default:** `120`|
-| `controlPlane.subnetTags` | **Subnet tags** - Tags to select AWS resources for the control plane by.|**Type:** `array`<br/>|
-| `controlPlane.subnetTags[*]` | **Subnet tag**|**Type:** `object`<br/>|
-| `controlPlane.subnetTags[*].*` | **Tag value**|**Type:** `string`<br/>**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`<br/>|
+| `controlPlane.apiMode` | **API mode** - Whether the Kubernetes API server load balancer should be reachable from the internet (public) or internal only (private).|**Type:** `[number integer string]`<br/>**Default:** `"public"`|
+| `controlPlane.containerdVolumeSizeGB` | **Containerd volume size (GB)**|**Type:** `[integer]`<br/>**Default:** `100`|
+| `controlPlane.etcdVolumeSizeGB` | **Etcd volume size (GB)**|**Type:** `[integer]`<br/>**Default:** `100`|
+| `controlPlane.instanceType` | **EC2 instance type**|**Type:** `[string]`<br/>**Default:** `"m5.xlarge"`|
+| `controlPlane.kubeletVolumeSizeGB` | **Kubelet volume size (GB)**|**Type:** `[integer]`<br/>**Default:** `100`|
+| `controlPlane.machineHealthCheck` | **Machine health check**|**Type:** `[object]`<br/>|
+| `controlPlane.machineHealthCheck.enabled` | **Enable**|**Type:** `[boolean]`<br/>**Default:** `true`|
+| `controlPlane.machineHealthCheck.maxUnhealthy` | **Maximum unhealthy nodes**|**Type:** `[string]`<br/>**Example:** `"40%"`<br/>**Default:** `"40%"`|
+| `controlPlane.machineHealthCheck.nodeStartupTimeout` | **Node startup timeout** - Determines how long a machine health check should wait for a node to join the cluster, before considering a machine unhealthy.|**Type:** `[string]`<br/>**Examples:** `"10m", "100s"`<br/>**Default:** `"8m0s"`|
+| `controlPlane.machineHealthCheck.unhealthyNotReadyTimeout` | **Timeout for ready** - If a node is not in condition 'Ready' after this timeout, it will be considered unhealthy.|**Type:** `[string]`<br/>**Example:** `"300s"`<br/>**Default:** `"10m0s"`|
+| `controlPlane.machineHealthCheck.unhealthyUnknownTimeout` | **Timeout for unknown condition** - If a node is in 'Unknown' condition after this timeout, it will be considered unhealthy.|**Type:** `[string]`<br/>**Example:** `"300s"`<br/>**Default:** `"10m0s"`|
+| `controlPlane.oidc` | **OIDC authentication**|**Type:** `[object]`<br/>|
+| `controlPlane.oidc.caPem` | **Certificate authority** - Identity provider's CA certificate in PEM format.|**Type:** `[string]`<br/>|
+| `controlPlane.oidc.clientId` | **Client ID**|**Type:** `[string]`<br/>|
+| `controlPlane.oidc.groupsClaim` | **Groups claim**|**Type:** `[string]`<br/>|
+| `controlPlane.oidc.issuerUrl` | **Issuer URL** - Exact issuer URL that will be included in identity tokens.|**Type:** `[string]`<br/>|
+| `controlPlane.oidc.usernameClaim` | **Username claim**|**Type:** `[string]`<br/>|
+| `controlPlane.rootVolumeSizeGB` | **Root volume size (GB)**|**Type:** `[integer]`<br/>**Default:** `120`|
+| `controlPlane.subnetTags` | **Subnet tags** - Tags to select AWS resources for the control plane by.|**Type:** `[array]`<br/>|
+| `controlPlane.subnetTags[*]` | **Subnet tag**|**Type:** `[object]`<br/>|
+| `controlPlane.subnetTags[*].*` | **Tag value**|**Type:** `[string]`<br/>**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`<br/>|
 
 ### Default node pool
 Properties within the `.defaultMachinePools` top-level object
 
 | **Property** | **Description** | **More Details** |
 | :----------- | :-------------- | :--------------- |
-| `defaultMachinePools.PATTERN` | **Node pool**|**Type:** `object`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `defaultMachinePools.PATTERN.availabilityZones` | **Availability zones**|**Type:** `array`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `defaultMachinePools.PATTERN.availabilityZones[*]` | **Availability zone**|**Type:** `string`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `defaultMachinePools.PATTERN.customNodeLabels` | **Custom node labels**|**Type:** `object`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `defaultMachinePools.PATTERN.customNodeLabels.PATTERN_2` | **Value of a Kubernetes resource label**|**Type:** `string`<br/>**Examples:** `"exampleValue", "Example_value.with_numbers-and.separators01"`<br/>**Key patterns:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>`PATTERN_2`=`^[a-zA-Z0-9\._-]+$`<br/>**Value pattern:** `^[-a-zA-Z0-9_\.]{0,63}$`<br/>|
-| `defaultMachinePools.PATTERN.customNodeTaints` | **Custom node taints**|**Type:** `array`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `defaultMachinePools.PATTERN.customNodeTaints[*]` |**None**|**Type:** `object`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `defaultMachinePools.PATTERN.customNodeTaints[*].effect` | **Effect**|**Type:** `string`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `defaultMachinePools.PATTERN.customNodeTaints[*].key` | **Key**|**Type:** `string`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `defaultMachinePools.PATTERN.customNodeTaints[*].value` | **Value**|**Type:** `string`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `defaultMachinePools.PATTERN.instanceType` | **EC2 instance type**|**Type:** `string`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `defaultMachinePools.PATTERN.maxSize` | **Maximum number of nodes**|**Type:** `integer`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `defaultMachinePools.PATTERN.minSize` | **Minimum number of nodes**|**Type:** `integer`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `defaultMachinePools.PATTERN.rootVolumeSizeGB` | **Root volume size (GB)**|**Type:** `integer`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `defaultMachinePools.PATTERN.subnetTags` | **Subnet tags** - Tags to filter which AWS subnets will be used for this node pool.|**Type:** `array`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `defaultMachinePools.PATTERN.subnetTags[*]` | **Subnet tag**|**Type:** `object`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `defaultMachinePools.PATTERN.subnetTags[*].*` | **Tag value**|**Type:** `string`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`<br/>|
+| `defaultMachinePools.PATTERN` | **Node pool**|**Type:** `[object]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `defaultMachinePools.PATTERN.availabilityZones` | **Availability zones**|**Type:** `[array]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `defaultMachinePools.PATTERN.availabilityZones[*]` | **Availability zone**|**Type:** `[string]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `defaultMachinePools.PATTERN.customNodeLabels` | **Custom node labels**|**Type:** `[object]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `defaultMachinePools.PATTERN.customNodeLabels.PATTERN_2` | **Value of a Kubernetes resource label**|**Type:** `[string]`<br/>**Examples:** `"exampleValue", "Example_value.with_numbers-and.separators01"`<br/>**Key patterns:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>`PATTERN_2`=`^[a-zA-Z0-9\._-]+$`<br/>**Value pattern:** `^[-a-zA-Z0-9_\.]{0,63}$`<br/>|
+| `defaultMachinePools.PATTERN.customNodeTaints` | **Custom node taints**|**Type:** `[array]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `defaultMachinePools.PATTERN.customNodeTaints[*]` |**None**|**Type:** `[object]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `defaultMachinePools.PATTERN.customNodeTaints[*].effect` | **Effect**|**Type:** `[string]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `defaultMachinePools.PATTERN.customNodeTaints[*].key` | **Key**|**Type:** `[string]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `defaultMachinePools.PATTERN.customNodeTaints[*].value` | **Value**|**Type:** `[string]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `defaultMachinePools.PATTERN.instanceType` | **EC2 instance type**|**Type:** `[string]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `defaultMachinePools.PATTERN.maxSize` | **Maximum number of nodes**|**Type:** `[integer]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `defaultMachinePools.PATTERN.minSize` | **Minimum number of nodes**|**Type:** `[integer]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `defaultMachinePools.PATTERN.rootVolumeSizeGB` | **Root volume size (GB)**|**Type:** `[integer]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `defaultMachinePools.PATTERN.subnetTags` | **Subnet tags** - Tags to filter which AWS subnets will be used for this node pool.|**Type:** `[array]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `defaultMachinePools.PATTERN.subnetTags[*]` | **Subnet tag**|**Type:** `[object]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `defaultMachinePools.PATTERN.subnetTags[*].*` | **Tag value**|**Type:** `[string]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`<br/>|
 
 ### Internal
 Properties within the `.internal` top-level object
@@ -119,61 +119,61 @@ For Giant Swarm internal use only, not stable, or not supported by UIs.
 
 | **Property** | **Description** | **More Details** |
 | :----------- | :-------------- | :--------------- |
-| `internal.hashSalt` | **Hash salt** - If specified, this token is used as a salt to the hash suffix of some resource names. Can be used to force-recreate some resources.|**Type:** `string`<br/>|
-| `internal.kubernetesVersion` | **Kubernetes version**|**Type:** `string`<br/>**Example:** `"1.24.7"`<br/>**Default:** `"1.23.16"`|
+| `internal.hashSalt` | **Hash salt** - If specified, this token is used as a salt to the hash suffix of some resource names. Can be used to force-recreate some resources.|**Type:** `[string]`<br/>|
+| `internal.kubernetesVersion` | **Kubernetes version**|**Type:** `[string]`<br/>**Example:** `"1.24.7"`<br/>**Default:** `"1.23.16"`|
 
 ### Kubectl image
 Properties within the `.kubectlImage` top-level object
 
 | **Property** | **Description** | **More Details** |
 | :----------- | :-------------- | :--------------- |
-| `kubectlImage.name` | **Repository**|**Type:** `string`<br/>**Default:** `"giantswarm/kubectl"`|
-| `kubectlImage.registry` | **Registry**|**Type:** `string`<br/>**Default:** `"quay.io"`|
-| `kubectlImage.tag` | **Tag**|**Type:** `string`<br/>**Default:** `"1.23.5"`|
+| `kubectlImage.name` | **Repository**|**Type:** `[string]`<br/>**Default:** `"giantswarm/kubectl"`|
+| `kubectlImage.registry` | **Registry**|**Type:** `[string]`<br/>**Default:** `"quay.io"`|
+| `kubectlImage.tag` | **Tag**|**Type:** `[string]`<br/>**Default:** `"1.23.5"`|
 
 ### Metadata
 Properties within the `.global.metadata` object
 
 | **Property** | **Description** | **More Details** |
 | :----------- | :-------------- | :--------------- |
-| `global.metadata.description` | **Cluster description** - User-friendly description of the cluster's purpose.|**Type:** `string`<br/>|
-| `global.metadata.name` | **Cluster name** - Unique identifier, cannot be changed after creation.|**Type:** `string`<br/>|
-| `global.metadata.organization` | **Organization**|**Type:** `string`<br/>|
+| `global.metadata.description` | **Cluster description** - User-friendly description of the cluster's purpose.|**Type:** `[string]`<br/>|
+| `global.metadata.name` | **Cluster name** - Unique identifier, cannot be changed after creation.|**Type:** `[string]`<br/>|
+| `global.metadata.organization` | **Organization**|**Type:** `[string]`<br/>|
 
 ### Node pools
 Properties within the `.nodePools` top-level object
 
 | **Property** | **Description** | **More Details** |
 | :----------- | :-------------- | :--------------- |
-| `nodePools.PATTERN` | **Node pool**|**Type:** `object`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `nodePools.PATTERN.availabilityZones` | **Availability zones**|**Type:** `array`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `nodePools.PATTERN.availabilityZones[*]` | **Availability zone**|**Type:** `string`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `nodePools.PATTERN.customNodeLabels` | **Custom node labels**|**Type:** `object`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `nodePools.PATTERN.customNodeLabels.PATTERN_2` | **Value of a Kubernetes resource label**|**Type:** `string`<br/>**Examples:** `"exampleValue", "Example_value.with_numbers-and.separators01"`<br/>**Key patterns:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>`PATTERN_2`=`^[a-zA-Z0-9\._-]+$`<br/>**Value pattern:** `^[-a-zA-Z0-9_\.]{0,63}$`<br/>|
-| `nodePools.PATTERN.customNodeTaints` | **Custom node taints**|**Type:** `array`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `nodePools.PATTERN.customNodeTaints[*]` |**None**|**Type:** `object`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `nodePools.PATTERN.customNodeTaints[*].effect` | **Effect**|**Type:** `string`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `nodePools.PATTERN.customNodeTaints[*].key` | **Key**|**Type:** `string`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `nodePools.PATTERN.customNodeTaints[*].value` | **Value**|**Type:** `string`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `nodePools.PATTERN.instanceType` | **EC2 instance type**|**Type:** `string`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `nodePools.PATTERN.maxSize` | **Maximum number of nodes**|**Type:** `integer`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `nodePools.PATTERN.minSize` | **Minimum number of nodes**|**Type:** `integer`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `nodePools.PATTERN.rootVolumeSizeGB` | **Root volume size (GB)**|**Type:** `integer`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `nodePools.PATTERN.subnetTags` | **Subnet tags** - Tags to filter which AWS subnets will be used for this node pool.|**Type:** `array`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `nodePools.PATTERN.subnetTags[*]` | **Subnet tag**|**Type:** `object`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `nodePools.PATTERN.subnetTags[*].*` | **Tag value**|**Type:** `string`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`<br/>|
+| `nodePools.PATTERN` | **Node pool**|**Type:** `[object]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `nodePools.PATTERN.availabilityZones` | **Availability zones**|**Type:** `[array]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `nodePools.PATTERN.availabilityZones[*]` | **Availability zone**|**Type:** `[string]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `nodePools.PATTERN.customNodeLabels` | **Custom node labels**|**Type:** `[object]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `nodePools.PATTERN.customNodeLabels.PATTERN_2` | **Value of a Kubernetes resource label**|**Type:** `[string]`<br/>**Examples:** `"exampleValue", "Example_value.with_numbers-and.separators01"`<br/>**Key patterns:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>`PATTERN_2`=`^[a-zA-Z0-9\._-]+$`<br/>**Value pattern:** `^[-a-zA-Z0-9_\.]{0,63}$`<br/>|
+| `nodePools.PATTERN.customNodeTaints` | **Custom node taints**|**Type:** `[array]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `nodePools.PATTERN.customNodeTaints[*]` |**None**|**Type:** `[object]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `nodePools.PATTERN.customNodeTaints[*].effect` | **Effect**|**Type:** `[string]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `nodePools.PATTERN.customNodeTaints[*].key` | **Key**|**Type:** `[string]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `nodePools.PATTERN.customNodeTaints[*].value` | **Value**|**Type:** `[string]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `nodePools.PATTERN.instanceType` | **EC2 instance type**|**Type:** `[string]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `nodePools.PATTERN.maxSize` | **Maximum number of nodes**|**Type:** `[integer]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `nodePools.PATTERN.minSize` | **Minimum number of nodes**|**Type:** `[integer]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `nodePools.PATTERN.rootVolumeSizeGB` | **Root volume size (GB)**|**Type:** `[integer]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `nodePools.PATTERN.subnetTags` | **Subnet tags** - Tags to filter which AWS subnets will be used for this node pool.|**Type:** `[array]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `nodePools.PATTERN.subnetTags[*]` | **Subnet tag**|**Type:** `[object]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
+| `nodePools.PATTERN.subnetTags[*].*` | **Tag value**|**Type:** `[string]`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`<br/>|
 
 ### Other global
 
 | **Property** | **Description** | **More Details** |
 | :----------- | :-------------- | :--------------- |
-| `global.managementCluster` | **Management cluster** - Name of the Cluster API cluster managing this workload cluster.|**Type:** `string`<br/>|
+| `global.managementCluster` | **Management cluster** - Name of the Cluster API cluster managing this workload cluster.|**Type:** `[string]`<br/>|
 
 ### Other
 
 | **Property** | **Description** | **More Details** |
 | :----------- | :-------------- | :--------------- |
-| `baseDomain` | **Base DNS domain** - Description with a "quoted" word.|**Type:** `string`<br/>|
-| `cluster-shared` | **Library chart**|**Type:** `object`<br/>|
-| `provider` | **Cluster API provider name**|**Type:** `string`<br/>|
+| `baseDomain` | **Base DNS domain** - Description with a "quoted" word.|**Type:** `[string]`<br/>|
+| `cluster-shared` | **Library chart**|**Type:** `[object]`<br/>|
+| `provider` | **Cluster API provider name**|**Type:** `[string]`<br/>|
 

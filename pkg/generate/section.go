@@ -4,7 +4,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/santhosh-tekuri/jsonschema/v5"
+	"github.com/santhosh-tekuri/jsonschema/v6"
 )
 
 type Section struct {
