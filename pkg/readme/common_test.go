@@ -1,16 +1,16 @@
 package readme
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"testing"
 
-	"github.com/giantswarm/microerror"
 	"github.com/google/go-cmp/cmp"
 )
 
 func checkFileContent(t *testing.T, content string, expectedContent string, err error, expectedErr error) {
-	if expectedErr != nil && err != expectedErr && microerror.Cause(err) != expectedErr {
+	if expectedErr != nil && err != expectedErr && !errors.Is(err, expectedErr) {
 		t.Fatalf("expected error %s, received %s", expectedErr, err)
 	}
 
@@ -27,7 +27,7 @@ func checkFileContent(t *testing.T, content string, expectedContent string, err 
 }
 
 func checkErr(t *testing.T, err error, expectedErr error) {
-	if err != expectedErr && microerror.Cause(err) != expectedErr {
+	if err != expectedErr && !errors.Is(err, expectedErr) {
 		t.Fatalf("received unexpected error: %s\n", err)
 	}
 }

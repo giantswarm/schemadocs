@@ -2,4 +2,4 @@ Generating documentation
 Schema: %[1]s
 
 [ERROR] Failed to generate documentation
-Reason: invalid schema file: jsonschema file://%[1]s compilation failed: open %[1]s: no such file or directory
+Reason: failed to generate docs: jsonschema file://%[1]s compilation failed: open %[1]s: no such file or directory: invalidSchemaFile

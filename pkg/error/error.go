@@ -1,67 +1,51 @@
 package error
 
-import "github.com/giantswarm/microerror"
+import "errors"
 
-var InvalidConfigError = &microerror.Error{
-	Kind: "invalidConfigError",
-}
+var InvalidConfigError = errors.New("invalidConfigError")
 
 func IsInvalidConfig(err error) bool {
-	return microerror.Cause(err) == InvalidConfigError
+	return errors.Is(err, InvalidConfigError)
 }
 
-var InvalidFlagError = &microerror.Error{
-	Kind: "invalidFlagError",
-}
+var InvalidFlagError = errors.New("invalidFlagError")
 
 func IsInvalidFlag(err error) bool {
-	return microerror.Cause(err) == InvalidFlagError
+	return errors.Is(err, InvalidFlagError)
 }
 
-var InvalidSchemaFile = &microerror.Error{
-	Kind: "invalidSchemaFile",
-}
+var InvalidSchemaFile = errors.New("invalidSchemaFile")
 
 func IsInvalidSchemaFile(err error) bool {
-	return microerror.Cause(err) == InvalidSchemaFile
+	return errors.Is(err, InvalidSchemaFile)
 }
 
-var DocsGenerationError = &microerror.Error{
-	Kind: "docsGenerationError",
-}
+var DocsGenerationError = errors.New("docsGenerationError")
 
 func IsDocsGenerationError(err error) bool {
-	return microerror.Cause(err) == DocsGenerationError
+	return errors.Is(err, DocsGenerationError)
 }
 
-var InvalidOutputFilePath = &microerror.Error{
-	Kind: "invalidOutputFilePath",
-}
+var InvalidOutputFilePath = errors.New("invalidOutputFilePath")
 
 func IsInvalidOutputFilePath(err error) bool {
-	return microerror.Cause(err) == InvalidOutputFilePath
+	return errors.Is(err, InvalidOutputFilePath)
 }
 
-var InvalidFileError = &microerror.Error{
-	Kind: "invalidFileError",
-}
+var InvalidFileError = errors.New("invalidFileError")
 
 func IsInvalidFileError(err error) bool {
-	return microerror.Cause(err) == InvalidFileError
+	return errors.Is(err, InvalidFileError)
 }
 
-var InvalidDocsPlaceholderError = &microerror.Error{
-	Kind: "invalidDocsPlaceholderError",
-}
+var InvalidDocsPlaceholderError = errors.New("invalidDocsPlaceholderError")
 
 func IsInvalidDocsPlaceholder(err error) bool {
-	return microerror.Cause(err) == InvalidDocsPlaceholderError
+	return errors.Is(err, InvalidDocsPlaceholderError)
 }
 
-var InvalidDocsError = &microerror.Error{
-	Kind: "invalidDocumentationError",
-}
+var InvalidDocsError = errors.New("invalidDocumentationError")
 
 func IsInvalidDocs(err error) bool {
-	return microerror.Cause(err) == InvalidDocsError
+	return errors.Is(err, InvalidDocsError)
 }

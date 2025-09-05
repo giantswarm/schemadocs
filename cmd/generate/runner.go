@@ -1,9 +1,9 @@
 package generate
 
 import (
+	"fmt"
 	"io"
 
-	"github.com/giantswarm/microerror"
 	"github.com/spf13/cobra"
 
 	"github.com/giantswarm/schemadocs/cmd/global"
@@ -38,24 +38,24 @@ func (r *runner) Run(cmd *cobra.Command, args []string) error {
 
 func (r *runner) run(cmd *cobra.Command, args []string) error {
 	if len(args) == 0 {
-		return microerror.Maskf(cmderror.InvalidConfigError, "requires at least 1 arg(s), only received 0")
+		return fmt.Errorf("requires at least 1 arg(s), only received 0: %w", cmderror.InvalidConfigError)
 	}
 
 	err := r.flag.Validate()
 	if err != nil {
-		return microerror.Mask(err)
+		return fmt.Errorf("flag validation failed: %w", err)
 	}
 
 	cli.WriteOutputF(r.stdout, "Schema: %s\n", args[0])
 
 	docs, err := generate.Generate(args[0], r.flag.layout)
 	if err != nil {
-		return microerror.Mask(err)
+		return fmt.Errorf("failed to generate docs: %w", err)
 	}
 
 	readmeItem, err := readme.New(r.flag.outputPath, r.flag.docPlaceholderStart, r.flag.docPlaceholderEnd)
 	if err != nil {
-		return microerror.Mask(err)
+		return fmt.Errorf("failed to create readme: %w", err)
 	}
 
 	cli.WriteOutputF(r.stdout, "Destination file: %s\n", readmeItem.Path())
@@ -68,7 +68,7 @@ func (r *runner) run(cmd *cobra.Command, args []string) error {
 
 	err = readmeItem.WriteDocs(docs)
 	if err != nil {
-		return microerror.Mask(err)
+		return fmt.Errorf("failed to write docs: %w", err)
 	}
 
 	return nil

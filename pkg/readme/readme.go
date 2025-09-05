@@ -1,9 +1,8 @@
 package readme
 
 import (
+	"fmt"
 	"os"
-
-	"github.com/giantswarm/microerror"
 
 	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
 )
@@ -33,7 +32,7 @@ func New(path, startPlaceholder, endPlaceholder string) (Readme, error) {
 	}
 
 	if err != nil {
-		return readme, microerror.Maskf(pkgerror.InvalidFileError, "%s", err.Error())
+		return readme, fmt.Errorf("%s: %w", err.Error(), pkgerror.InvalidFileError)
 	}
 
 	if startPlaceholder == "" {
@@ -66,14 +65,14 @@ func (r *Readme) Path() string {
 
 func resolveReadmeFilePathStep(paths []string) (string, error) {
 	if len(paths) == 0 {
-		return "", microerror.Maskf(pkgerror.InvalidOutputFilePath, "valid output file path is not specified")
+		return "", fmt.Errorf("valid output file path is not specified: %w", pkgerror.InvalidOutputFilePath)
 	}
 	if paths[0] != "" {
 		_, err := os.Stat(paths[0]) // nolint: gosec
 		if err == nil {
 			return paths[0], nil // nolint: gosec
 		} else if len(paths) == 1 {
-			return "", microerror.Mask(err)
+			return "", fmt.Errorf("failed to stat file: %w", err)
 		}
 	}
 	return resolveReadmeFilePathStep(paths[1:])

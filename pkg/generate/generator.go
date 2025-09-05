@@ -6,7 +6,6 @@ import (
 	"sort"
 	"text/template"
 
-	"github.com/giantswarm/microerror"
 	"github.com/santhosh-tekuri/jsonschema/v5"
 	_ "github.com/santhosh-tekuri/jsonschema/v5/httploader"
 
@@ -21,7 +20,7 @@ func Generate(schemaPath string, layout string) (string, error) {
 	schema, err := compiler.Compile(schemaPath)
 
 	if err != nil {
-		return "", microerror.Maskf(pkgerror.InvalidSchemaFile, "%s", err.Error())
+		return "", fmt.Errorf("%s: %w", err.Error(), pkgerror.InvalidSchemaFile)
 	}
 
 	sections := sectionsFromSchema(schema, "")
@@ -82,13 +81,13 @@ func toMarkdown(sections []Section, layout string) (string, error) {
 		t, err = templates.GetDefaultTemplate()
 	}
 	if err != nil {
-		return "", microerror.Maskf(pkgerror.DocsGenerationError, "%s", err.Error())
+		return "", fmt.Errorf("%s: %w", err.Error(), pkgerror.DocsGenerationError)
 	}
 
 	var tplBuffer bytes.Buffer
 	err = t.Execute(&tplBuffer, sections)
 	if err != nil {
-		return "", microerror.Maskf(pkgerror.DocsGenerationError, "%s", err.Error())
+		return "", fmt.Errorf("%s: %w", err.Error(), pkgerror.DocsGenerationError)
 	}
 	return tplBuffer.String(), nil
 }

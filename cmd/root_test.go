@@ -2,12 +2,12 @@ package cmd
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"os"
 	"path"
 	"testing"
 
-	"github.com/giantswarm/microerror"
 	"github.com/google/go-cmp/cmp"
 
 	cmderror "github.com/giantswarm/schemadocs/pkg/error"
@@ -148,7 +148,7 @@ func Test_Root(t *testing.T) {
 			err = cmd.Execute()
 
 			if tc.expectedErr != nil {
-				if err != tc.expectedErr && microerror.Cause(err) != tc.expectedErr {
+				if err != tc.expectedErr && !errors.Is(err, tc.expectedErr) {
 					t.Fatalf("received unexpected error: expected '%s', received '%s'\n", tc.expectedErr, err)
 				}
 				checkOutput(t, output.String(), tc.expectedOutput, argFilePath, flagFilePath, tc.formatExpectedOutput)

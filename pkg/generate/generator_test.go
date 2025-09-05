@@ -1,12 +1,12 @@
 package generate
 
 import (
+	"errors"
 	"flag"
 	"io"
 	"os"
 	"testing"
 
-	"github.com/giantswarm/microerror"
 	"github.com/google/go-cmp/cmp"
 
 	pkgerror "github.com/giantswarm/schemadocs/pkg/error"
@@ -55,7 +55,7 @@ func Test_Generator(t *testing.T) {
 			docs, err := Generate("testdata/"+tc.schemaPath, tc.layout)
 
 			if err != nil {
-				if err != tc.expectedErr && microerror.Cause(err) != tc.expectedErr {
+				if err != tc.expectedErr && !errors.Is(err, tc.expectedErr) {
 					t.Fatalf("received unexpected error: %s\n", err)
 				}
 				return
