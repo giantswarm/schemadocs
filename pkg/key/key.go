@@ -53,7 +53,9 @@ func SchemaIsPrimitive(schema *jsonschema.Schema) bool {
 		schema.Items2020 == nil &&
 		schema.Ref == nil &&
 		schema.DynamicRef == nil &&
-		schema.RecursiveRef == nil
+		schema.RecursiveRef == nil &&
+		schema.OneOf == nil &&
+		schema.AllOf == nil
 }
 
 func SchemaIsPresentable(schema *jsonschema.Schema) bool {

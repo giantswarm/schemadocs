@@ -27,6 +27,15 @@
         <br/>`{{ index $.KeyPatternMappings . }}`=`{{ . }}`
     {{- end -}}<br/>
 {{- end -}}
+{{- if ne .ConstValue "" -}}
+    **Must have value:** `{{ .ConstValue }}`<br/>
+{{- end -}}
+{{- if eq (len .EnumValues) 1 -}}
+    **Allowed value:** `{{ index .EnumValues 0 }}`<br/>
+{{- end -}}
+{{- if gt (len .EnumValues) 1 -}}
+    **Allowed values:** {{ range $index, $element := .EnumValues -}}{{ if $index }}, {{ end }}`{{ $element }}`{{- end -}}<br/>
+{{- end -}}
 {{- if ne .ValuePattern "" -}}
     **Value pattern:** `{{ .ValuePattern }}`<br/>
 {{- end -}}

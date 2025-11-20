@@ -40,6 +40,8 @@ type Row struct {
 	KeyPatternMappings map[string]string
 	ValuePattern       string
 	DefaultValue       string
+	ConstValue         string
+	EnumValues         []string
 	Examples           []string
 	Required           bool
 	Primitive          bool
@@ -107,7 +109,26 @@ func RowsFromSchema(schema *jsonschema.Schema, path string, name string, keyPatt
 		rows = append(rows, RowsFromSchema(schema.Items2020, path, key.ListItemName(name), keyPatterns)...)
 	}
 
+	for oneOfIndex, oneOfSchema := range schema.OneOf {
+		rows = append(rows, RowsFromSchema(oneOfSchema, path, fmt.Sprintf("%s[option#%d]", name, oneOfIndex+1), keyPatterns)...)
+	}
+
+	for _, allOfSchema := range schema.AllOf {
+		// Exclude first generated row to avoid repetition (row would be equal to the parent of `allOf`)
+		rows = append(rows, RowsFromSchema(allOfSchema, path, name, keyPatterns)[1:]...)
+	}
+
 	return rows
+}
+
+func stringFromAny(a any) string {
+	if stringer, ok := a.(fmt.Stringer); ok {
+		return stringer.String()
+	} else if s, ok := a.(string); ok {
+		return s
+	} else {
+		panic(fmt.Sprintf("Unsupported any type: %T", a))
+	}
 }
 
 func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []string) Row {
@@ -136,7 +157,19 @@ func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []s
 		KeyPatternMappings: keyPatternMappings,
 	}
 
-	row.Presentable = (row.Primitive || row.Path != "" && row.Path != key.GlobalPropertyName) && row.Name != ""
+	row.Presentable = (row.Primitive || row.Path != "" && row.Path != key.GlobalPropertyName) &&
+		row.Name != "" &&
+		schema.AllOf == nil
+
+	if schema.Const != nil {
+		row.ConstValue = stringFromAny(*schema.Const)
+	}
+
+	if schema.Enum != nil {
+		for _, enumValue := range schema.Enum.Values {
+			row.EnumValues = append(row.EnumValues, stringFromAny(enumValue))
+		}
+	}
 
 	if schema.Pattern != nil {
 		row.ValuePattern = schema.Pattern.String()
