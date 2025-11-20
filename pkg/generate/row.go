@@ -11,23 +11,6 @@ import (
 	"github.com/giantswarm/schemadocs/pkg/key"
 )
 
-// convertTypesToStrings converts jsonschema.Types to []string
-func convertTypesToStrings(types jsonschema.Types) []string {
-	// Try to use the String() method if available, or convert based on the actual API
-	typeStr := types.String()
-	if typeStr == "" {
-		return []string{}
-	}
-
-	// If it's a single type, return it as a slice
-	// If it's multiple types separated by commas, split them
-	if strings.Contains(typeStr, ",") {
-		return strings.Split(typeStr, ",")
-	}
-
-	return []string{typeStr}
-}
-
 type Row struct {
 	Path               string
 	Name               string
@@ -139,9 +122,7 @@ func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []s
 
 	var types []string
 	if schema.Types != nil {
-		// Convert jsonschema.Types (int) to string slice
-		// In v6, Types is a bitmask, we need to convert it to strings
-		types = convertTypesToStrings(*schema.Types)
+		types = schema.Types.ToStrings()
 	}
 
 	row := Row{

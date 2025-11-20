@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Support `allOf`, `oneOf`, `const` and `enum`
+- Fix rendering type as `[string]` when it's actually `string` (same for all types)
 
 ## [0.2.0] - 2025-09-05
 
