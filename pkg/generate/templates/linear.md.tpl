@@ -18,7 +18,7 @@
 {{- else if gt (len .Types) 1 -}}
   **Types:**
   {{- range $index, $element := .Types -}}
-    {{ if $index }}, {{ end }}`{{- $element }}`
+    {{ if $index }}, {{ else }} {{ end }}`{{- $element }}`
   {{- end }}
 {{- end }}
 

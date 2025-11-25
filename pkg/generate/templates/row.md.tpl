@@ -27,7 +27,7 @@
         <br/>`{{ index $.KeyPatternMappings . }}`=`{{ . }}`
     {{- end -}}<br/>
 {{- end -}}
-{{- if ne .ConstValue "" -}}
+{{- if ne .ConstValue nil -}}
     **Must have value:** `{{ .ConstValue }}`<br/>
 {{- end -}}
 {{- if eq (len .EnumValues) 1 -}}

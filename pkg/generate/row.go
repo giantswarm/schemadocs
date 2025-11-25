@@ -23,7 +23,7 @@ type Row struct {
 	KeyPatternMappings map[string]string
 	ValuePattern       string
 	DefaultValue       string
-	ConstValue         string
+	ConstValue         *string
 	EnumValues         []string
 	Examples           []string
 	Required           bool
@@ -143,7 +143,8 @@ func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []s
 		schema.AllOf == nil
 
 	if schema.Const != nil {
-		row.ConstValue = stringFromAny(*schema.Const)
+		s := stringFromAny(*schema.Const)
+		row.ConstValue = &s
 	}
 
 	if schema.Enum != nil {
