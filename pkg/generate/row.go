@@ -162,7 +162,7 @@ func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []s
 		for _, example := range schema.Examples {
 			exampleJson, err := json.Marshal(example)
 			if err != nil {
-				examples = append(examples, fmt.Sprintf("%v", example))
+				examples = append(examples, stringFromAny(example))
 			} else {
 				examples = append(examples, string(exampleJson))
 			}
@@ -173,7 +173,7 @@ func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []s
 	if schema.Default != nil {
 		defaultJson, err := json.Marshal(schema.Default)
 		if err != nil {
-			row.DefaultValue = fmt.Sprintf("%v", schema.Default)
+			row.DefaultValue = stringFromAny(schema.Default)
 		} else {
 			row.DefaultValue = string(defaultJson)
 		}

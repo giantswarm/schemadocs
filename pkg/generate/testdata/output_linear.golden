@@ -23,6 +23,10 @@ If specified, this image will be used to provision EC2 instances.
 
 Name of an AWSClusterRoleIdentity object. This in turn refers to the IAM role used to create all AWS cloud resources when creating the cluster. The role can be in another AWS account in order to create all resources in that account. Note: This name does not refer directly to an IAM role name/ARN.
 
+**Value pattern:** `^[-a-zA-Z0-9_\.]{1,63}$`
+
+**Default:** `"default"`
+
 ---
 
 `.providerSpecific.flatcarAwsAccount`
@@ -33,6 +37,8 @@ Name of an AWSClusterRoleIdentity object. This in turn refers to the IAM role us
 
 AWS account ID owning the Flatcar Container Linux AMI.
 
+**Default:** `"075585003325"`
+
 ---
 
 `.providerSpecific.region`
@@ -40,9 +46,6 @@ AWS account ID owning the Flatcar Container Linux AMI.
 **Type:** `string`
 
 **Region**
-
-
-
 
 ### Connectivity {#connectivity}
 
@@ -56,6 +59,8 @@ AWS account ID owning the Flatcar Container Linux AMI.
 
 Maximum number of availability zones (AZ) that should be used in a region. If a region has more than this number of AZs then this number of AZs will be picked randomly when creating subnets.
 
+**Default:** `3`
+
 ---
 
 `.global.connectivity.bastion`
@@ -63,8 +68,6 @@ Maximum number of availability zones (AZ) that should be used in a region. If a 
 **Type:** `object`
 
 **Bastion host**
-
-
 
 ---
 
@@ -74,7 +77,7 @@ Maximum number of availability zones (AZ) that should be used in a region. If a 
 
 **Enable**
 
-
+**Default:** `true`
 
 ---
 
@@ -84,7 +87,7 @@ Maximum number of availability zones (AZ) that should be used in a region. If a 
 
 **EC2 instance type**
 
-
+**Default:** `"t3.small"`
 
 ---
 
@@ -94,7 +97,7 @@ Maximum number of availability zones (AZ) that should be used in a region. If a 
 
 **Number of hosts**
 
-
+**Default:** `1`
 
 ---
 
@@ -114,8 +117,6 @@ Tags to filter which AWS subnets will be used for the bastion hosts.
 
 **Subnet tag**
 
-
-
 ---
 
 `.global.connectivity.bastion.subnetTags[*].*`
@@ -124,7 +125,7 @@ Tags to filter which AWS subnets will be used for the bastion hosts.
 
 **Tag value**
 
-
+**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`
 
 ---
 
@@ -154,8 +155,6 @@ Container registries and mirrors
 
 **Registry**
 
-
-
 ---
 
 `.global.connectivity.containerRegistries.*[*].credentials`
@@ -163,8 +162,6 @@ Container registries and mirrors
 **Type:** `object`
 
 **Credentials**
-
-
 
 ---
 
@@ -224,8 +221,6 @@ Endpoint for the container registry.
 
 **DNS**
 
-
-
 ---
 
 `.global.connectivity.dns.additionalVpc`
@@ -244,7 +239,9 @@ If DNS mode is 'private', the VPCs specified here will be assigned to the privat
 
 **VPC identifier**
 
+**Example:** `"vpc-x2aeasd1d"`
 
+**Value pattern:** `^vpc-[0-0a-zA-Z]+$`
 
 ---
 
@@ -255,6 +252,10 @@ If DNS mode is 'private', the VPCs specified here will be assigned to the privat
 **Mode**
 
 Whether the Route53 hosted zone of this cluster should be public or private.
+
+**Allowed values:** `public`, `private`
+
+**Default:** `"public"`
 
 ---
 
@@ -270,21 +271,13 @@ ID of the AWS account that created the resolver rules to be associated with the 
 
 `.global.connectivity.dns.resolverRulesOwnerAccount[option#1]`
 
-
-
-
-
-
+**Value pattern:** `^\d{12}$`
 
 ---
 
 `.global.connectivity.dns.resolverRulesOwnerAccount[option#2]`
 
-
-
-
-
-
+**Must have value:** ``
 
 ---
 
@@ -293,8 +286,6 @@ ID of the AWS account that created the resolver rules to be associated with the 
 **Type:** `object`
 
 **Network**
-
-
 
 ---
 
@@ -306,6 +297,8 @@ ID of the AWS account that created the resolver rules to be associated with the 
 
 IPv4 address range for pods, in CIDR notation.
 
+**Default:** `"100.64.0.0/12"`
+
 ---
 
 `.global.connectivity.network.serviceCidr`
@@ -316,6 +309,8 @@ IPv4 address range for pods, in CIDR notation.
 
 IPv4 address range for services, in CIDR notation.
 
+**Default:** `"172.31.0.0/16"`
+
 ---
 
 `.global.connectivity.network.vpcCidr`
@@ -325,6 +320,8 @@ IPv4 address range for services, in CIDR notation.
 **VPC subnet**
 
 IPv4 address range to assign to this cluster's VPC, in CIDR notation.
+
+**Default:** `"10.0.0.0/16"`
 
 ---
 
@@ -343,8 +340,6 @@ Whether/how outgoing traffic is routed through proxy servers.
 **Type:** `boolean`
 
 **Enable**
-
-
 
 ---
 
@@ -384,7 +379,7 @@ To be passed to the NO_PROXY environment variable in all hosts.
 
 **SSH public key for single sign-on**
 
-
+**Default:** `"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4cvZ01fLmO9cJbWUj7sfF+NhECgy+Cl0bazSrZX7sU vault-ca@vault.operations.giantswarm.io"`
 
 ---
 
@@ -396,6 +391,8 @@ To be passed to the NO_PROXY environment variable in all hosts.
 
 Subnets are created and tagged based on this definition.
 
+**Default:** `[{"cidrBlocks":[{"availabilityZone":"a","cidr":"10.0.0.0/20"},{"availabilityZone":"b","cidr":"10.0.16.0/20"},{"availabilityZone":"c","cidr":"10.0.32.0/20"}],"isPublic":true},{"cidrBlocks":[{"availabilityZone":"a","cidr":"10.0.64.0/18"},{"availabilityZone":"b","cidr":"10.0.128.0/18"},{"availabilityZone":"c","cidr":"10.0.192.0/18"}],"isPublic":false}]`
+
 ---
 
 `.global.connectivity.subnets[*]`
@@ -403,8 +400,6 @@ Subnets are created and tagged based on this definition.
 **Type:** `object`
 
 **Subnet**
-
-
 
 ---
 
@@ -414,17 +409,11 @@ Subnets are created and tagged based on this definition.
 
 **Network**
 
-
-
 ---
 
 `.global.connectivity.subnets[*].cidrBlocks[*]`
 
 **Type:** `object`
-
-
-
-
 
 ---
 
@@ -434,7 +423,7 @@ Subnets are created and tagged based on this definition.
 
 **Availability zone**
 
-
+**Example:** `"a"`
 
 ---
 
@@ -464,7 +453,7 @@ AWS resource tags to assign to this subnet.
 
 **Tag value**
 
-
+**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`
 
 ---
 
@@ -473,8 +462,6 @@ AWS resource tags to assign to this subnet.
 **Type:** `boolean`
 
 **Public**
-
-
 
 ---
 
@@ -494,7 +481,7 @@ AWS resource tags to assign to this CIDR block.
 
 **Tag value**
 
-
+**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`
 
 ---
 
@@ -515,6 +502,10 @@ Networking architecture between management cluster and workload cluster.
 **Mode**
 
 Valid values: GiantSwarmManaged, UserManaged, None.
+
+**Allowed values:** `None`, `GiantSwarmManaged`, `UserManaged`
+
+**Default:** `"None"`
 
 ---
 
@@ -546,6 +537,10 @@ If the topology mode is set to 'UserManaged', this can be used to specify the tr
 
 Who is reponsible for creation and management of VPC endpoints.
 
+**Allowed values:** `GiantSwarmManaged`, `UserManaged`
+
+**Default:** `"GiantSwarmManaged"`
+
 ---
 
 `.global.connectivity.vpcMode`
@@ -556,6 +551,9 @@ Who is reponsible for creation and management of VPC endpoints.
 
 Whether the cluser's VPC is created with public, internet facing resources (public subnets, NAT gateway) or not (private).
 
+**Allowed values:** `public`, `private`
+
+**Default:** `"public"`
 
 ### Control plane {#control-plane}
 
@@ -569,6 +567,10 @@ Whether the cluser's VPC is created with public, internet facing resources (publ
 
 Whether the Kubernetes API server load balancer should be reachable from the internet (public) or internal only (private).
 
+**Allowed values:** `public`, `private`
+
+**Default:** `"public"`
+
 ---
 
 `.controlPlane.containerdVolumeSizeGB`
@@ -577,7 +579,7 @@ Whether the Kubernetes API server load balancer should be reachable from the int
 
 **Containerd volume size (GB)**
 
-
+**Default:** `100`
 
 ---
 
@@ -587,7 +589,7 @@ Whether the Kubernetes API server load balancer should be reachable from the int
 
 **Etcd volume size (GB)**
 
-
+**Default:** `100`
 
 ---
 
@@ -597,7 +599,7 @@ Whether the Kubernetes API server load balancer should be reachable from the int
 
 **EC2 instance type**
 
-
+**Default:** `"m5.xlarge"`
 
 ---
 
@@ -607,7 +609,7 @@ Whether the Kubernetes API server load balancer should be reachable from the int
 
 **Kubelet volume size (GB)**
 
-
+**Default:** `100`
 
 ---
 
@@ -617,8 +619,6 @@ Whether the Kubernetes API server load balancer should be reachable from the int
 
 **Machine health check**
 
-
-
 ---
 
 `.controlPlane.machineHealthCheck.enabled`
@@ -627,7 +627,7 @@ Whether the Kubernetes API server load balancer should be reachable from the int
 
 **Enable**
 
-
+**Default:** `true`
 
 ---
 
@@ -637,7 +637,9 @@ Whether the Kubernetes API server load balancer should be reachable from the int
 
 **Maximum unhealthy nodes**
 
+**Example:** `"40%"`
 
+**Default:** `"40%"`
 
 ---
 
@@ -649,6 +651,10 @@ Whether the Kubernetes API server load balancer should be reachable from the int
 
 Determines how long a machine health check should wait for a node to join the cluster, before considering a machine unhealthy.
 
+**Examples:** `"10m"`, `"100s"`
+
+**Default:** `"8m0s"`
+
 ---
 
 `.controlPlane.machineHealthCheck.unhealthyNotReadyTimeout`
@@ -658,6 +664,10 @@ Determines how long a machine health check should wait for a node to join the cl
 **Timeout for ready**
 
 If a node is not in condition 'Ready' after this timeout, it will be considered unhealthy.
+
+**Example:** `"300s"`
+
+**Default:** `"10m0s"`
 
 ---
 
@@ -669,6 +679,10 @@ If a node is not in condition 'Ready' after this timeout, it will be considered 
 
 If a node is in 'Unknown' condition after this timeout, it will be considered unhealthy.
 
+**Example:** `"300s"`
+
+**Default:** `"10m0s"`
+
 ---
 
 `.controlPlane.oidc`
@@ -676,8 +690,6 @@ If a node is in 'Unknown' condition after this timeout, it will be considered un
 **Type:** `object`
 
 **OIDC authentication**
-
-
 
 ---
 
@@ -697,8 +709,6 @@ Identity provider's CA certificate in PEM format.
 
 **Client ID**
 
-
-
 ---
 
 `.controlPlane.oidc.groupsClaim`
@@ -706,8 +716,6 @@ Identity provider's CA certificate in PEM format.
 **Type:** `string`
 
 **Groups claim**
-
-
 
 ---
 
@@ -727,8 +735,6 @@ Exact issuer URL that will be included in identity tokens.
 
 **Username claim**
 
-
-
 ---
 
 `.controlPlane.rootVolumeSizeGB`
@@ -737,7 +743,7 @@ Exact issuer URL that will be included in identity tokens.
 
 **Root volume size (GB)**
 
-
+**Default:** `120`
 
 ---
 
@@ -757,8 +763,6 @@ Tags to select AWS resources for the control plane by.
 
 **Subnet tag**
 
-
-
 ---
 
 `.controlPlane.subnetTags[*].*`
@@ -767,8 +771,7 @@ Tags to select AWS resources for the control plane by.
 
 **Tag value**
 
-
-
+**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`
 
 ### Default node pool {#default-node-pool}
 
@@ -780,7 +783,7 @@ Tags to select AWS resources for the control plane by.
 
 **Node pool**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -790,7 +793,7 @@ Tags to select AWS resources for the control plane by.
 
 **Availability zones**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -800,7 +803,7 @@ Tags to select AWS resources for the control plane by.
 
 **Availability zone**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -810,7 +813,7 @@ Tags to select AWS resources for the control plane by.
 
 **Custom node labels**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -820,7 +823,11 @@ Tags to select AWS resources for the control plane by.
 
 **Value of a Kubernetes resource label**
 
+**Examples:** `"exampleValue"`, `"Example_value.with_numbers-and.separators01"`
 
+**Key patterns:** `PATTERN`=`^[a-z0-9]{5,10}$`, `PATTERN_2`=`^[a-zA-Z0-9\._-]+$`
+
+**Value pattern:** `^[-a-zA-Z0-9_\.]{0,63}$`
 
 ---
 
@@ -830,7 +837,7 @@ Tags to select AWS resources for the control plane by.
 
 **Custom node taints**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -838,9 +845,7 @@ Tags to select AWS resources for the control plane by.
 
 **Type:** `object`
 
-
-
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -850,7 +855,9 @@ Tags to select AWS resources for the control plane by.
 
 **Effect**
 
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
+**Allowed values:** `NoSchedule`, `PreferNoSchedule`, `NoExecute`
 
 ---
 
@@ -860,7 +867,7 @@ Tags to select AWS resources for the control plane by.
 
 **Key**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -870,7 +877,7 @@ Tags to select AWS resources for the control plane by.
 
 **Value**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -880,7 +887,7 @@ Tags to select AWS resources for the control plane by.
 
 **EC2 instance type**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -890,7 +897,7 @@ Tags to select AWS resources for the control plane by.
 
 **Maximum number of nodes**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -900,7 +907,7 @@ Tags to select AWS resources for the control plane by.
 
 **Minimum number of nodes**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -910,7 +917,7 @@ Tags to select AWS resources for the control plane by.
 
 **Root volume size (GB)**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -922,6 +929,8 @@ Tags to select AWS resources for the control plane by.
 
 Tags to filter which AWS subnets will be used for this node pool.
 
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
+
 ---
 
 `.defaultMachinePools.PATTERN.subnetTags[*]`
@@ -930,7 +939,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Subnet tag**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -940,8 +949,9 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Tag value**
 
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
-
+**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`
 
 ### Internal {#internal}For Giant Swarm internal use only, not stable, or not supported by UIs.
 
@@ -963,8 +973,9 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Kubernetes version**
 
+**Example:** `"1.24.7"`
 
-
+**Default:** `"1.23.16"`
 
 ### Kubectl image {#kubectl-image}
 
@@ -976,7 +987,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Repository**
 
-
+**Default:** `"giantswarm/kubectl"`
 
 ---
 
@@ -986,7 +997,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Registry**
 
-
+**Default:** `"quay.io"`
 
 ---
 
@@ -996,8 +1007,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Tag**
 
-
-
+**Default:** `"1.23.5"`
 
 ### Metadata {#metadata}
 
@@ -1029,9 +1039,6 @@ Unique identifier, cannot be changed after creation.
 
 **Organization**
 
-
-
-
 ### Node pools {#node-pools}
 
 ---
@@ -1042,7 +1049,7 @@ Unique identifier, cannot be changed after creation.
 
 **Node pool**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -1052,7 +1059,7 @@ Unique identifier, cannot be changed after creation.
 
 **Availability zones**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -1062,7 +1069,7 @@ Unique identifier, cannot be changed after creation.
 
 **Availability zone**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -1072,7 +1079,7 @@ Unique identifier, cannot be changed after creation.
 
 **Custom node labels**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -1082,7 +1089,11 @@ Unique identifier, cannot be changed after creation.
 
 **Value of a Kubernetes resource label**
 
+**Examples:** `"exampleValue"`, `"Example_value.with_numbers-and.separators01"`
 
+**Key patterns:** `PATTERN`=`^[a-z0-9]{5,10}$`, `PATTERN_2`=`^[a-zA-Z0-9\._-]+$`
+
+**Value pattern:** `^[-a-zA-Z0-9_\.]{0,63}$`
 
 ---
 
@@ -1092,7 +1103,7 @@ Unique identifier, cannot be changed after creation.
 
 **Custom node taints**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -1100,9 +1111,7 @@ Unique identifier, cannot be changed after creation.
 
 **Type:** `object`
 
-
-
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -1112,7 +1121,9 @@ Unique identifier, cannot be changed after creation.
 
 **Effect**
 
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
+**Allowed values:** `NoSchedule`, `PreferNoSchedule`, `NoExecute`
 
 ---
 
@@ -1122,7 +1133,7 @@ Unique identifier, cannot be changed after creation.
 
 **Key**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -1132,7 +1143,7 @@ Unique identifier, cannot be changed after creation.
 
 **Value**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -1142,7 +1153,7 @@ Unique identifier, cannot be changed after creation.
 
 **EC2 instance type**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -1152,7 +1163,7 @@ Unique identifier, cannot be changed after creation.
 
 **Maximum number of nodes**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -1162,7 +1173,7 @@ Unique identifier, cannot be changed after creation.
 
 **Minimum number of nodes**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -1172,7 +1183,7 @@ Unique identifier, cannot be changed after creation.
 
 **Root volume size (GB)**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -1184,6 +1195,8 @@ Unique identifier, cannot be changed after creation.
 
 Tags to filter which AWS subnets will be used for this node pool.
 
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
+
 ---
 
 `.nodePools.PATTERN.subnetTags[*]`
@@ -1192,7 +1205,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Subnet tag**
 
-
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
 ---
 
@@ -1202,8 +1215,9 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Tag value**
 
+**Key pattern:** `PATTERN`=`^[a-z0-9]{5,10}$`
 
-
+**Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`
 
 ### Other global {#other-global}
 
@@ -1216,7 +1230,6 @@ Tags to filter which AWS subnets will be used for this node pool.
 **Management cluster**
 
 Name of the Cluster API cluster managing this workload cluster.
-
 
 ### Other {#other}
 
@@ -1238,8 +1251,6 @@ Description with a "quoted" word.
 
 **Library chart**
 
-
-
 ---
 
 `.provider`
@@ -1247,8 +1258,3 @@ Description with a "quoted" word.
 **Type:** `string`
 
 **Cluster API provider name**
-
-
-
-
-

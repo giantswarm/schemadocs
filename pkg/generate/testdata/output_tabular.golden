@@ -70,7 +70,7 @@ Properties within the `.controlPlane` top-level object
 
 | **Property** | **Description** | **More Details** |
 | :----------- | :-------------- | :--------------- |
-| `controlPlane.apiMode` | **API mode** - Whether the Kubernetes API server load balancer should be reachable from the internet (public) or internal only (private).|**Types:** `number, integer, string`<br/>**Allowed values:** `public`, `private`<br/>**Default:** `"public"`|
+| `controlPlane.apiMode` | **API mode** - Whether the Kubernetes API server load balancer should be reachable from the internet (public) or internal only (private).|**Types:** `number`, `integer`, `string`<br/>**Allowed values:** `public`, `private`<br/>**Default:** `"public"`|
 | `controlPlane.containerdVolumeSizeGB` | **Containerd volume size (GB)**|**Type:** `integer`<br/>**Default:** `100`|
 | `controlPlane.etcdVolumeSizeGB` | **Etcd volume size (GB)**|**Type:** `integer`<br/>**Default:** `100`|
 | `controlPlane.instanceType` | **EC2 instance type**|**Type:** `string`<br/>**Default:** `"m5.xlarge"`|
@@ -78,7 +78,7 @@ Properties within the `.controlPlane` top-level object
 | `controlPlane.machineHealthCheck` | **Machine health check**|**Type:** `object`<br/>|
 | `controlPlane.machineHealthCheck.enabled` | **Enable**|**Type:** `boolean`<br/>**Default:** `true`|
 | `controlPlane.machineHealthCheck.maxUnhealthy` | **Maximum unhealthy nodes**|**Type:** `string`<br/>**Example:** `"40%"`<br/>**Default:** `"40%"`|
-| `controlPlane.machineHealthCheck.nodeStartupTimeout` | **Node startup timeout** - Determines how long a machine health check should wait for a node to join the cluster, before considering a machine unhealthy.|**Type:** `string`<br/>**Examples:** `"10m", "100s"`<br/>**Default:** `"8m0s"`|
+| `controlPlane.machineHealthCheck.nodeStartupTimeout` | **Node startup timeout** - Determines how long a machine health check should wait for a node to join the cluster, before considering a machine unhealthy.|**Type:** `string`<br/>**Examples:** `"10m"`, `"100s"`<br/>**Default:** `"8m0s"`|
 | `controlPlane.machineHealthCheck.unhealthyNotReadyTimeout` | **Timeout for ready** - If a node is not in condition 'Ready' after this timeout, it will be considered unhealthy.|**Type:** `string`<br/>**Example:** `"300s"`<br/>**Default:** `"10m0s"`|
 | `controlPlane.machineHealthCheck.unhealthyUnknownTimeout` | **Timeout for unknown condition** - If a node is in 'Unknown' condition after this timeout, it will be considered unhealthy.|**Type:** `string`<br/>**Example:** `"300s"`<br/>**Default:** `"10m0s"`|
 | `controlPlane.oidc` | **OIDC authentication**|**Type:** `object`<br/>|
@@ -101,7 +101,7 @@ Properties within the `.defaultMachinePools` top-level object
 | `defaultMachinePools.PATTERN.availabilityZones` | **Availability zones**|**Type:** `array`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
 | `defaultMachinePools.PATTERN.availabilityZones[*]` | **Availability zone**|**Type:** `string`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
 | `defaultMachinePools.PATTERN.customNodeLabels` | **Custom node labels**|**Type:** `object`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `defaultMachinePools.PATTERN.customNodeLabels.PATTERN_2` | **Value of a Kubernetes resource label**|**Type:** `string`<br/>**Examples:** `"exampleValue", "Example_value.with_numbers-and.separators01"`<br/>**Key patterns:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>`PATTERN_2`=`^[a-zA-Z0-9\._-]+$`<br/>**Value pattern:** `^[-a-zA-Z0-9_\.]{0,63}$`<br/>|
+| `defaultMachinePools.PATTERN.customNodeLabels.PATTERN_2` | **Value of a Kubernetes resource label**|**Type:** `string`<br/>**Examples:** `"exampleValue"`, `"Example_value.with_numbers-and.separators01"`<br/>**Key patterns:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>`PATTERN_2`=`^[a-zA-Z0-9\._-]+$`<br/>**Value pattern:** `^[-a-zA-Z0-9_\.]{0,63}$`<br/>|
 | `defaultMachinePools.PATTERN.customNodeTaints` | **Custom node taints**|**Type:** `array`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
 | `defaultMachinePools.PATTERN.customNodeTaints[*]` |**None**|**Type:** `object`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
 | `defaultMachinePools.PATTERN.customNodeTaints[*].effect` | **Effect**|**Type:** `string`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>**Allowed values:** `NoSchedule`, `PreferNoSchedule`, `NoExecute`<br/>|
@@ -151,7 +151,7 @@ Properties within the `.nodePools` top-level object
 | `nodePools.PATTERN.availabilityZones` | **Availability zones**|**Type:** `array`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
 | `nodePools.PATTERN.availabilityZones[*]` | **Availability zone**|**Type:** `string`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
 | `nodePools.PATTERN.customNodeLabels` | **Custom node labels**|**Type:** `object`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
-| `nodePools.PATTERN.customNodeLabels.PATTERN_2` | **Value of a Kubernetes resource label**|**Type:** `string`<br/>**Examples:** `"exampleValue", "Example_value.with_numbers-and.separators01"`<br/>**Key patterns:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>`PATTERN_2`=`^[a-zA-Z0-9\._-]+$`<br/>**Value pattern:** `^[-a-zA-Z0-9_\.]{0,63}$`<br/>|
+| `nodePools.PATTERN.customNodeLabels.PATTERN_2` | **Value of a Kubernetes resource label**|**Type:** `string`<br/>**Examples:** `"exampleValue"`, `"Example_value.with_numbers-and.separators01"`<br/>**Key patterns:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>`PATTERN_2`=`^[a-zA-Z0-9\._-]+$`<br/>**Value pattern:** `^[-a-zA-Z0-9_\.]{0,63}$`<br/>|
 | `nodePools.PATTERN.customNodeTaints` | **Custom node taints**|**Type:** `array`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
 | `nodePools.PATTERN.customNodeTaints[*]` |**None**|**Type:** `object`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>|
 | `nodePools.PATTERN.customNodeTaints[*].effect` | **Effect**|**Type:** `string`<br/>**Key pattern:**<br/>`PATTERN`=`^[a-z0-9]{5,10}$`<br/>**Allowed values:** `NoSchedule`, `PreferNoSchedule`, `NoExecute`<br/>|
@@ -178,4 +178,3 @@ Properties within the `.nodePools` top-level object
 | `baseDomain` | **Base DNS domain** - Description with a "quoted" word.|**Type:** `string`<br/>|
 | `cluster-shared` | **Library chart**|**Type:** `object`<br/>|
 | `provider` | **Cluster API provider name**|**Type:** `string`<br/>|
-
