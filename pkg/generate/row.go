@@ -11,23 +11,6 @@ import (
 	"github.com/giantswarm/schemadocs/pkg/key"
 )
 
-// convertTypesToStrings converts jsonschema.Types to []string
-func convertTypesToStrings(types jsonschema.Types) []string {
-	// Try to use the String() method if available, or convert based on the actual API
-	typeStr := types.String()
-	if typeStr == "" {
-		return []string{}
-	}
-
-	// If it's a single type, return it as a slice
-	// If it's multiple types separated by commas, split them
-	if strings.Contains(typeStr, ",") {
-		return strings.Split(typeStr, ",")
-	}
-
-	return []string{typeStr}
-}
-
 type Row struct {
 	Path               string
 	Name               string
@@ -40,6 +23,8 @@ type Row struct {
 	KeyPatternMappings map[string]string
 	ValuePattern       string
 	DefaultValue       string
+	ConstValue         *string
+	EnumValues         []string
 	Examples           []string
 	Required           bool
 	Primitive          bool
@@ -107,7 +92,26 @@ func RowsFromSchema(schema *jsonschema.Schema, path string, name string, keyPatt
 		rows = append(rows, RowsFromSchema(schema.Items2020, path, key.ListItemName(name), keyPatterns)...)
 	}
 
+	for oneOfIndex, oneOfSchema := range schema.OneOf {
+		rows = append(rows, RowsFromSchema(oneOfSchema, path, fmt.Sprintf("%s[option#%d]", name, oneOfIndex+1), keyPatterns)...)
+	}
+
+	for _, allOfSchema := range schema.AllOf {
+		// Exclude first generated row to avoid repetition (row would be equal to the parent of `allOf`)
+		rows = append(rows, RowsFromSchema(allOfSchema, path, name, keyPatterns)[1:]...)
+	}
+
 	return rows
+}
+
+func stringFromAny(a any) string {
+	if stringer, ok := a.(fmt.Stringer); ok {
+		return stringer.String()
+	} else if s, ok := a.(string); ok {
+		return s
+	} else {
+		panic(fmt.Sprintf("Unsupported any type: %T", a))
+	}
 }
 
 func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []string) Row {
@@ -118,9 +122,7 @@ func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []s
 
 	var types []string
 	if schema.Types != nil {
-		// Convert jsonschema.Types (int) to string slice
-		// In v6, Types is a bitmask, we need to convert it to strings
-		types = convertTypesToStrings(*schema.Types)
+		types = schema.Types.ToStrings()
 	}
 
 	row := Row{
@@ -136,7 +138,20 @@ func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []s
 		KeyPatternMappings: keyPatternMappings,
 	}
 
-	row.Presentable = (row.Primitive || row.Path != "" && row.Path != key.GlobalPropertyName) && row.Name != ""
+	row.Presentable = (row.Primitive || row.Path != "" && row.Path != key.GlobalPropertyName) &&
+		row.Name != "" &&
+		schema.AllOf == nil
+
+	if schema.Const != nil {
+		s := stringFromAny(*schema.Const)
+		row.ConstValue = &s
+	}
+
+	if schema.Enum != nil {
+		for _, enumValue := range schema.Enum.Values {
+			row.EnumValues = append(row.EnumValues, stringFromAny(enumValue))
+		}
+	}
 
 	if schema.Pattern != nil {
 		row.ValuePattern = schema.Pattern.String()
@@ -147,7 +162,7 @@ func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []s
 		for _, example := range schema.Examples {
 			exampleJson, err := json.Marshal(example)
 			if err != nil {
-				examples = append(examples, fmt.Sprintf("%v", example))
+				examples = append(examples, stringFromAny(example))
 			} else {
 				examples = append(examples, string(exampleJson))
 			}
@@ -158,7 +173,7 @@ func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []s
 	if schema.Default != nil {
 		defaultJson, err := json.Marshal(schema.Default)
 		if err != nil {
-			row.DefaultValue = fmt.Sprintf("%v", schema.Default)
+			row.DefaultValue = stringFromAny(schema.Default)
 		} else {
 			row.DefaultValue = string(defaultJson)
 		}

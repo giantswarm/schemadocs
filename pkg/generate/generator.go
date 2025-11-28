@@ -8,7 +8,9 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"regexp"
 	"sort"
+	"strings"
 	"text/template"
 
 	"github.com/santhosh-tekuri/jsonschema/v6"
@@ -137,6 +139,8 @@ func sectionsFromSchema(schema *jsonschema.Schema, path string) []Section {
 	return sections
 }
 
+var multipleLinebreaksRegex = regexp.MustCompile(`\n{2,}`)
+
 func toMarkdown(sections []Section, layout string) (string, error) {
 	var t *template.Template
 	var err error
@@ -154,5 +158,14 @@ func toMarkdown(sections []Section, layout string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("%s: %w", err.Error(), pkgerror.ErrDocsGeneration)
 	}
-	return tplBuffer.String(), nil
+	ret := tplBuffer.String()
+
+	// Replace any occurrences of more than two linebreaks with exactly two linebreaks
+	// (high effort to do this consistently in a Go template)
+	ret = multipleLinebreaksRegex.ReplaceAllString(ret, "\n\n")
+
+	// Only keep exactly one newline at the end since editors are normally configured to do that
+	ret = strings.TrimRight(ret, "\n") + "\n"
+
+	return ret, nil
 }

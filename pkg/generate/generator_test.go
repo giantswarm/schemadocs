@@ -64,7 +64,7 @@ func Test_Generator(t *testing.T) {
 			expectedResult := goldenValue(t, tc.outputPath, docs, *update)
 			diff := cmp.Diff(docs, expectedResult)
 			if diff != "" {
-				t.Fatalf("value of generated docs not expected, got: \n %s", diff)
+				t.Fatalf("value of generated docs not expected (-want +got):\n%s", diff)
 			}
 		})
 	}
