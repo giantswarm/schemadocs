@@ -737,6 +737,20 @@ Exact issuer URL that will be included in identity tokens.
 
 ---
 
+`.controlPlane.replicas`
+
+**Type:** `integer`
+
+**Replicas**
+
+The number of control plane nodes.
+
+**Allowed values:** `1`, `3`, `5`
+
+**Default:** `3`
+
+---
+
 `.controlPlane.rootVolumeSizeGB`
 
 **Type:** `integer`
