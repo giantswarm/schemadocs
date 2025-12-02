@@ -87,6 +87,7 @@ Properties within the `.controlPlane` top-level object
 | `controlPlane.oidc.groupsClaim` | **Groups claim**|**Type:** `string`<br/>|
 | `controlPlane.oidc.issuerUrl` | **Issuer URL** - Exact issuer URL that will be included in identity tokens.|**Type:** `string`<br/>|
 | `controlPlane.oidc.usernameClaim` | **Username claim**|**Type:** `string`<br/>|
+| `controlPlane.replicas` | **Replicas** - The number of control plane nodes.|**Type:** `integer`<br/>**Allowed values:** `1`, `3`, `5`<br/>**Default:** `3`|
 | `controlPlane.rootVolumeSizeGB` | **Root volume size (GB)**|**Type:** `integer`<br/>**Default:** `120`|
 | `controlPlane.subnetTags` | **Subnet tags** - Tags to select AWS resources for the control plane by.|**Type:** `array`<br/>|
 | `controlPlane.subnetTags[*]` | **Subnet tag**|**Type:** `object`<br/>|

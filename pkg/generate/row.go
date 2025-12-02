@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"regexp"
+	"strconv"
 	"strings"
 
 	"github.com/santhosh-tekuri/jsonschema/v6"
@@ -109,6 +110,8 @@ func stringFromAny(a any) string {
 		return stringer.String()
 	} else if s, ok := a.(string); ok {
 		return s
+	} else if v, ok := a.(float64); ok {
+		return strconv.FormatFloat(v, 'f', -1, 64)
 	} else {
 		panic(fmt.Sprintf("Unsupported any type: %T", a))
 	}

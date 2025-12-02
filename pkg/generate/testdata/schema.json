@@ -226,6 +226,17 @@
           },
           "title": "Subnet tags",
           "type": "array"
+        },
+        "replicas": {
+          "type": "integer",
+          "title": "Replicas",
+          "description": "The number of control plane nodes.",
+          "enum": [
+            1,
+            3,
+            5
+          ],
+          "default": 3
         }
       },
       "title": "Control plane",
