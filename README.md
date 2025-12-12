@@ -14,7 +14,7 @@ schemadocs helps you generate documentation from your JSON schema and store it i
 Given the following JSON schema:
 
 <details>
-<summary>Schow JSON schema</summary>
+<summary>Show JSON schema</summary>
 
 ```json
 {
@@ -91,10 +91,23 @@ go install github.com/giantswarm/schemadocs@latest
 
 ### Generating documentation
 
-Executing `schemadocs generate` without any options will generate Markdown documentation from a JSON schema file and store it in a `README.md` file in the current working directory.
+Executing `schemadocs generate` will generate Markdown documentation from a JSON schema file and store it in a `README.md` file in the current working directory.
 
 It is required that the README file contains exactly one pair of placeholder strings, which mark the start and end of the documentation.
 By default, the placeholders are `<!-- DOCS_START -->` and `<!-- DOCS_END -->`.
+
+**Prerequisites:** Before running the generate command, you must create your output file (e.g., `README.md`) with placeholder comments marking where the documentation should be inserted.
+
+Example README.md structure:
+
+```markdown
+# My Project
+
+## Configuration
+
+<!-- DOCS_START -->
+<!-- DOCS_END -->
+```
 
 If the README file does not exist or in case it does not contain one pair of valid placeholder strings, the execution will fail.
 
@@ -123,10 +136,15 @@ schemadocs generate schema.json \
 
 Use `--help` to learn about more options.
 
+#### Layout options
+
+The default output format is a tabular layout, as shown in the example above. The `--layout linear` flag allows to chose a linear output style.
+
 ### Validation
 
-Validate documentation in a text file by comparing it to documentation generated from a JSON schema file specified in the required `--schema` option.
-The validation passes in case both documentations match exactly.
+The `validate` command allows to verify in a CI/CD pipeline whether the schema documentation in the given markdown file is up-to-date.
+
+If the docs found are not up-to-date, the command fails with an exit code larger than 0.
 
 It is required that the text file contains exactly one pair of placeholder strings, which mark the start and end of the documentation.
 By default, the placeholders are `<!-- DOCS_START -->` and `<!-- DOCS_END -->`.
