@@ -2,7 +2,7 @@ module github.com/giantswarm/schemadocs
 
 go 1.22
 
-toolchain go1.25.5
+toolchain go1.25.6
 
 require (
 	github.com/fatih/color v1.18.0
