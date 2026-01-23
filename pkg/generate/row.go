@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -70,11 +71,24 @@ func RowsFromSchema(schema *jsonschema.Schema, path string, name string, keyPatt
 	}
 
 	if schema.PatternProperties != nil {
-		for pattern, patternProperty := range schema.PatternProperties {
-			keyPatterns = append(keyPatterns, pattern.String())
-			patternRegex := regexp.MustCompile(pattern.String())
-			patternName := key.NameFromPattern(patternRegex, keyPatterns, "*")
-			rows = append(rows, RowsFromSchema(patternProperty, row.FullPath, patternName, keyPatterns)...)
+		// Sort pattern keys for deterministic output
+		var patternStrings []string
+		for pattern := range schema.PatternProperties {
+			patternStrings = append(patternStrings, pattern.String())
+		}
+		sort.Strings(patternStrings)
+
+		for _, patternStr := range patternStrings {
+			// Find the corresponding pattern and property
+			for pattern, patternProperty := range schema.PatternProperties {
+				if pattern.String() == patternStr {
+					keyPatterns = append(keyPatterns, pattern.String())
+					patternRegex := regexp.MustCompile(pattern.String())
+					patternName := key.NameFromPattern(patternRegex, keyPatterns, "*")
+					rows = append(rows, RowsFromSchema(patternProperty, row.FullPath, patternName, keyPatterns)...)
+					break
+				}
+			}
 		}
 	}
 
