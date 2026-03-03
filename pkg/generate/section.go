@@ -17,12 +17,16 @@ type Section struct {
 }
 
 func SectionFromSchema(property *jsonschema.Schema, path, name string) Section {
+	title := property.Title
+	if title == "" {
+		title = name
+	}
 	return Section{
 		Name:        name,
-		Title:       property.Title,
+		Title:       title,
 		Description: property.Description,
 		Path:        path,
-		Slug:        strings.ToLower(strings.ReplaceAll(property.Title, " ", "-")),
+		Slug:        strings.ToLower(strings.ReplaceAll(title, " ", "-")),
 		Rows:        sortedRows(RowsFromSchema(property, path, name, []string{})),
 	}
 }
