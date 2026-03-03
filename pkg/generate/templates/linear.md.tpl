@@ -4,9 +4,9 @@
 {{ range . -}}
 ### {{ .Title }} {#{{ .Slug }}}
 
-{{- if .Description -}}
-  {{- .Description -}}
-{{- end }}
+{{ if .Description }}
+{{ .Description }}
+{{ end }}
 
 {{ range .Rows -}}
 {{- $row := . -}}
@@ -24,7 +24,7 @@
 {{- end }}
 
 {{ if .Title -}}
-**{{ .Title }}**
+**{{ .Title }}:**
 {{- end }}
 
 {{ if .Description -}}

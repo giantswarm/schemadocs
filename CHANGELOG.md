@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix markdownlint violations (MD036, MD026, MD019, MD024) in linear layout output
+
 ## [0.3.2] - 2026-01-23
 
 ### Fixed
