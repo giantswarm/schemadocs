@@ -20,6 +20,8 @@ workflows:
             tags:
               only: /^v.*/
       - architect/upload-release-assets:
+          context: architect
+          binary: schemadocs
           name: upload-release-assets
           requires:
             - go-build
