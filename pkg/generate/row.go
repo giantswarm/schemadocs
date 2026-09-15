@@ -33,6 +33,44 @@ type Row struct {
 	Presentable        bool
 }
 
+// applyAnnotations overwrites the annotations that schema sets itself, and leaves the others at the
+// value the row already carries.
+func applyAnnotations(row *Row, schema *jsonschema.Schema) {
+	if schema.Title != "" {
+		row.Title = schema.Title
+	}
+	if schema.Description != "" {
+		row.Description = schema.Description
+	}
+	if schema.Default != nil {
+		row.DefaultValue = defaultValueFromSchema(schema.Default)
+	}
+	if schema.Examples != nil {
+		row.Examples = examplesFromSchema(schema.Examples)
+	}
+}
+
+func defaultValueFromSchema(defaultValue *any) string {
+	defaultJson, err := json.Marshal(defaultValue)
+	if err != nil {
+		return stringFromAny(defaultValue)
+	}
+	return string(defaultJson)
+}
+
+func examplesFromSchema(schemaExamples []any) []string {
+	var examples []string
+	for _, example := range schemaExamples {
+		exampleJson, err := json.Marshal(example)
+		if err != nil {
+			examples = append(examples, stringFromAny(example))
+		} else {
+			examples = append(examples, string(exampleJson))
+		}
+	}
+	return examples
+}
+
 func RowsFromSchema(schema *jsonschema.Schema, path string, name string, keyPatterns []string) []Row {
 	// Sorting happens outside of `RowsFromSchema`, so the order in this slice doesn't matter
 	var rows []Row
@@ -43,6 +81,18 @@ func RowsFromSchema(schema *jsonschema.Schema, path string, name string, keyPatt
 		}
 		if schema.RecursiveRef != nil {
 			rows = append(rows, RowsFromSchema(schema.RecursiveRef, path, name, keyPatterns)...)
+		}
+
+		// JSON Schema 2020-12 allows annotations next to `$ref`, where they describe the referencing
+		// property rather than the referenced schema. Applying them lets one definition be reused in
+		// several places that need their own title, description, default or examples. Only the row of
+		// the referencing property itself is affected, not the rows of the referenced schema's own
+		// properties.
+		fullPath := key.MergedPropertyPath(path, name)
+		for i := range rows {
+			if rows[i].FullPath == fullPath {
+				applyAnnotations(&rows[i], schema)
+			}
 		}
 
 		return rows
@@ -175,25 +225,11 @@ func NewRow(schema *jsonschema.Schema, path string, name string, keyPatterns []s
 	}
 
 	if schema.Examples != nil {
-		var examples []string
-		for _, example := range schema.Examples {
-			exampleJson, err := json.Marshal(example)
-			if err != nil {
-				examples = append(examples, stringFromAny(example))
-			} else {
-				examples = append(examples, string(exampleJson))
-			}
-		}
-		row.Examples = examples
+		row.Examples = examplesFromSchema(schema.Examples)
 	}
 
 	if schema.Default != nil {
-		defaultJson, err := json.Marshal(schema.Default)
-		if err != nil {
-			row.DefaultValue = stringFromAny(schema.Default)
-		} else {
-			row.DefaultValue = string(defaultJson)
-		}
+		row.DefaultValue = defaultValueFromSchema(schema.Default)
 	}
 
 	return row
