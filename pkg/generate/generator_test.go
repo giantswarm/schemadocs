@@ -48,6 +48,12 @@ func Test_Generator(t *testing.T) {
 			schemaPath: "schema.json",
 			outputPath: "output_linear.golden",
 		},
+		{
+			name:       "case 4: Let annotations next to `$ref` override the ones of the referenced schema",
+			layout:     "default",
+			schemaPath: "schema_ref_annotations.json",
+			outputPath: "output_ref_annotations.golden",
+		},
 	}
 
 	for _, tc := range testCases {

@@ -1,0 +1,65 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$defs": {
+        "diskSizeGB": {
+            "type": "integer",
+            "title": "Disk size (GB)",
+            "description": "Size of the disk attached to the node.",
+            "default": 100,
+            "examples": [
+                50
+            ]
+        },
+        "volume": {
+            "type": "object",
+            "title": "Volume",
+            "description": "A volume attached to a node.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "title": "Label",
+                    "description": "Label of the filesystem on the volume."
+                }
+            }
+        }
+    },
+    "type": "object",
+    "properties": {
+        "controlPlane": {
+            "type": "object",
+            "title": "Control plane",
+            "properties": {
+                "diskSizeGB": {
+                    "$ref": "#/$defs/diskSizeGB"
+                },
+                "volume": {
+                    "$ref": "#/$defs/volume"
+                }
+            }
+        },
+        "workers": {
+            "type": "object",
+            "title": "Workers",
+            "properties": {
+                "diskSizeGB": {
+                    "$ref": "#/$defs/diskSizeGB",
+                    "description": "Size of the disk attached to the worker node. Worker nodes hold the container images, so this is larger than on the control plane."
+                },
+                "spareDiskSizeGB": {
+                    "$ref": "#/$defs/diskSizeGB",
+                    "title": "Spare disk size (GB)",
+                    "description": "Size of the second disk attached to the worker node.",
+                    "default": 200,
+                    "examples": [
+                        300,
+                        400
+                    ]
+                },
+                "volume": {
+                    "$ref": "#/$defs/volume",
+                    "description": "A volume attached to a worker node."
+                }
+            }
+        }
+    }
+}

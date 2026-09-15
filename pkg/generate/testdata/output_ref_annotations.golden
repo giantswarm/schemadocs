@@ -1,0 +1,18 @@
+### Control plane
+Properties within the `.controlPlane` top-level object
+
+| **Property** | **Description** | **More Details** |
+| :----------- | :-------------- | :--------------- |
+| `controlPlane.diskSizeGB` | **Disk size (GB)** - Size of the disk attached to the node.|**Type:** `integer`<br/>**Example:** `50`<br/>**Default:** `100`|
+| `controlPlane.volume` | **Volume** - A volume attached to a node.|**Type:** `object`<br/>|
+| `controlPlane.volume.label` | **Label** - Label of the filesystem on the volume.|**Type:** `string`<br/>|
+
+### Workers
+Properties within the `.workers` top-level object
+
+| **Property** | **Description** | **More Details** |
+| :----------- | :-------------- | :--------------- |
+| `workers.diskSizeGB` | **Disk size (GB)** - Size of the disk attached to the worker node. Worker nodes hold the container images, so this is larger than on the control plane.|**Type:** `integer`<br/>**Example:** `50`<br/>**Default:** `100`|
+| `workers.spareDiskSizeGB` | **Spare disk size (GB)** - Size of the second disk attached to the worker node.|**Type:** `integer`<br/>**Examples:** `300`, `400`<br/>**Default:** `200`|
+| `workers.volume` | **Volume** - A volume attached to a worker node.|**Type:** `object`<br/>|
+| `workers.volume.label` | **Label** - Label of the filesystem on the volume.|**Type:** `string`<br/>|
