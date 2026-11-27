@@ -7,6 +7,19 @@ linters:
   enable:
     - gosec
     - goconst
+  exclusions:
+    rules:
+      # Tests repeat fixture values on purpose; constants for them would make
+      # each case harder to read. goconst still checks the non-test code.
+      - path: _test\.go
+        linters:
+          - goconst
+      # The tests copy fixture files into a temporary directory; the paths come
+      # from the test cases, not from user input.
+      - path: cmd/root_test\.go
+        linters:
+          - gosec
+        text: G703
 
 issues:
   max-issues-per-linter: 0
